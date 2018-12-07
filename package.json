@@ -1,15 +1,16 @@
 {
   "name": "newman-reporter-htmlextra",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A newman reporter with added handlebars helpers and seperated request iterations",
   "main": "index.js",
   "preferGlobal": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "deprecated": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/DannyDainton/newman-reporter-htmlextra.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DannyDainton/newman-reporter-htmlextra/issues"
   },
   "keywords": [
     "newman",
@@ -24,5 +25,11 @@
     "pretty-ms": "^3.2.0"
   },
   "author": "Danny Dainton",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=6"
+  },
+  "peerDependencies": {
+    "newman": ">=4"
+  }
 }
