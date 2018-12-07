@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Newman Summary Report</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+        $('.panel').filter(function(){ return $('.tego-bg-red', this).length})
+                .find('.panel-heading')
+                .removeClass('tego-bg-green')
+                .addClass('tego-bg-red')
+    })
+  </script>
+  <style>
+    .tego-bg-red .panel-title, .tego-bg-green .panel-title {
+        color: #fff;
+    }
+    .tego-bg-red {
+        background-color: #e74c3c !important;
+    }
+    .tego-bg-green {
+        background-color: #27ae60 !important;
+    }
+    .tego-color-red {
+        color: #c0392b;
+        font-weight: bold;
+    }
+    .tego-color-green {
+        color: #27ae60;
+        font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+    <div class="row">
+      {{#with summary}}
+      <div class="panel panel-primary">
+        <div class="panel-heading">Test Run Information</div>
+        <div class="panel-body">
+            <div class="col-md-3">Collection</div><div class="col-md-9">{{collection.name}}</div>
+            {{#if environment.name}}
+            <div class="col-md-3">Environment</div><div class="col-md-9">{{environment.name}}</div>
+            {{/if}}
+      {{/with}}
+            <div class="col-md-3">Time of Run</div><div class="col-md-9">{{timestamp}}</div>
+        </div>
+      </div>
+ 
+      <div class="panel panel-primary">
+        <div class="panel-heading">Test Run Summary</div>
+        <div class="panel-body">
+            {{#with summary}}
+                {{#with stats}}
+                <div class="col-md-4"><strong>Summary Item</strong></div><div class="col-md-4"><strong>Total</strong></div><div class="col-md-4"><strong>Failed</strong></div>
+                <div class="col-md-12">&nbsp;</div>
+                <div class="col-md-4">Iterations</div><div class="col-md-4">{{iterations.total}}</div><div class="col-md-4">{{iterations.failed}}</div>
+                <div class="col-md-4">Requests</div><div class="col-md-4">{{requests.total}}</div><div class="col-md-4">{{requests.failed}}</div>
+                <div class="col-md-4">Prerequest Scripts</div><div class="col-md-4">{{prerequestScripts.total}}</div><div class="col-md-4">{{prerequestScripts.failed}}</div>
+                <div class="col-md-4">Test Scripts</div><div class="col-md-4">{{testScripts.total}}</div><div class="col-md-4">{{testScripts.failed}}</div>
+                <div class="col-md-4">Assertions</div><div class="col-md-4{{#unless assertions.failed}} tego-color-green{{/unless}}">{{assertions.total}}</div><div class="col-md-4{{#if assertions.failed}} tego-color-red{{/if}}">{{assertions.failed}}</div>
+                {{/with}}
+                <div class="col-md-12">&nbsp;</div>
+                <div class="col-md-8">Total run duration</div><div class="col-md-4">{{duration}}</div>
+                <div class="col-md-8">Total data received</div><div class="col-md-4">{{responseTotal}} (approx)</div>
+                <div class="col-md-8">Average response time</div><div class="col-md-4">{{responseAverage}}</div>
+
+                <div class="col-md-12">&nbsp;</div>
+                
+                <div class="col-md-8">Total Test Failures</div><div class="col-md-4 {{#if failures.length}} tego-color-red{{else}}tego-color-green{{/if}}"><strong>{{failures.length}}</strong></div>
+                {{#with stats}}
+                <div class="col-md-8">Test Pass Percentage</div><div class="col-md-4 {{#if assertions.failed}} tego-color-red{{else}}tego-color-green{{/if}}"><strong>{{percent assertions.total assertions.failed}}</strong></div>
+                {{/with}}
+            {{/with}}
+        </div>
+    </div>
+    </div>
+
+    	{{#if summary.failures.length}}
+        <br/><strong><h3>Failures</h3></strong>
+
+        {{#each summary.failures}}
+            <div class="panel-group" id="collapse-failure-{{@index}}" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading tego-bg-red" role="tab" id="failureHead-{{@index}}">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#failureData-{{@index}}" aria-controls="collapseOne">
+                                {{error.name}}: {{#if error.test}}{{error.test}}{{else}}{{error.message}}{{/if}}
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div id="failureData-{{@index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="failureHead-{{@index}}">
+                        <div class="panel-body">
+                            <div class="col-md-12">&nbsp;</div>
+                            {{#if error.test}}
+                                <div class="col-md-4">Error Description</div><div class="col-md-8">{{error.message}}</div><br/>
+                            {{/if}}
+
+                            <div class="col-md-4">Failed Request Name</div><div class="col-md-8">
+                                <a href="#collapse-request-{{cursor.ref}}">{{source.name}}</a>
+                            </div>
+                            {{#gt cursor.cycles 1}}
+                                <div class="col-md-4">Iteration</div><div class="col-md-8">{{add cursor.iteration 1}}</div><br/>
+                            {{/gt}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+
+
+    <strong><h2>Requests</h2></strong></br>
+        {{#each aggregations}}
+            {{#if parent.name}}
+            <div class="panel-group" id="collapse-folder-{{parent.id}}" role="tablist" aria-multiselectable="true">
+                <div role="tab" id="folderHead-{{parent.id}}">
+                    <h4 style="font-size: 18px;" class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#folderData-{{parent.id}}" aria-controls="collapseOne"><strong>{{parent.name}}</strong></a></h4>
+                </div>
+                <br/>
+                <div id="folderData-{{parent.id}}" class="panel-collapse collapsed" role="tabpanel" aria-labelledby="folderHead-{{parent.id}}">
+                {{> aggregations}}
+                </div>
+            </div>
+            {{else}}
+                {{> aggregations}}
+            {{/if}}
+        {{/each}}
+
+        </div>
+    </div>
+</body>
+</html>
+
+{{#*inline "aggregations"}}
+    {{#each executions}}
+        <div class="panel-group" id="collapse-request-{{cursor.ref}}" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading{{#if cumulativeTests.failed}} tego-bg-red{{else}} tego-bg-green{{/if}}" role="tab" id="requestHead-{{cursor.ref}}">
+                    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#requestData-{{cursor.ref}}" aria-controls="collapseOne">Iteration:{{inc cursor.iteration}} - {{item.name}}</a></h4>
+                </div>
+
+                <div id="requestData-{{cursor.ref}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="requestHead-{{cursor.ref}}">
+                    <div class="panel-body">
+                        {{#with request}}
+                            {{#if description.content}}
+                                <div class="col-md-4">Description</div><div class="col-md-8" style="white-space: pre-wrap;">{{description.content}}</div>
+                                <div class="col-md-12">&nbsp;</div>
+                            {{/if}}
+
+                            <div class="col-md-4">Method</div><div class="col-md-8"><h4><span class="label label-success">{{method}}</span></h4></div>
+                            <div class="col-md-4">URL</div><div class="col-md-8"><a href="{{url}}" target="_blank">{{url}}</a></div>
+                        {{/with}}
+
+                        <div class="col-md-12">&nbsp;</div>
+                        <div class="col-md-4">Mean time per request</div><div class="col-md-8">{{mean.time}}</div><br/>
+                        <div class="col-md-4">Mean size per request</div><div class="col-md-8">{{mean.size}}</div><br/>
+
+                        <div class="col-md-12">&nbsp;</div>
+                        <br/><div class="col-md-4">Total passed tests</div><div class="total-passed col-md-8">{{cumulativeTests.passed}}</div>
+                        <div class="col-md-4">Total failed tests</div><div class="total-failed col-md-8">{{cumulativeTests.failed}}</div><br/>
+
+                        <div class="col-md-12">&nbsp;</div>
+                        <br/><div class="col-md-4">Status code</div><div class="col-md-8">{{response.code}}</div><br/>
+
+                        {{#if response.body}}
+                          <div class="col-md-12">&nbsp;</div>
+                          <br/><div class="col-md-4">Response body</div><div class="col-md-8" style='word-break:break-all;float:right'><pre class="stringifyPretty">{{response.body}}</pre>
+                            <button class="btn btn-outline-secondary" type="button" data-clipboard-text={{response.body}}>Copy to Clipboard</button>
+                            <br/>
+                          </div><br/>
+                        {{/if}}
+
+                        {{#if assertions.length}}
+                            <div class="col-md-12">&nbsp;</div>
+                            <div class="col-md-4">Tests</div>
+
+                            <div class="col-md-8">
+                                <table class="table table-responsive table-condensed">
+                                    <thead><tr><th>Name</th><th>Pass count</th><th>Fail count</th></tr></thead>
+                                    <tbody>{{#each assertions}}<tr><td>{{this.name}}</td><td {{#if this.passed}} class="tego-bg-green"{{/if}}>{{this.passed}}</td><td {{#if this.failed}} class="tego-bg-red"{{/if}}>{{this.failed}}</td></tr>{{/each}}</tbody>
+                                </table>
+                            </div><br/>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+{{/inline}}
+
+<!-- CSS Style for JSON Syntax Highlighting -->
+	<style type="text/css">
+	pre {
+		outline: 1px solid # ccc;
+		padding: 5px;
+		margin: 5px;
+	}
+	.json-string {
+		color: rgb(128, 0, 0);
+	}
+	.json-number {
+		color: rgb(255, 128, 0);
+	}
+	.json-boolean {
+		color: rgb(0, 0, 255);
+	}
+	.json-null {
+		color: rgb(0, 0, 255);
+	}
+	.json-key {
+		color: rgb(128, 0, 0);
+	}
+	</style>
+	
+    <!-- Copy Response Body To Clipboard -->
+    <script>
+        var clipboard = new ClipboardJS('.btn');
+        
+        clipboard.on('success', function(e) {        
+            e.clearSelection();
+            e.trigger.textContent = 'Copied';
+            window.setTimeout(function() {
+                e.trigger.textContent = 'Copy to Clipboard';
+            }, 2000);
+        });
+
+        clipboard.on('error', function(e) {
+            e.clearSelection();
+            e.trigger.textContent = 'Not Copied!';
+            window.setTimeout(function() {
+                e.trigger.textContent = 'Copy to Clipboard';
+            }, 2000);
+        });
+    </script>
+
+	<!-- JSON Syntax Highlighting -->
+	<script type="text/javascript">
+	function syntaxHighlight(json) {
+		if (typeof json != 'string') {
+			 json = JSON.stringify(json, null, 2);
+		}
+		json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+			var cls = 'json-number';
+			if (/^"/.test(match)) {
+				if (/:$/.test(match)) {
+					cls = 'json-key';
+				} else {
+					cls = 'json-string';
+				}
+			} else if (/true|false/.test(match)) {
+				cls = 'json-boolean';
+			} else if (/null/.test(match)) {
+				cls = 'json-null';
+			}
+			return '<span class="' + cls + '">' + match + '</span>';
+		});
+	}
+	// Verify if text is JSON
+	function isJSON(data) 
+	{
+	   var ret = true;
+	   try {
+		  JSON.parse(data);
+	   }catch(e) {
+		  ret = false;
+	   }
+	   return ret;
+	}
+	// Stringify each element with class 'stringifyPretty'
+	$(".stringifyPretty").each(function () {	
+		var data = $(this).text();
+		
+		// Verify whether data is JSON
+		if(isJSON(data))
+		{
+			obj = JSON.parse(data);
+			data = syntaxHighlight(obj);
+		}
+		
+		$(this).html(data);
+	});
+	</script>
