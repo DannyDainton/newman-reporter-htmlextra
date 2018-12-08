@@ -1,6 +1,6 @@
 {
   "name": "newman-reporter-htmlextra",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A newman reporter with added handlebars helpers and seperated request iterations",
   "main": "index.js",
   "preferGlobal": true,
