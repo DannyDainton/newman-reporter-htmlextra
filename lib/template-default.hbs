@@ -39,32 +39,29 @@
   <div class="container">
     <div class="jumbotron">
     <div class="row">
-      {{#with summary}}
-      <div class="panel panel-primary">
-        <div class="panel-heading">Test Run Information</div>
-        <div class="panel-body">
-            <div class="col-md-3">Collection</div><div class="col-md-9">{{collection.name}}</div>
-            {{#if environment.name}}
-            <div class="col-md-3">Environment</div><div class="col-md-9">{{environment.name}}</div>
-            {{/if}}
-      {{/with}}
-            <div class="col-md-3">Time of Run</div><div class="col-md-9">{{timestamp}}</div>
-        </div>
-      </div>
- 
       <div class="panel panel-primary">
         <div class="panel-heading">Test Run Summary</div>
         <div class="panel-body">
             {{#with summary}}
+                <div class="col-md-4"><strong>File Information</strong></div>
+                <div class="col-md-12">&nbsp;</div>
+                <div class="col-md-3">Collection</div><div class="col-md-9">{{collection.name}}</div>
+                {{#if environment.name}}
+                <div class="col-md-3">Environment</div><div class="col-md-9">{{environment.name}}</div>
+                {{/if}}
+                <div class="col-md-3">Time of Run</div><div class="col-md-9">{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}</div>
+                <div class="col-md-12">&nbsp;</div>
                 {{#with stats}}
                 <div class="col-md-4"><strong>Summary Item</strong></div><div class="col-md-4"><strong>Total</strong></div><div class="col-md-4"><strong>Failed</strong></div>
                 <div class="col-md-12">&nbsp;</div>
+
                 <div class="col-md-4">Iterations</div><div class="col-md-4">{{iterations.total}}</div><div class="col-md-4">{{iterations.failed}}</div>
                 <div class="col-md-4">Requests</div><div class="col-md-4">{{requests.total}}</div><div class="col-md-4">{{requests.failed}}</div>
                 <div class="col-md-4">Prerequest Scripts</div><div class="col-md-4">{{prerequestScripts.total}}</div><div class="col-md-4">{{prerequestScripts.failed}}</div>
                 <div class="col-md-4">Test Scripts</div><div class="col-md-4">{{testScripts.total}}</div><div class="col-md-4">{{testScripts.failed}}</div>
                 <div class="col-md-4">Assertions</div><div class="col-md-4{{#unless assertions.failed}} tego-color-green{{/unless}}">{{assertions.total}}</div><div class="col-md-4{{#if assertions.failed}} tego-color-red{{/if}}">{{assertions.failed}}</div>
                 {{/with}}
+                
                 <div class="col-md-12">&nbsp;</div>
                 <div class="col-md-8">Total run duration</div><div class="col-md-4">{{duration}}</div>
                 <div class="col-md-8">Total data received</div><div class="col-md-4">{{responseTotal}} (approx)</div>
@@ -81,9 +78,10 @@
     </div>
     </div>
 
-    	{{#if summary.failures.length}}
-        <br/><strong><h3>Failures</h3></strong>
-
+    {{#if summary.failures.length}}
+        {{#with summary}}
+        <br/><strong><h3>Showing {{failures.length}} {{#gt failures.length 1}}Failures{{else}}Failure{{/gt}}</h3></strong>
+        {{/with}}
         {{#each summary.failures}}
             <div class="panel-group" id="collapse-failure-{{@index}}" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
@@ -105,9 +103,7 @@
                             <div class="col-md-4">Failed Request Name</div><div class="col-md-8">
                                 <a href="#collapse-request-{{cursor.ref}}">{{source.name}}</a>
                             </div>
-                            {{#gt cursor.cycles 1}}
-                                <div class="col-md-4">Iteration</div><div class="col-md-8">{{add cursor.iteration 1}}</div><br/>
-                            {{/gt}}
+                            <div class="col-md-4">Iteration</div><div class="col-md-8">{{inc cursor.iteration}}</div><br/>
                         </div>
                     </div>
                 </div>
@@ -150,7 +146,7 @@
                     <div class="panel-body">
                         {{#with request}}
                             {{#if description.content}}
-                                <div class="col-md-4">Description</div><div class="col-md-8" style="white-space: pre-wrap;">{{description.content}}</div>
+                                <div class="col-md-4">Description</div><div class="col-md-8" style='word-break:break-all;float:right'><pre>{{description.content}}</pre></div>
                                 <div class="col-md-12">&nbsp;</div>
                             {{/if}}
 
@@ -165,7 +161,7 @@
                         <div class="col-md-12">&nbsp;</div>
                         <br/><div class="col-md-4">Total passed tests</div><div class="total-passed col-md-8">{{cumulativeTests.passed}}</div>
                         <div class="col-md-4">Total failed tests</div><div class="total-failed col-md-8">{{cumulativeTests.failed}}</div><br/>
-
+                        
                         <div class="col-md-12">&nbsp;</div>
                         <br/><div class="col-md-4">Status code</div><div class="col-md-8">{{response.code}}</div><br/>
 
@@ -184,7 +180,7 @@
                             <div class="col-md-8">
                                 <table class="table table-responsive table-condensed">
                                     <thead><tr><th>Name</th><th>Pass count</th><th>Fail count</th></tr></thead>
-                                    <tbody>{{#each assertions}}<tr><td>{{this.name}}</td><td {{#if this.passed}} class="tego-bg-green"{{/if}}>{{this.passed}}</td><td {{#if this.failed}} class="tego-bg-red"{{/if}}>{{this.failed}}</td></tr>{{/each}}</tbody>
+                                    <tbody>{{#each assertions}}<tr><td>{{this.name}}</td><td {{#if this.passed}} class="tego-bg-green"{{/if}}>{{this.passed}}</td><td {{#if this.failed}} class="tego-bg-red"{{/if}}>{{this.failed}}</td>{{/each}}</tbody>
                                 </table>
                             </div><br/>
                         {{/if}}
@@ -225,16 +221,20 @@
         
         clipboard.on('success', function(e) {        
             e.clearSelection();
-            e.trigger.textContent = 'Copied';
+            $(".btn").addClass("tego-bg-green")
+            e.trigger.textContent = '✔';
             window.setTimeout(function() {
+                $(".btn").removeClass("tego-bg-green")
                 e.trigger.textContent = 'Copy to Clipboard';
             }, 2000);
         });
 
         clipboard.on('error', function(e) {
             e.clearSelection();
-            e.trigger.textContent = 'Not Copied!';
+            $(".btn").addClass("tego-bg-red")
+            e.trigger.textContent = '✗';
             window.setTimeout(function() {
+                $(".btn").removeClass("tego-bg-red")
                 e.trigger.textContent = 'Copy to Clipboard';
             }, 2000);
         });

@@ -2,18 +2,18 @@
 
 A newman HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional helpers to expose items like `Test Pass Percentage`. Also created a default template that can be used to show the different changes.
 
-Also included is the full [handlebars-helpers](https://www.npmjs.com/package/handlebars-helpers) module to allow you to create better template pages.
-
 ---
 
 This work have been hugely inspired and copied several aspects of the great work done by [Martijn Vander Vlag](https://github.com/martijnvandervlag) to create the [newman-reporter-htmlfull](https://github.com/martijnvandervlag/newman-reporter-htmlfull) package. Check out that package too, this contains many of the same features.
 
 ### Some of the Extras
 
-- Full test runs and not aggregated stats
-- New `percent` helper to expose data like `Test Pass Percentage`
-- Copy and Paste any of the Response Body data
-- Includes an `inc` helper to work with thing like the handlebars zero index
+- Full test runs and not aggregated stats - Default template shows iteration number in heading
+- Includes the full [handlebars-helpers](https://www.npmjs.com/package/handlebars-helpers) module for building better templates
+- New `percent` helper to help exposing data like `Test Pass Percentage` - e.g `{{percent assertions.total assertions.failed}}`
+- Copy and Paste any of the Response Bodies
+- Includes an `inc` helper to work with thing like the handlebars zero index - e.g `Iteration:{{inc cursor.iteration}} - {{item.name}}`
+- Added the [helper-moment](https://github.com/helpers/helper-moment) module so you have more control over the display dates - e.g `{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}`
 - More to come...
 
 ### Example Reports
