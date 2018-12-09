@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 -----------------------------------------------------------------------
 
 ## [1.0.3] - 2018-12-09
-## Added
+### Added
 - Included the `moment-helpers` module to give more flexibily about what date format you can choose
-## Changed
+### Changed
 - Updated the default template
 
 -----------------------------------------------------------------------
