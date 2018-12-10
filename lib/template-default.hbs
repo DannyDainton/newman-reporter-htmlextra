@@ -222,7 +222,7 @@
         clipboard.on('success', function(e) {        
             e.clearSelection();
             $(".btn").addClass("tego-bg-green")
-            e.trigger.textContent = '✔';
+            e.trigger.textContent = '✔ Copied!';
             window.setTimeout(function() {
                 $(".btn").removeClass("tego-bg-green")
                 e.trigger.textContent = 'Copy to Clipboard';
@@ -232,7 +232,7 @@
         clipboard.on('error', function(e) {
             e.clearSelection();
             $(".btn").addClass("tego-bg-red")
-            e.trigger.textContent = '✗';
+            e.trigger.textContent = '✗ Not Copied';
             window.setTimeout(function() {
                 $(".btn").removeClass("tego-bg-red")
                 e.trigger.textContent = 'Copy to Clipboard';
