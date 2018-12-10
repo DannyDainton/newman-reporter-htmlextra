@@ -1,5 +1,9 @@
 # newman-reporter-htmlextra
 
+[![NPM Version](https://img.shields.io/npm/v/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
+[![NPM Downloads](https://img.shields.io/npm/dt/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
+![Dependencies](https://img.shields.io/david/dannydainton/newman-reporter-htmlextra.svg?style=flat-square)
+
 A newman HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional helpers to expose items like `Test Pass Percentage`. Also created a default template that can be used to show the different changes.
 
 ---
