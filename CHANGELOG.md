@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.0.4] - 2018-12-13
+### Added
+- Exposed the skipped tests - Currently, this are still showing as `passed` in the main aggregations though :(
+### Changed
+- Updated the default template
+
+-----------------------------------------------------------------------
+
 ## [1.0.3] - 2018-12-09
 ### Added
 - Included the `moment-helpers` module to give more flexibily about what date format you can choose

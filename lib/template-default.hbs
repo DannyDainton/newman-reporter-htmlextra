@@ -16,17 +16,24 @@
     })
   </script>
   <style>
-    .tego-bg-red .panel-title, .tego-bg-green .panel-title {
+    .tego-bg-red .panel-title, .tego-bg-green .panel-title, .tego-bg-amber .panel-title {
         color: #fff;
     }
     .tego-bg-red {
         background-color: #e74c3c !important;
+    }
+    .tego-bg-amber {
+        background-color: #FF9633 !important;
     }
     .tego-bg-green {
         background-color: #27ae60 !important;
     }
     .tego-color-red {
         color: #c0392b;
+        font-weight: bold;
+    }
+    .tego-color-amber {
+        color: #FF9633;
         font-weight: bold;
     }
     .tego-color-green {
@@ -50,17 +57,18 @@
                 <div class="col-md-3">Environment</div><div class="col-md-9">{{environment.name}}</div>
                 {{/if}}
                 <div class="col-md-3">Time of Run</div><div class="col-md-9">{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}</div>
-                <div class="col-md-12">&nbsp;</div>
                 {{#with stats}}
+                <div class="col-md-3">Iterations</div><div class="col-md-9">{{iterations.total}}</div>
+                <div class="col-md-12">&nbsp;</div>
                 <div class="col-md-4"><strong>Summary Item</strong></div><div class="col-md-4"><strong>Total</strong></div><div class="col-md-4"><strong>Failed</strong></div>
                 <div class="col-md-12">&nbsp;</div>
 
-                <div class="col-md-4">Iterations</div><div class="col-md-4">{{iterations.total}}</div><div class="col-md-4">{{iterations.failed}}</div>
                 <div class="col-md-4">Requests</div><div class="col-md-4">{{requests.total}}</div><div class="col-md-4">{{requests.failed}}</div>
                 <div class="col-md-4">Prerequest Scripts</div><div class="col-md-4">{{prerequestScripts.total}}</div><div class="col-md-4">{{prerequestScripts.failed}}</div>
                 <div class="col-md-4">Test Scripts</div><div class="col-md-4">{{testScripts.total}}</div><div class="col-md-4">{{testScripts.failed}}</div>
-                <div class="col-md-4">Assertions</div><div class="col-md-4{{#unless assertions.failed}} tego-color-green{{/unless}}">{{assertions.total}}</div><div class="col-md-4{{#if assertions.failed}} tego-color-red{{/if}}">{{assertions.failed}}</div>
                 {{/with}}
+                <div class="col-md-4">Assertions</div><div class="col-md-4 {{#unless failures.length}}tego-color-green{{/unless}}">{{totalTests stats.assertions.total skippedTests.length}}</div><div class="col-md-4{{#if failures.length}} tego-color-red{{/if}}">{{stats.assertions.failed}}</div>
+                
                 
                 <div class="col-md-12">&nbsp;</div>
                 <div class="col-md-8">Total run duration</div><div class="col-md-4">{{duration}}</div>
@@ -69,10 +77,10 @@
 
                 <div class="col-md-12">&nbsp;</div>
                 
-                <div class="col-md-8">Total Test Failures</div><div class="col-md-4 {{#if failures.length}} tego-color-red{{else}}tego-color-green{{/if}}"><strong>{{failures.length}}</strong></div>
-                {{#with stats}}
-                <div class="col-md-8">Test Pass Percentage</div><div class="col-md-4 {{#if assertions.failed}} tego-color-red{{else}}tego-color-green{{/if}}"><strong>{{percent assertions.total assertions.failed}}</strong></div>
-                {{/with}}
+                <div class="col-md-8">Total Failures</div><div class="col-md-4 {{#if failures.length}} tego-color-red{{else}}tego-color-green{{/if}}"><strong>{{failures.length}}</strong></div>
+                {{#if skippedTests.length}}
+                <div class="col-md-8">Total Tests Skipped</div><div class="col-md-4 {{#if skippedTests.length}} tego-color-amber{{else}}tego-color-green{{/if}}"><strong>{{skippedTests.length}}</strong></div>
+                {{/if}}
             {{/with}}
         </div>
     </div>
@@ -80,7 +88,7 @@
 
     {{#if summary.failures.length}}
         {{#with summary}}
-        <br/><strong><h3>Showing {{failures.length}} {{#gt failures.length 1}}Failures{{else}}Failure{{/gt}}</h3></strong>
+        <br/><h3><strong>Showing {{failures.length}} {{#gt failures.length 1}}Failures{{else}}Failure{{/gt}}</strong></h3>
         {{/with}}
         {{#each summary.failures}}
             <div class="panel-group" id="collapse-failure-{{@index}}" role="tablist" aria-multiselectable="true">
@@ -88,7 +96,7 @@
                     <div class="panel-heading tego-bg-red" role="tab" id="failureHead-{{@index}}">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#failureData-{{@index}}" aria-controls="collapseOne">
-                                {{error.name}}: {{#if error.test}}{{error.test}}{{else}}{{error.message}}{{/if}}
+                                Iteration:{{inc cursor.iteration}} {{#if error.test}}{{error.test}}{{else}}{{error.message}}{{/if}}
                             </a>
                         </h4>
                     </div>
@@ -111,6 +119,33 @@
         {{/each}}
     {{/if}}
 
+    {{#if summary.skippedTests.length}}
+        {{#with summary}}
+        <br/><h3><strong>Showing {{skippedTests.length}} Skipped {{#gt skippedTests.length 1}}Tests{{else}}Test{{/gt}}</strong></h3>
+        {{/with}}
+        {{#each summary.skippedTests}}
+            <div class="panel-group" id="collapse-skipped-{{@index}}" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading tego-bg-amber" role="tab" id="skippedHead-{{@index}}">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#skippedData-{{@index}}" aria-controls="collapseOne">
+                                Iteration:{{inc cursor.iteration}} {{assertion}}
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div id="skippedData-{{@index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="skippedHead-{{@index}}">
+                        <div class="panel-body">
+                            <div class="col-md-4">Request Name</div><div class="col-md-8">
+                                <a href="#collapse-request-{{cursor.ref}}">{{item.name}}</a>
+                            </div><br>
+                            <div class="col-md-4">Iteration</div><div class="col-md-8">{{inc cursor.iteration}}</div><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
 
     <strong><h2>Requests</h2></strong></br>
         {{#each aggregations}}
@@ -161,6 +196,7 @@
                         <div class="col-md-12">&nbsp;</div>
                         <br/><div class="col-md-4">Total passed tests</div><div class="total-passed col-md-8">{{cumulativeTests.passed}}</div>
                         <div class="col-md-4">Total failed tests</div><div class="total-failed col-md-8">{{cumulativeTests.failed}}</div><br/>
+                        <div class="col-md-4">Test Pass Percentage</div><div class="col-md-8 {{#if cumulativeTests.failed.length}}tego-color-red{{else}}tego-color-green{{/if}}">{{percent cumulativeTests.passed cumulativeTests.failed}}</div>
                         
                         <div class="col-md-12">&nbsp;</div>
                         <br/><div class="col-md-4">Status code</div><div class="col-md-8">{{response.code}}</div><br/>
@@ -228,7 +264,6 @@
                 e.trigger.textContent = 'Copy to Clipboard';
             }, 2000);
         });
-
         clipboard.on('error', function(e) {
             e.clearSelection();
             $(".btn").addClass("tego-bg-red")

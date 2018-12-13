@@ -18,6 +18,7 @@ This work have been hugely inspired and copied several aspects of the great work
 - Copy and Paste any of the Response Bodies
 - Includes an `inc` helper to work with thing like the handlebars zero index - e.g `Iteration:{{inc cursor.iteration}} - {{item.name}}`
 - Added the [helper-moment](https://github.com/helpers/helper-moment) module so you have more control over the display dates - e.g `{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}`
+- Exposed the `Skipped Tests` so you have can tell with ones are skipped in the main summary view - Still working on integrating these with the aggregated stats
 - More to come...
 
 ### Example Reports
@@ -25,6 +26,9 @@ This work have been hugely inspired and copied several aspects of the great work
 ![Sample Report](./examples/Report.PNG)
 
 ![Sample Failed Report](./examples/Failed_Report.PNG)
+
+![Skipped Tests](./examples/Skipped_Tests.PNG)
+
 
 ![Single Request](./examples/Single_Request.PNG)
 
