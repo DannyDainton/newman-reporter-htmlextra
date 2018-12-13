@@ -84,7 +84,7 @@ newman.run({
 
 | **newman-reporter-htmlextra** | **newman** | **node** |
 |:------------------------:|:----------:|:--------:|
-|          v1.0.0          | >= v4.0.0  | >= v6.x  |
+|          v1.0.4          | >= v4.0.0  | >= v6.x  |
 
 ## Community Support
 
