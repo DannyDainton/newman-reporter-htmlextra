@@ -67,7 +67,7 @@
                 <div class="col-md-4">Prerequest Scripts</div><div class="col-md-4">{{prerequestScripts.total}}</div><div class="col-md-4">{{prerequestScripts.failed}}</div>
                 <div class="col-md-4">Test Scripts</div><div class="col-md-4">{{testScripts.total}}</div><div class="col-md-4">{{testScripts.failed}}</div>
                 {{/with}}
-                <div class="col-md-4">Assertions</div><div class="col-md-4 {{#unless failures.length}}tego-color-green{{/unless}}">{{totalTests stats.assertions.total skippedTests.length}}</div><div class="col-md-4{{#if failures.length}} tego-color-red{{/if}}">{{stats.assertions.failed}}</div>
+                <div class="col-md-4">Assertions</div><div class="col-md-4">{{totalTests stats.assertions.total skippedTests.length}}</div><div class="col-md-4{{#if failures.length}} tego-color-red{{/if}}">{{stats.assertions.failed}}</div>
                 
                 
                 <div class="col-md-12">&nbsp;</div>
@@ -196,7 +196,7 @@
                         <div class="col-md-12">&nbsp;</div>
                         <br/><div class="col-md-4">Total passed tests</div><div class="total-passed col-md-8">{{cumulativeTests.passed}}</div>
                         <div class="col-md-4">Total failed tests</div><div class="total-failed col-md-8">{{cumulativeTests.failed}}</div><br/>
-                        <div class="col-md-4">Test Pass Percentage</div><div class="col-md-8 {{#if cumulativeTests.failed.length}}tego-color-red{{else}}tego-color-green{{/if}}">{{percent cumulativeTests.passed cumulativeTests.failed}}</div>
+                        <div class="col-md-4">Test Pass Percentage</div><div class="col-md-8">{{#gte cumulativeTests.passed 1}}{{percent cumulativeTests.passed cumulativeTests.failed}}{{else}}0{{/gte}}</div>
                         
                         <div class="col-md-12">&nbsp;</div>
                         <br/><div class="col-md-4">Status code</div><div class="col-md-8">{{response.code}}</div><br/>

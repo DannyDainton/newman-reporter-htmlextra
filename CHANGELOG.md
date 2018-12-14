@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.0.5] - 2018-12-14
+### Fixed
+- Updated the default template to fix a pass percentage calculation error
+
+-----------------------------------------------------------------------
+
 ## [1.0.4] - 2018-12-13
 ### Added
 - Exposed the skipped tests - Currently, this are still showing as `passed` in the main aggregations though :(
