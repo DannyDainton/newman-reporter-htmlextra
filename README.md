@@ -12,13 +12,13 @@ This work have been hugely inspired and copied several aspects of the great work
 
 ### Some of the Extras
 
-- Full test runs and not aggregated stats - Default template shows iteration number in heading
+- Full separated iterations runs and not aggregated stats - Default template shows iteration number in heading
 - Includes the full [handlebars-helpers](https://www.npmjs.com/package/handlebars-helpers) module for building better templates
 - New `percent` helper to help exposing data like `Test Pass Percentage` - e.g `{{percent cumulativeTests.passed cumulativeTests.failed}}`
 - Copy and Paste any of the Response Bodies
 - Includes an `inc` helper to work with thing like the handlebars zero index - e.g `Iteration:{{inc cursor.iteration}} - {{item.name}}`
 - Added the [helper-moment](https://github.com/helpers/helper-moment) module so you have more control over the display dates - e.g `{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}`
-- Exposed the `Skipped Tests` so you have can tell with ones are skipped in the main summary view - Still working on integrating these with the aggregated stats
+- Exposed the `Skipped Tests` so you can tell which ones are skipped, in the main summary view - Still working on integrating these with the aggregated stats so you'll still see these as passed in the individual requests. :(
 - More to come...
 
 ### Example Reports
