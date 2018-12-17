@@ -10,7 +10,7 @@ A newman HTML reporter that has been extended to include the separation of the i
 
 This work have been hugely inspired and copied several aspects of the great work done by [Martijn Vander Vlag](https://github.com/martijnvandervlag) to create the [newman-reporter-htmlfull](https://github.com/martijnvandervlag/newman-reporter-htmlfull) package. Check out that package too, this contains many of the same features.
 
-### Some of the Extras
+## Some of the Extras
 
 - Full separated iterations runs and not aggregated stats - Default template shows iteration number in heading
 - Includes the full [handlebars-helpers](https://www.npmjs.com/package/handlebars-helpers) module for building better templates
@@ -18,10 +18,10 @@ This work have been hugely inspired and copied several aspects of the great work
 - Copy and Paste any of the Response Bodies
 - Includes an `inc` helper to work with thing like the handlebars zero index - e.g `Iteration:{{inc cursor.iteration}} - {{item.name}}`
 - Added the [helper-moment](https://github.com/helpers/helper-moment) module so you have more control over the display dates - e.g `{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}`
-- Exposed the `Skipped Tests` so you can tell which ones are skipped, in the main summary view - Still working on integrating these with the aggregated stats so you'll still see these as passed in the individual requests. :(
+- Exposed the `Skipped Tests` so you can tell which ones are skipped, in the main summary view. You can also see which tests are skipped within the single request view
 - More to come...
 
-### Example Reports
+## Example Reports
 
 ![Sample Report](./examples/Report.PNG)
 
@@ -29,21 +29,22 @@ This work have been hugely inspired and copied several aspects of the great work
 
 ![Skipped Tests](./examples/Skipped_Tests.PNG)
 
-
 ![Single Request](./examples/Single_Request.PNG)
 
 ## Install
+
 > The installation should be global if newman is installed globally, local otherwise. (Replace -g from the command below with -S for a local installation)
 
 ```console
-$ npm install -g newman-reporter-htmlextra
+npm install -g newman-reporter-htmlextra
 ```
 
 ## Usage
+
 In order to enable this reporter, specify `htmlextra` in Newman's `-r` or `--reporters` option.
 
 ```console
-$ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra
+newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra
 ```
 
 ### Options
@@ -59,6 +60,7 @@ Custom templates (currently handlebars only) can be passed to the HTML reporter 
 The [default template](./lib/template-default.hbs) is used in all other cases.
 
 #### With Newman as a Library
+
 The CLI functionality is available for programmatic use as well.
 
 ```javascript
@@ -75,7 +77,7 @@ newman.run({
         }
     }
 }, function (err) {
-	if (err) { throw err; }
+    if (err) { throw err; }
     console.log('collection run complete!');
 });
 ```
@@ -84,15 +86,16 @@ newman.run({
 
 | **newman-reporter-htmlextra** | **newman** | **node** |
 |:------------------------:|:----------:|:--------:|
-|          v1.0.4          | >= v4.0.0  | >= v6.x  |
+|          v1.1.0          | >= v4.2.3  | >= v6.x  |
 
 ## Community Support
 
-<img src="https://avatars1.githubusercontent.com/u/3220138?v=3&s=120" align="right" />
-If you are interested in talking to the Postman team and fellow Newman users, you can find us on our <a href="https://community.getpostman.com">Postman Community Forum</a>. Feel free to drop by and say hello. You'll find us posting about upcoming features and beta releases, answering technical support questions, and contemplating world peace.
+![Community Image](https://avatars1.githubusercontent.com/u/3220138?v=3&s=120)
 
-Sign in using your Postman account to participate in the discussions and don't forget to take advantage of the <a href="https://community.getpostman.com/search?q=newman">search bar</a> - the answer to your question might already be waiting for you! Don’t want to log in? Then lurk on the sidelines and absorb all the knowledge.
+If you are interested in talking to the Postman team and fellow Newman users, you can find us on our [Postman Community Forum](https://community.getpostman.com). Feel free to drop by and say hello. You'll find us posting about upcoming features and beta releases, answering technical support questions, and contemplating world peace.
 
+Sign in using your Postman account to participate in the discussions and don't forget to take advantage of the [search bar](https://community.getpostman.com/search?q=newman) - the answer to your question might already be waiting for you! Don’t want to log in? Then lurk on the side-lines and absorb all the knowledge.
 
 ## License
+
 This software is licensed under Apache-2.0. Copyright Postdot Technologies, Inc. See the [LICENSE.md](LICENSE.md) file for more information.

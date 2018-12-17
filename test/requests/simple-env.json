@@ -1,0 +1,16 @@
+{
+	"id": "10c3b86c-a499-4789-9080-e7575e18a6a3",
+	"name": "simple-env",
+	"values": [
+		{
+			"key": "url",
+			"value": "http://jsonplaceholder.typicode.com",
+			"type": "text",
+			"description": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2018-12-17T12:21:24.875Z",
+	"_postman_exported_using": "Postman/6.6.1"
+}

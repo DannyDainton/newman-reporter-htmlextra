@@ -1,21 +1,27 @@
 {
   "name": "newman-reporter-htmlextra",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A newman reporter with added handlebars helpers and separated request iterations",
   "main": "index.js",
   "preferGlobal": true,
+  "scripts": {
+    "test": "node npm/test-all.js",
+    "test-integration": "node npm/test-integration.js",
+    "test-lint": "node npm/test-lint.js",
+    "test-system": "node npm/test-system.js",
+    "pre-publish": "node npm/test-all.js && npm pack"
+  },
   "deprecated": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/DannyDainton/newman-reporter-htmlextra.git"
   },
-  "bugs": {
-    "url": "https://github.com/DannyDainton/newman-reporter-htmlextra/issues"
-  },
+  "bugs": "https://github.com/DannyDainton/newman-reporter-htmlextra/issues",
   "keywords": [
     "newman",
     "reporter",
-    "html"
+    "html",
+    "htmlextra"
   ],
   "dependencies": {
     "filesize": "^3.6.1",
@@ -32,5 +38,23 @@
   },
   "peerDependencies": {
     "newman": ">=4"
+  },
+  "devDependencies": {
+    "async": "^2.6.1",
+    "chai": "^4.2.0",
+    "colors": "^1.3.3",
+    "eslint": "^5.10.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsdoc": "^3.14.0",
+    "eslint-plugin-lodash": "^5.1.0",
+    "eslint-plugin-markdown": "^1.0.0-rc.0",
+    "eslint-plugin-mocha": "^5.2.0",
+    "eslint-plugin-security": "^1.4.0",
+    "mocha": "^5.2.0",
+    "newman": "^4.2.3",
+    "packity": "^0.3.2",
+    "parse-gitignore": "^1.0.1",
+    "recursive-readdir": "^2.2.2",
+    "shelljs": "^0.8.3"
   }
 }
