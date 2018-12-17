@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-describe('Newman and htmlextra reporter Test', function () {
+describe('Newman and htmlextra run from a script', function () {
     var outFile = 'out/newman-report.htmlextra';
 
     beforeEach(function (done) {

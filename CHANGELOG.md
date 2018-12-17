@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.1.1] - 2018-12-17
+
+### Added
+
+- Added integration tests for the CLI runner
+
+-----------------------------------------------------------------------
+
 ## [1.1.0] - 2018-12-17
 
 ### Added
