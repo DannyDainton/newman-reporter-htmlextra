@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.1.2] - 2018-12-21
+
+### Added
+
+- Created a `.travis.yml` file and committed the `package-lock.json` file to the repo
+
+-----------------------------------------------------------------------
+
 ## [1.1.1] - 2018-12-17
 
 ### Added
