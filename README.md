@@ -1,5 +1,6 @@
 # newman-reporter-htmlextra
 
+[![Build Status](https://travis-ci.org/DannyDainton/newman-reporter-htmlextra.svg?branch=master)](https://travis-ci.org/DannyDainton/newman-reporter-htmlextra)
 [![NPM Version](https://img.shields.io/npm/v/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 [![NPM Downloads](https://img.shields.io/npm/dt/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 ![Dependencies](https://img.shields.io/david/dannydainton/newman-reporter-htmlextra.svg?style=flat-square)

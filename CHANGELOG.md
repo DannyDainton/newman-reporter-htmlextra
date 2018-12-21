@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.1.3] - 2018-12-21
+
+### Added
+
+- Travis CI badge to the `README` file
+
+### Changed
+
+- Node v6 build removed from Travis file - No `npm ci` support for that version
+
+-----------------------------------------------------------------------
+
 ## [1.1.2] - 2018-12-21
 
 ### Added
