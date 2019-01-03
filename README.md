@@ -5,7 +5,7 @@
 [![NPM Downloads](https://img.shields.io/npm/dt/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 ![Dependencies](https://img.shields.io/david/dannydainton/newman-reporter-htmlextra.svg?style=flat-square)
 
-A newman HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional helpers to expose items like `Test Pass Percentage`. Also created a default template that can be used to show the different changes.
+A newman HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional handlebars helpers. They is a default template that can be used to show the different changes, such as the `Skipped Tests`.
 
 ---
 
@@ -20,6 +20,7 @@ This work have been hugely inspired and copied several aspects of the great work
 - Includes an `inc` helper to work with thing like the handlebars zero index - e.g `Iteration:{{inc cursor.iteration}} - {{item.name}}`
 - Added the [helper-moment](https://github.com/helpers/helper-moment) module so you have more control over the display dates - e.g `{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}`
 - Exposed the `Skipped Tests` so you can tell which ones are skipped, in the main summary view. You can also see which tests are skipped within the single request view
+- Folder level descriptions 
 - More to come...
 
 ## Example Reports
@@ -87,7 +88,7 @@ newman.run({
 
 | **newman-reporter-htmlextra** | **newman** | **node** |
 |:------------------------:|:----------:|:--------:|
-|          v1.1.0          | >= v4.2.3  | >= v6.x  |
+|         >= v1.1.0          | >= v4.2.3  | >= v8.x  |
 
 ## Community Support
 

@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.2.0] - 2019-01-03
+
+### Added
+
+- Added the ability to display the folder level descriptions on the report
+
+### Changed
+
+- Updated the default template to show the folder level descriptions
+- Markdown is now rendered on the HTML page
+
+-----------------------------------------------------------------------
+
 ## [1.1.3] - 2018-12-21
 
 ### Added
