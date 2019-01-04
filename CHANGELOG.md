@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+
+## [1.2.2] - 2019-01-04
+
+### Added
+
+- Added images of the new dashboard style report to the `README.md` file
+
+-----------------------------------------------------------------------
+
 ## [1.2.1] - 2019-01-03
 
 ### Added

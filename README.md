@@ -23,7 +23,7 @@ This work have been hugely inspired and copied several aspects of the great work
 - Folder level descriptions 
 - More to come...
 
-## Example Reports
+## Example Reports from the default template
 
 ![Sample Report](./examples/Report.PNG)
 
@@ -32,6 +32,19 @@ This work have been hugely inspired and copied several aspects of the great work
 ![Skipped Tests](./examples/Skipped_Tests.PNG)
 
 ![Single Request](./examples/Single_Request.PNG)
+
+## Example Dashboard Style Reports
+
+I've been trying to create a different template for the reports, with a view to try and split the run information up a bit and not have it all on one page. These are still a 'work in progress' and will have their problems but I wanted to add this as an alternative. To use the `dashboard-template.hbs` file, add the path to the `--reporter-htmlextra-template <path>` flag. The Dashboard report template can be found in the `./templates` dir.
+
+![Dashboard Template](./examples/Dashboard_Template.PNG)
+
+![Request View](./examples/Request_View.PNG)
+
+![Failed View](./examples/Failed_View.PNG)
+
+![Skipped View](./examples/Skipped_View.PNG)
+
 
 ## Install
 
