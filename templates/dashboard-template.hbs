@@ -297,7 +297,7 @@ body, html {
     <div class="row">
         <div class="col-sm-12 mb-3">
         <div class="card">
-            <div class="card-header bg-success">
+            <div class="card-header {{#if cumulativeTests.failed}} bg-danger{{else}} bg-success{{/if}}">
             <h5 class="card-title text-white">Iteration: {{inc cursor.iteration}} - {{item.name}}</h5>
             </div>
             <div class="card-body">
