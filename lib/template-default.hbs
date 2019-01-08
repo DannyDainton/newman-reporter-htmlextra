@@ -187,6 +187,14 @@
                         <div class="col-md-4">Test Pass Percentage</div><div class="col-md-8">{{#gte cumulativeTests.passed 1}}{{percent cumulativeTests.passed cumulativeTests.failed}}{{else}}0{{/gte}}</div>
                         <div class="col-md-12">&nbsp;</div>
                         <br/><div class="col-md-4">Status code</div><div class="col-md-8">{{response.code}}</div><br/>
+                        {{#with request}}
+                        {{#if body.raw}}
+                          <div class="col-md-12">&nbsp;</div>
+                          <br/><div class="col-md-4">Request body</div><div class="col-md-8" style='word-break:break-all;float:right'><pre class="stringifyPretty">{{body.raw}}</pre>
+                            <br/>
+                          </div><br/>
+                        {{/if}}
+                        {{/with}}
                         {{#if response.body}}
                           <div class="col-md-12">&nbsp;</div>
                           <br/><div class="col-md-4">Response body</div><div class="col-md-8" style='word-break:break-all;float:right'><pre class="stringifyPretty">{{response.body}}</pre>
@@ -264,7 +272,6 @@ pre {
             e.trigger.textContent = 'Copy to Clipboard';
         }, 2000);
     });
-
 </script>
         
 <!-- JSON Syntax Highlighting -->
@@ -319,15 +326,12 @@ $(".stringifyPretty").each(function () {
     const remarkable = new Remarkable();
     
     const descriptions = document.querySelectorAll("#description");
-
     descriptions.forEach(description => {
         description.innerHTML = renderHtmlFromMarkdown(description.textContent);
     });
-
     function renderHtmlFromMarkdown(markdown) {
         return remarkable.render(trim(markdown));
     }
-
     function trim(string) {
         return string ? string.replace(/^ +| +$/gm, "") : string;
     }

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.2.3] - 2019-01-08
+
+### Changed
+
+- The templates now display the request body, if the request has one.
+
+-----------------------------------------------------------------------
+
 ## [1.2.2] - 2019-01-04
 
 ### Added
