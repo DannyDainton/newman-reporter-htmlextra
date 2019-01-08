@@ -81,7 +81,7 @@ body, html {
   background-color: #28a745;
 }
 
-  </style>
+</style>
 </head>
 <body>
   <div class="container">
@@ -354,7 +354,15 @@ body, html {
                             <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="badge-outline badge badge-success"> {{response.code}} - {{response.status}}</span><br>
                             <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="badge-outline badge badge-success"> {{mean.time}}</span><br>
                             <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="badge-outline badge badge-success"> {{mean.size}}</span><br>
-                            <span><i class="fas fa-percent"></i></span><strong> Test Pass Percentage:</strong> <span class="badge-outline badge badge-success"> {{#gte cumulativeTests.passed 1}}{{percent cumulativeTests.passed cumulativeTests.failed}}{{else}}0{{/gte}}</span><br>
+                            <hr>
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
+                            <div>
+                                <div class="progress" style="height: 40px;">
+                                    <div class="progress-bar {{#if cumulativeTests.failed}} bg-danger{{else}} bg-success{{/if}}" style="width: 100%" role="progressbar">
+                                    <h6>{{#gte cumulativeTests.passed 1}}{{percent cumulativeTests.passed cumulativeTests.failed}} %{{else}}0 %{{/gte}}</h6>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -389,7 +397,7 @@ body, html {
                                     <pre class="stringifyPretty">{{response.body}}</pre>
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-outline-secondary btn-sm" type="button" data-clipboard-text={{response.body}}>Copy to Clipboard</button>
+                                    <button id="copyText" class="btn btn-outline-secondary btn-sm" type="button" data-clipboard-text={{response.body}}>Copy to Clipboard</button>
                                 </div>
                             {{/if}}
                         </div>
@@ -414,6 +422,12 @@ body, html {
                                             <td class="text-center {{#if this.skipped}}bg-warning{{/if}}">{{this.skipped}}</td>
                                         </tr>
                                         {{/each}}
+                                        <tr class="bg-light">
+                                            <td><strong>Total</strong></td>
+                                            <td class="text-center">{{cumulativeTests.passed}}</td>
+                                            <td class="text-center">{{cumulativeTests.failed}}</td>
+                                            <td class="text-center">{{cumulativeTests.skipped}}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>                
@@ -459,19 +473,19 @@ pre {
     var clipboard = new ClipboardJS('.btn');
     clipboard.on('success', function(e) {        
         e.clearSelection();
-        $(".btn").addClass("bg-success text-white")
+        $("#copyText").addClass("bg-success text-white")
         e.trigger.textContent = '✔ Copied!';
         window.setTimeout(function() {
-            $(".btn").removeClass("bg-success text-white")
+            $("#copyText").removeClass("bg-success text-white")
             e.trigger.textContent = 'Copy to Clipboard';
         }, 2000);
     });
     clipboard.on('error', function(e) {
         e.clearSelection();
-        $(".btn").addClass("bg-danger text-white")
+        $("#copyText").addClass("bg-danger text-white")
         e.trigger.textContent = '✗ Not Copied';
         window.setTimeout(function() {
-            $(".btn").removeClass("bg-danger text-white")
+            $("copyText").removeClass("bg-danger text-white")
             e.trigger.textContent = 'Copy to Clipboard';
         }, 2000);
     });
