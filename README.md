@@ -25,18 +25,6 @@ This work have been hugely inspired and copied several aspects of the great work
 
 ## Example Reports from the default template
 
-![Sample Report](./examples/Report.PNG)
-
-![Sample Failed Report](./examples/Failed_Report.PNG)
-
-![Skipped Tests](./examples/Skipped_Tests.PNG)
-
-![Single Request](./examples/Single_Request.PNG)
-
-## Example Dashboard Style Reports
-
-I've been trying to create a different template for the reports, with a view to try and split the run information up a bit and not have it all on one page. These are still a 'work in progress' and will have their problems but I wanted to add this as an alternative. To use the `dashboard-template.hbs` file, add the path to the `--reporter-htmlextra-template <path>` flag. The Dashboard report template can be found in the `./templates` dir.
-
 ![Dashboard Template](./examples/Dashboard_Template.PNG)
 
 ![Request View](./examples/Request_View.PNG)
@@ -44,7 +32,6 @@ I've been trying to create a different template for the reports, with a view to 
 ![Failed View](./examples/Failed_View.PNG)
 
 ![Skipped View](./examples/Skipped_View.PNG)
-
 
 ## Install
 
@@ -87,8 +74,8 @@ newman.run({
     reporters: 'htmlextra',
     reporter: {
         htmlextra: {
-            export: './htmlResults.html', // If not specified, the file will be written to `newman/` in the current working directory.
-            template: './lib/template-default.hbs' // optional, this will be picked up relative to the directory that Newman runs in.
+            export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
+            template: '<template path>' // optional, the default template will be used if one is not specified 
         }
     }
 }, function (err) {
