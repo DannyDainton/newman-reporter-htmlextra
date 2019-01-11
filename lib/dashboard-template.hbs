@@ -105,7 +105,7 @@ body, html {
 <div class="row">
 {{#with summary}}
   <div class="col-md-9 col-lg-12 main">
-   <h1 class="display-1 text-center">Newman Run Dashboard</h1>
+   <h1 class="display-2 text-center">Newman Run Dashboard</h1>
    <h4 class="text-center">{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}</h4>
    <div class="row">
     <div class="col-lg-3 col-md-6">
@@ -349,18 +349,18 @@ body, html {
             <div class="card-body">
                 {{#with request}}
                 {{#if description.content}}
-                    <div class="row">
-                        <div class="col-sm-12 mb-3">
-                        <div class="card-deck">
-                            <div class="card border-info">
-                                <div class="card-body">
-                                    <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
-                                    <pre id="description">{{description.content}}</pre>
-                                </div>                    
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="card-deck">
+                        <div class="card border-info" style="width: 50rem;">
+                            <div class="card-body">
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
+                                <div class="dyn-height">
+                                    <p id="description">{{description.content}}</p>
+                                </div>
+                            </div>                    
                         </div>
                     </div>
+                </div>
                 {{/if}}
                 {{/with}}    
                 <div class="row">
@@ -419,10 +419,10 @@ body, html {
                             <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
                             {{#if response.body}}
                                 <div class="dyn-height">
-                                        <pre><code class="prettyPrint">{{response.body}}</code></pre>
+                                        <pre><code id="copyText-{{item.id}}" class="prettyPrint">{{response.body}}</code></pre>
                                 </div>
                                 <div class="card-footer">
-                                    <button id="copyText" class="btn btn-outline-secondary btn-sm" type="button" data-clipboard-text={{response.body}}>Copy to Clipboard</button>
+                                    <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-{{item.id}}">Copy to Clipboard</button>
                                 </div>
                             {{/if}}
                         </div>
@@ -504,23 +504,23 @@ $(".prettyPrint").each(function () {
 
 <!-- Copy Response Body To Clipboard -->
 <script>
-    var clipboard = new ClipboardJS('.btn');
+    var clipboard = new ClipboardJS('.copyButton');
     
     clipboard.on('success', function(e) {        
         e.clearSelection();
-        $("#copyText").addClass("bg-success text-white")
+        $(".copyButton").addClass("bg-success text-white")
         e.trigger.textContent = '✔ Copied!';
         window.setTimeout(function() {
-            $("#copyText").removeClass("bg-success text-white")
+            $(".copyButton").removeClass("bg-success text-white")
             e.trigger.textContent = 'Copy to Clipboard';
         }, 2000);
     });
     clipboard.on('error', function(e) {
         e.clearSelection();
-        $("#copyText").addClass("bg-danger text-white")
+        $(".copyButton").addClass("bg-danger text-white")
         e.trigger.textContent = '✗ Not Copied';
         window.setTimeout(function() {
-            $("copyText").removeClass("bg-danger text-white")
+            $(".copyButton").removeClass("bg-danger text-white")
             e.trigger.textContent = 'Copy to Clipboard';
         }, 2000);
     });
