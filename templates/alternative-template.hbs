@@ -4,14 +4,7 @@
   <meta charset="UTF-8">
   <title>Newman Summary Report</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script type="text/javascript">
-    $(function(){
-        $('.panel').filter(function(){ return $('.tego-bg-red', this).length})
-                .find('.panel-heading')
-                .removeClass('tego-bg-green')
-                .addClass('tego-bg-red')
-    })
-  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github-gist.min.css">
 
 <style>
 .tego-bg-red .panel-title, .tego-bg-green .panel-title, .tego-bg-amber .panel-title {
@@ -250,6 +243,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+  <script type="text/javascript">
+    $(function(){
+        $('.panel').filter(function(){ return $('.tego-bg-red', this).length})
+                .find('.panel-heading')
+                .removeClass('tego-bg-green')
+                .addClass('tego-bg-red')
+    })
+  </script>
 
 <!-- Copy Response Body To Clipboard -->
 <script>
