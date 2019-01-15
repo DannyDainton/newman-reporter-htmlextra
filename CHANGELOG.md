@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.3.0] - 2019-01-15
+
+### Changed
+
+- Added the `iteration` property to the aggregation `parent` object in the `index.js` file to separate the requests easier
+
+### Added
+
+- Updated the dashboard template to separate each iteration into tabs
+
+-----------------------------------------------------------------------
+
 ## [1.2.7] - 2019-01-12
 
 ### Fixed

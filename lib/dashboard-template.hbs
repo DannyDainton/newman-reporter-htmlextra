@@ -78,6 +78,23 @@ body, html {
   background-color: #28a745;
 }
 
+.custom-tab {
+    padding: 10px 15px;
+    margin-right: 3px;
+    border: solid 1px #fff;
+    border-bottom: none;
+    cursor:pointer;
+}
+.custom-tab .active {
+    border-bottom:solid 1px #032a33;
+}
+
+#execution-data {
+    padding: 10px;
+    border: solid 1px #fff;
+    border-top: none;
+}
+
 </style>
 </head>
 <body>
@@ -315,14 +332,25 @@ body, html {
             
             <button class="btn btn-outline-success btn-sm" onclick="topFunction()" id="topOfScreen">Go To Top</button>
 
+        {{!-- Filter/Search box - No completely finished yet --}}
         {{!-- <div class="row">
             <div class="col-sm-12 mb-3">
             <input type="text" id="myFilter" class="form-control" placeholder="Filter requests...">
             </div>
         </div> --}}
+
+
+    <div class="text-uppercase" id="execution-menu">
+        {{#with summary}}
+        <h6>{{stats.iterations.total}} {{#gt stats.iterations.total 1}}Iterations{{else}}Iteration{{/gt}} available to view</h6>
+        {{/with}}
+        <ul class="nav nav-tabs">
+        </ul>
+    </div>
+	<div class="tab-content" id="execution-data">
 {{#each aggregations}}
         {{#if parent.name}}
-        <div class="alert alert-dark text-uppercase text-center">
+        <div class="alert alert-dark text-uppercase text-center iteration-{{parent.iteration}}">
             <h4>{{parent.name}}</h4>
         </div>
         {{> aggregations}}
@@ -339,19 +367,19 @@ body, html {
 
 {{#*inline "aggregations"}}
 {{#each executions}}
-    <div class="card-deck">
-    <div class="row">
-        <div class="col-sm-12 mb-3">
-        <div class="card">
-            <div class="card-header {{#if cumulativeTests.failed}} bg-danger{{else}} bg-success{{/if}}">
-            <h5 class="card-title text-white">Iteration: {{inc cursor.iteration}} - {{item.name}}</h5>
+    <div class="card-deck iteration-{{cursor.iteration}}">
+    <div class="row iteration-{{cursor.iteration}}">
+        <div class="col-sm-12 mb-3 iteration-{{cursor.iteration}}">
+        <div class="card iteration-{{cursor.iteration}}">
+            <div class="card-header {{#if cumulativeTests.failed}} bg-danger{{else}} bg-success{{/if}} iteration-{{cursor.iteration}}">
+            <h5 class="card-title text-white iteration-{{cursor.iteration}}">Iteration: {{inc cursor.iteration}} - {{item.name}}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body iteration-{{cursor.iteration}}">
                 {{#with request}}
                 {{#if description.content}}
                 <div class="row">
                     <div class="card-deck">
-                        <div class="card border-info" style="width: 50rem;">
+                        <div class="card border-info iteration-{{cursor.iteration}}" style="width: 50rem;">
                             <div class="card-body">
                             <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
                                 <div class="dyn-height">
@@ -533,7 +561,7 @@ $(document).ready(function(){
     $('#myFilter').keyup(function (){
         $('.card').removeClass('d-none');
         var filter = $(this).val();
-        $('.card-deck').find('.card h5.card-title:not(:contains("'+filter+'"))').parent().parent().addClass('d-none');
+        $('.card').find('.card .card.border-info .card-body h5.card-title:not(:contains("'+filter+'"))').parent().parent().addClass('d-none');
     })
 })
 </script>
@@ -568,5 +596,57 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+}
+</script>
+
+<script type="text/javascript">
+    "use strict";
+
+window.onload = function () {
+
+  // hides all blocks of response
+  var allItems = document.querySelectorAll('[class*=iteration-]');
+  allItems.forEach(function(elem){
+    elem.style.display = 'none';
+  });
+
+  {{#with summary}} {{#with stats}}
+  let totalIterations = {{iterations.total}};
+  {{/with}} {{/with}}
+
+  let menu = document.querySelector('#execution-menu .nav');
+
+  for(var i = 0; i < totalIterations; i++)
+  {
+    let li = document.createElement('li');
+    li.appendChild(document.createTextNode((i + 1)));
+    li.setAttribute('id', 'iteration-' + i);
+    li.classList.add("custom-tab");
+
+    li.addEventListener('click', function() {
+
+      let allItems = document.querySelectorAll('[class*=iteration-]');
+      allItems.forEach(function(elem) {
+        elem.style.display = 'none';
+      })
+
+      let allMenus = document.querySelectorAll('[id*=iteration-');
+      allMenus.forEach(function(elem){
+        elem.style.borderBottom = 'none';
+      })
+
+      this.style.borderBottom = 'solid 1px #032a33';
+
+      let items = document.querySelectorAll("." + this.id);
+      items.forEach(function(elem) {
+        elem.style.display = elem.style.display == 'block' ? 'none' : 'block';
+      })
+    });
+
+    menu.appendChild(li);
+  }
+
+    //shows first tab data
+  document.getElementById('iteration-0').click();
 }
 </script>

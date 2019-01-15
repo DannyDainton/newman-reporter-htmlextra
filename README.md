@@ -21,11 +21,14 @@ This work have been hugely inspired and copied several aspects of the great work
 - Added the [helper-moment](https://github.com/helpers/helper-moment) module so you have more control over the display dates - e.g `{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}`
 - Exposed the `Skipped Tests` so you can tell which ones are skipped, in the main summary view. You can also see which tests are skipped within the single request view
 - Folder level descriptions with rendered Markdown syntax
+- Iterations separated by tabs in the `Requests` view
 - More to come...
 
-## Example Reports from the default template
+## Example Report Images
 
 ![Dashboard Template](./examples/Dashboard_Template.PNG)
+
+![Request View Iterations](./examples/Request_View_Iterations.PNG)
 
 ![Request View](./examples/Request_View.PNG)
 
