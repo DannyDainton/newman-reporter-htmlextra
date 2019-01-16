@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.3.1] - 2019-01-16
+
+### Fixed
+
+- The `Assertions Passed` label of the Summary view was quite confusing
+
+-----------------------------------------------------------------------
+
 ## [1.3.0] - 2019-01-15
 
 ### Changed
