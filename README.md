@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/DannyDainton/newman-reporter-htmlextra.svg?branch=master)](https://travis-ci.org/DannyDainton/newman-reporter-htmlextra)
 [![NPM Version](https://img.shields.io/npm/v/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 [![NPM Downloads](https://img.shields.io/npm/dt/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
+[![NPM Weekly Downloads](https://img.shields.io/npm/dw/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 ![Dependencies](https://img.shields.io/david/dannydainton/newman-reporter-htmlextra.svg?style=flat-square)
 
 A newman HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional handlebars helpers. There is also a default template that can be used to show the different changes, such as the `Skipped Tests` - This can be seen in all the example images.
