@@ -115,6 +115,11 @@ body, html {
             <li class="nav-item bg-warning">
                 <a class="nav-link text-white" id="pills-skipped-tab" data-toggle="pill" href="#pills-skipped" role="tab" aria-controls="pills-skipped" aria-selected="false">Skipped Tests <span class="badge badge-light">{{#gt skippedTests.length 0}}{{skippedTests.length}}{{else}}0{{/gt}}</span></a>
             </li>
+            {{#if consoleLogs.length}}
+            <li class="nav-item bg-info">
+                <a class="nav-link text-white" id="pills-logs-tab" data-toggle="pill" href="#pills-logs" role="tab" aria-controls="pills-logs" aria-selected="false">Console Logs <span class="badge badge-light">{{consoleLogs.length}}</span></a>
+            </li>
+            {{/if}}
             </ul>
         {{/with}}
         <div class="tab-content" id="pills-tabContent">
@@ -327,19 +332,42 @@ body, html {
                     <br><br><h1 class="text-center">There are no skipped tests <span><i class="far fa-thumbs-up"></i></span></h1><br><br>
                 </div>
                 {{/if}}
-            </div>  
+            </div>
+            <div class="tab-pane fade" id="pills-logs" role="tabcard" aria-labelledby="pills-logs-tab">
+
+                {{#if summary.consoleLogs.length}}
+                    {{#with summary}}
+                    <div class="alert alert-info text-uppercase text-center">
+                        <h4>Showing {{consoleLogs.length}} Console Log {{#gt consoleLogs.length 1}}Messages{{else}}Message{{/gt}}</h4>
+                    </div>
+                    {{/with}}
+                    {{#each summary.consoleLogs}}
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white text-center text-uppercase">
+                                <h5 class="card-title">Log Message</h5>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <pre><code>{{messages}}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    {{/each}}
+                {{/if}}
+            </div> 
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
             
             <button class="btn btn-outline-success btn-sm" onclick="topFunction()" id="topOfScreen">Go To Top</button>
 
-        {{!-- Filter/Search box - No completely finished yet --}}
         {{!-- <div class="row">
             <div class="col-sm-12 mb-3">
             <input type="text" id="myFilter" class="form-control" placeholder="Filter requests...">
             </div>
         </div> --}}
-
-
     <div class="text-uppercase" id="execution-menu">
         {{#with summary}}
         <h6>{{stats.iterations.total}} {{#gt stats.iterations.total 1}}Iterations{{else}}Iteration{{/gt}} available to view</h6>
@@ -351,7 +379,7 @@ body, html {
 {{#each aggregations}}
         {{#if parent.name}}
         <div class="alert alert-dark text-uppercase text-center iteration-{{parent.iteration}}">
-            <h4>{{parent.name}}</h4>
+            <h4 class="iteration-{{parent.iteration}}">{{parent.name}}</h4>
         </div>
         {{> aggregations}}
         {{else}}
@@ -374,23 +402,25 @@ body, html {
             <div class="card-header {{#if cumulativeTests.failed}} bg-danger{{else}} bg-success{{/if}} iteration-{{cursor.iteration}}">
             <h5 class="card-title text-white iteration-{{cursor.iteration}}">Iteration: {{inc cursor.iteration}} - {{item.name}}</h5>
             </div>
-            <div class="card-body iteration-{{cursor.iteration}}">
+            <div class="card-body">
                 {{#with request}}
                 {{#if description.content}}
                 <div class="row">
+                    <div class="col-sm-12 mb-3">
                     <div class="card-deck">
-                        <div class="card border-info iteration-{{cursor.iteration}}" style="width: 50rem;">
+                        <div class="card border-info" style="width: 50rem;">
                             <div class="card-body">
                             <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
                                 <div class="dyn-height">
-                                    <p id="description">{{description.content}}</p>
+                                    <code id="description">{{description.content}}</code>
                                 </div>
                             </div>                    
                         </div>
                     </div>
+                    </div>
                 </div>
                 {{/if}}
-                {{/with}}    
+                {{/with}}  
                 <div class="row">
                     <div class="col-sm-12 mb-3">
                         <div class="card-deck">

@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.4.0] - 2019-01-25
+
+### Added
+
+- I've attempted to expose the `console.log` statements from the `Tests` and `Pre-Requests`.
+- Created some tests to cover the addition of the console logs.
+
+### Changed
+
+- Updated the default template to include a `Console Logs` tab
+
+-----------------------------------------------------------------------
+
 ## [1.3.1] - 2019-01-16
 
 ### Fixed

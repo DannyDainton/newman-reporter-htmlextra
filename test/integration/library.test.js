@@ -101,6 +101,20 @@ describe('Newman and htmlextra run from a script', function () {
         });
     });
 
+    it('should correctly produce the html report for a run with console logs', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-get-request-with-log-messages.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { export: outFile } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(err).to.be.null;
+            expect(summary.consoleLogs, 'should have 2 console log messages').to.have.lengthOf(2);
+            fs.stat(outFile, done);
+        });
+    });
+
     it('should correctly produce the html report for a run with all test types', function (done) {
         newman.run({
             collection: 'test/requests/simple-request-with-all-test-types.json',
@@ -110,6 +124,8 @@ describe('Newman and htmlextra run from a script', function () {
         }, function (err, summary) {
             if (err) { return done(err); }
             expect(err).to.be.null;
+            // check that the collection doesn't contain any console logs
+            expect(summary.consoleLogs, 'should have no console log messages').to.be.undefined;
             // individual request data
             expect(summary.run.executions[0].assertions[0].assertion).to.equal('This is a passing test');
             expect(summary.run.executions[0].assertions[0].skipped).to.be.false;

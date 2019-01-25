@@ -19,6 +19,7 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - Exposed the `Skipped Tests` so you can tell which ones are skipped, in the main summary view. You can also see which tests are skipped within the single request view
 - Folder level descriptions with rendered Markdown syntax
 - Iterations separated by tabs in the `Requests` view
+- First attempt to add the `console.log` statements - These are currently separate from the parent requests but it the first step in getting them on the report
 - More to come...
 
 ## Example Report Images
@@ -32,6 +33,12 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 ![Failed View](./examples/Failed_View.PNG)
 
 ![Skipped View](./examples/Skipped_View.PNG)
+
+This is the first attempt to expose any `console.log` statements that are really useful to have in your `Requests`. The event from Newman doesn't contain a lot of detail about the request that it was part of and this will involve, in it's current state a horrible hacky fix to map things together. In the meantime, the Postman `pm.info` function provides these for you and can just be added to the `console.log` statement, as workaround. Something like `${pm.info.requestName} | ${pm.info.eventName} | ${pm.info.iteration + 1}` will log out the missing event information.
+
+If the collection contains Console Logs, a new tab will appear, that will show all the details. This information is displayed in a similar way that you may have seen on the `Failed Tests` and `Skipped Tests`.
+
+![Console Log](./examples/Console_Log_View.PNG)
 
 ## Install
 
@@ -106,4 +113,4 @@ This software is licensed under Apache-2.0. Copyright Postdot Technologies, Inc.
 
 This work have been hugely inspired and copied several aspects of the great work done by [Martijn Vander Vlag](https://github.com/martijnvandervlag) to create the [newman-reporter-htmlfull](https://github.com/martijnvandervlag/newman-reporter-htmlfull) package. Check out that package too, this contains many of the same features.
 
-It was also brought together by reviewing some of the feature requests, for the offical Postman reporter.
+It was also brought together by reviewing some of the feature requests, for the official Postman reporter.
