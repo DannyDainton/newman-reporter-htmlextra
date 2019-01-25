@@ -19,7 +19,7 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - Exposed the `Skipped Tests` so you can tell which ones are skipped, in the main summary view. You can also see which tests are skipped within the single request view
 - Folder level descriptions with rendered Markdown syntax
 - Iterations separated by tabs in the `Requests` view
-- First attempt to add the `console.log` statements - These are currently separate from the parent requests but it the first step in getting them on the report
+- First attempt to add the `console.log` statements - These are currently separate from the parent requests but it's the first step in getting them on the report
 - More to come...
 
 ## Example Report Images
