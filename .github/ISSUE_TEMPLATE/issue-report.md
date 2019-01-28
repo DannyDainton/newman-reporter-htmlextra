@@ -1,12 +1,3 @@
----
-name: Issue Report
-about: A basic template to help summarize the Issue you're seeing
-title: ''
-labels: bug
-assignees: ''
-
----
-
 **Describe the bug**
 A clear and concise description of what the bug is.
 
@@ -24,7 +15,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Collection File**
-If applicable, please provide a same collection. This will help to reproduce the issue locally and lead to a quicker fix.
+If applicable, please provide a sample collection file. This will help to reproduce the issue locally and lead to a quicker fix.
 
 **Version Information:**
  - Newman Version [e.g. 4.2.3]
