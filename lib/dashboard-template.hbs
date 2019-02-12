@@ -95,6 +95,12 @@ body, html {
     border-top: none;
 }
 
+.card-header .fa {
+  transition: .3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+  transform: rotate(90deg);
+}
 </style>
 </head>
 <body>
@@ -103,20 +109,20 @@ body, html {
         <div class="card">
         <div class="card-header">
             <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
-            <li class="nav-item bg-info active">
+            <li class="nav-item bg-info active" data-toggle="tooltip" title="Click to view the Summary" data-delay="200">
                 <a class="nav-link text-white" id="pills-summary-tab" data-toggle="pill" href="#pills-summary" role="tab" aria-controls="pills-summary" aria-selected="true">Summary</a>
             </li>
-            <li class="nav-item bg-success">
+            <li class="nav-item bg-success" data-toggle="tooltip" title="Click to view the Requests">
                 <a class="nav-link text-white" id="pills-requests-tab" data-toggle="pill" href="#pills-requests" role="tab" aria-controls="pills-requests" aria-selected="false">Requests <span class="badge badge-light">{{stats.requests.total}}</span></a>
             </li>
-            <li class="nav-item bg-danger">
+            <li class="nav-item bg-danger" data-toggle="tooltip" title="Click to view the Failed Tests">
                 <a class="nav-link text-white" id="pills-failed-tab" data-toggle="pill" href="#pills-failed" role="tab" aria-controls="pills-failed" aria-selected="false">Failed Tests <span class="badge badge-light">{{failures.length}}</span></a>
             </li>
-            <li class="nav-item bg-warning">
+            <li class="nav-item bg-warning" data-toggle="tooltip" title="Click to view the Skipped Tests">
                 <a class="nav-link text-white" id="pills-skipped-tab" data-toggle="pill" href="#pills-skipped" role="tab" aria-controls="pills-skipped" aria-selected="false">Skipped Tests <span class="badge badge-light">{{#gt skippedTests.length 0}}{{skippedTests.length}}{{else}}0{{/gt}}</span></a>
             </li>
             {{#if consoleLogs.length}}
-            <li class="nav-item bg-info">
+            <li class="nav-item bg-info" data-toggle="tooltip" title="Click to view the Console Logs">
                 <a class="nav-link text-white" id="pills-logs-tab" data-toggle="pill" href="#pills-logs" role="tab" aria-controls="pills-logs" aria-selected="false">Console Logs <span class="badge badge-light">{{consoleLogs.length}}</span></a>
             </li>
             {{/if}}
@@ -400,8 +406,11 @@ body, html {
         <div class="col-sm-12 mb-3 iteration-{{cursor.iteration}}">
         <div class="card iteration-{{cursor.iteration}}">
             <div class="card-header {{#if cumulativeTests.failed}} bg-danger{{else}} bg-success{{/if}} iteration-{{cursor.iteration}}">
-            <h5 class="card-title text-white iteration-{{cursor.iteration}}">Iteration: {{inc cursor.iteration}} - {{item.name}}</h5>
+                <a data-toggle="collapse" href="#" data-target="#collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="requests-{{cursor.ref}}" class="collapsed text-white z-block">
+            Iteration: {{inc cursor.iteration}} - {{item.name}} <i class="float-lg-right fa fa-chevron-down"></i>
+        </a>
             </div>
+            <div id="collapse-{{cursor.ref}}" class="collapse" aria-labelledby="requests-{{cursor.ref}}">
             <div class="card-body">
                 {{#with request}}
                 {{#if description.content}}
@@ -521,6 +530,7 @@ body, html {
                     </div>
                 </div>           
             </div>
+            </div>
         </div>      
         </div>
     </div>
@@ -529,11 +539,19 @@ body, html {
 {{/inline}}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger : 'hover'
+    })
+})
+</script>
 
 <script>
     function isJSON(data) 

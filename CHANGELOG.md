@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.4.1] - 2019-02-12
+
+### Changed
+
+- Updated the default template to allow each request card to be collapsible
+- Included some tooltips for the Summary page tabs to make it clearer that these are clickable buttons  
+
+-----------------------------------------------------------------------
+
 ## [1.4.0] - 2019-01-25
 
 ### Added
