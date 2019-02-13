@@ -164,7 +164,7 @@ body, html {
        <div class="rotate">
         <i class="fa fa-plus-circle fa-5x"></i>
        </div>
-       <h6 class="text-uppercase">Failed Tests</h6>
+       <h6 class="text-uppercase">Total Failed Tests</h6>
        <h1 class="display-1">{{failures.length}}</h1>
       </div>
      </div>
@@ -175,7 +175,7 @@ body, html {
        <div class="rotate">
         <i class="fa fa-share fa-5x"></i>
        </div>
-       <h6 class="text-uppercase">Skipped Tests</h6>
+       <h6 class="text-uppercase">Total Skipped Tests</h6>
        <h1 class="display-1">{{#gt skippedTests.length 0}}{{skippedTests.length}}{{else}}0{{/gt}}</h1>
       </div>
      </div>
@@ -478,6 +478,22 @@ body, html {
                 </div>
                 {{/if}}
                 {{/with}}
+                <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                    <div class="card border-info" style="width: 50rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
+                            {{#if response.header}}
+                                <div class="dyn-height">
+                                        <pre><code class="prettyPrint">{{JSONstringify response.header}}</code></pre>
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
                 <div class="row">
                 <div class="col-sm-12 mb-3">
                     <div class="card-deck">
