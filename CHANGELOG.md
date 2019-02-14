@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.4.3] - 2019-02-14
+
+### Changed
+
+- Updated the default template to allow each failure card to be collapsible
+
+-----------------------------------------------------------------------
+
 ## [1.4.2] - 2019-02-13
 
 ### Changed

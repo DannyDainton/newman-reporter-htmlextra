@@ -109,7 +109,7 @@ body, html {
         <div class="card">
         <div class="card-header">
             <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
-            <li class="nav-item bg-info active" data-toggle="tooltip" title="Click to view the Summary" data-delay="200">
+            <li class="nav-item bg-info active" data-toggle="tooltip" title="Click to view the Summary">
                 <a class="nav-link text-white" id="pills-summary-tab" data-toggle="pill" href="#pills-summary" role="tab" aria-controls="pills-summary" aria-selected="true">Summary</a>
             </li>
             <li class="nav-item bg-success" data-toggle="tooltip" title="Click to view the Requests">
@@ -286,17 +286,19 @@ body, html {
                     <div class="col-sm-12 mb-3">
                     <div class="card-deck">
                         <div class="card border-danger">
-                            <div class="card-header bg-danger text-white text-center text-uppercase">
-                                <h5 class="card-title">{{error.name}}</h5>
+                            <div class="card-header bg-danger">
+                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="fails-{{cursor.ref}}" class="collapsed text-white z-block">
+                                    Iteration {{inc cursor.iteration}} - {{error.name}} - {{source.name}} <i class="float-lg-right fa fa-chevron-down"></i>
+                                </a>
                             </div>
+                            <div id="fails-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="fails-{{cursor.ref}}">
                             <div class="card-body">
-                                <h5><strong>Iteration:</strong> {{inc cursor.iteration}}</h5>
-                                <h5><strong>Request Name:</strong> {{source.name}}</h5>
                                 <h5><strong>Failed Test:</strong> {{error.test}}</h5>
                             <hr>
                             <h5 class="card-title text-uppercase text-white text-center bg-danger">Assertion Error Message</h5>
                             <div>
                                 <pre><code>{{error.message}}</code></pre>
+                            </div>
                             </div>
                             </div>
                         </div>
