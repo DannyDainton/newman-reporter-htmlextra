@@ -9,9 +9,18 @@ dist: trusty
 install:
   - npm ci 
 
-deploy:
-  provider: npm
-  email: dannydainton@gmail.com
-  api_key: $NPM_TOKEN
-  on:
-    all_branches: true
+script: echo "Running tests against $(node -v) ..."
+
+jobs:
+  include:
+    - stage: npm release
+      node_js: "10"
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        email: dannydainton@gmail.com
+        api_key: $NPM_TOKEN
+        on: deploy-npm-release
+
+
+  
