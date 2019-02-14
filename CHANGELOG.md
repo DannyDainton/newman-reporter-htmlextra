@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.4.4] - 2019-02-14
+
+### Added
+
+- A new package will be deployed from Travis if all the tests pass 
+
+-----------------------------------------------------------------------
+
 ## [1.4.3] - 2019-02-14
 
 ### Changed
