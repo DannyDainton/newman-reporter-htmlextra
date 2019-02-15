@@ -21,6 +21,7 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - Folder level descriptions with rendered Markdown syntax
 - Iterations separated by tabs in the `Requests` view
 - First attempt to add the `console.log` statements - These are currently separate from the parent requests but it's the first step in getting them on the report
+- A new `Dark Theme` dashboard template - This is an option from the CLI using the `--reporter-htmlextra-darkTheme` flag or in a script by setting the `darkTheme` property to `true`.
 - More to come...
 
 ## Example Report Images
