@@ -41,6 +41,11 @@ If the collection contains Console Logs, a new tab will appear, that will show a
 
 ![Console Log](./examples/Console_Log_View.PNG)
 
+A dark theme version of the Dashboard has been added to the `./templates` directory, this will have a few 'quirks' and maybe not as dark as you would like it but it's an alternative to the default dashboard view.
+
+![Dark Theme Dashboard](./examples/Dark_Theme_Dashboard.PNG)
+
+
 ## Install
 
 > The installation should be global if newman is installed globally, local otherwise. (Replace -g from the command below with -S for a local installation)
