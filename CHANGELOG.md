@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.5.0] - 2019-02-15
+
+### Added
+
+- A new `--reporter-htmlextra-darkTheme` cli flag to tell the reporter to use the dark theme dashboard
+- A new `darkTheme` property option if used with a script
+
+-----------------------------------------------------------------------
+
 ## [1.4.5] - 2019-02-15
 
 ### Added

@@ -70,6 +70,7 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 |-------------|-------------------|
 | `--reporter-htmlextra-export <path>` | Specify a path where the output HTML file will be written to disk. If not specified, the file will be written to `newman/` in the current working directory. |
 | `--reporter-htmlextra-template <path>` | Specify a path to the custom template which will be used to render the HTML report. This option depends on `--reporter htmlextra` and `--reporter-htmlextra-export` being present in the run command. If this option is not specified, the [default template](./lib/dashboard-template.hbs) is used |
+| `--reporter-htmlextra-darkTheme` | Use this optional flag to switch the reporter template to the `Dark Theme` dashboard. |
 
 Custom templates (currently handlebars only) can be passed to the HTML reporter via `--reporter-htmlextra-template <path>` with `--reporters htmlextra` and `--reporter-htmlextra-export`.
 The [default template](./lib/dashboard-template.hbs) is used in all other cases.
@@ -89,6 +90,27 @@ newman.run({
         htmlextra: {
             export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
             template: '<template path>' // optional, the default template will be used if one is not specified 
+        }
+    }
+}, function (err) {
+    if (err) { throw err; }
+    console.log('collection run complete!');
+});
+```
+
+To use the `dark theme` template within a script - Add the `darkTheme` property to the `htmlextra` object. If the `template` option is also part of the object, this will overwrite the `darkTheme` option. 
+
+```javascript
+const newman = require('newman');
+
+newman.run({
+    collection: require('./examples/Restful_Booker_Collection.json'), // can also provide a URL or path to a local JSON file.
+    environment: require('./examples/Restful_Booker_Environment.json'),
+    reporters: 'htmlextra',
+    reporter: {
+        htmlextra: {
+            export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
+            darkTheme: true // optional, tells the reporter to use the `Dark Theme` template
         }
     }
 }, function (err) {
