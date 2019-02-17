@@ -6,10 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.5.3] - 2019-02-17
+
+### Changed
+
+- The `Skipped` panel on the dashboard will be `Amber` if any tests are skipped  
+
+-----------------------------------------------------------------------
 
 ## [1.5.2] - 2019-02-17
 
-### Added
+### Changed
 
 - The Iteration panel on the dashboard will be `red` if any tests failed during the run 
 

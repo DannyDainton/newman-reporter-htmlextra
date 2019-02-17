@@ -5,7 +5,7 @@
 [![NPM Weekly Downloads](https://img.shields.io/npm/dw/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 [![NPM Downloads](https://img.shields.io/npm/dt/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 
-A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional handlebars helpers to enable users to create better custom templates. This reporter comes with a default dashboard style template, that can be used to show the different changes, such as the `Skipped Tests` - This can be seen in all the example images.
+A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional `handlebars helpers` to enable users to create better custom templates. This reporter comes with a default dashboard style template and also a `Dark Theme` version that can be switched too use a CLI flag.
 
 ---
 
@@ -21,10 +21,10 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - Folder level descriptions with rendered Markdown syntax
 - Iterations separated by tabs in the `Requests` view
 - First attempt to add the `console.log` statements - These are currently separate from the parent requests but it's the first step in getting them on the report
-- A new `Dark Theme` dashboard template - This is an option from the CLI using the `--reporter-htmlextra-darkTheme` flag or in a script by setting the `darkTheme` property to `true`.
+- A `Dark Theme` dashboard template - This is an option from the CLI using the `--reporter-htmlextra-darkTheme` flag or in a script by setting the `darkTheme` property to `true`.
 - More to come...
 
-## Example Report Images
+## Default Dashboard Report
 
 ![Dashboard Template](./examples/Dashboard_Template.PNG)
 
@@ -42,14 +42,19 @@ If the collection contains Console Logs, a new tab will appear, that will show a
 
 ![Console Log](./examples/Console_Log_View.PNG)
 
+### Dark Theme Dashboard
+
 A dark theme version of the Dashboard has been added to the `./templates` directory, this will have a few 'quirks' and maybe not as dark as you would like it but it's an alternative to the default dashboard view.
 
 ![Dark Theme Dashboard](./examples/Dark_Theme_Dashboard.PNG)
 
+![Dark Theme Request View](./examples/Dark_Theme_Request_View.PNG)
+
 
 ## Install
 
-> The installation should be global if newman is installed globally, local otherwise. (Replace -g from the command below with -S for a local installation)
+> The installation should be global if newman is installed globally, local otherwise. (Replace -g from the command below with -S for a local project installation)
+
 
 ```console
 npm install -g newman-reporter-htmlextra
@@ -75,6 +80,12 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 
 Custom templates (currently handlebars only) can be passed to the HTML reporter via `--reporter-htmlextra-template <path>` with `--reporters htmlextra` and `--reporter-htmlextra-export`.
 The [default template](./lib/dashboard-template.hbs) is used in all other cases.
+
+To create the `Dark Theme` report from the CLI, the following command can be used:
+
+```console
+newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra --reporter-htmlextra-darkTheme
+```
 
 #### With Newman as a Library
 
