@@ -425,9 +425,13 @@ body, html {
 {{#each aggregations}}
         {{#if parent.name}}
         <div class="alert alert-dark text-uppercase text-center iteration-{{parent.iteration}}">
-            <h4 class="iteration-{{parent.iteration}}">{{parent.name}}</h4>
+        <a data-toggle="collapse" href="#" data-target="#folder-collapse-{{parent.id}}" aria-expanded="false" aria-controls="collapse" id="folder-{{parent.id}}" class="collapsed text-dark z-block">
+            {{parent.name}} <i class="float-lg-right fa fa-chevron-down"></i>
+        </a>
         </div>
+        <div id="folder-collapse-{{parent.id}}" class="collapse" aria-labelledby="folder-{{parent.id}}">
         {{> aggregations}}
+        </div>
         {{else}}
         {{> aggregations}}
         {{/if}}

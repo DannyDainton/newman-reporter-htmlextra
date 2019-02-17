@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.5.1] - 2019-02-17
+
+### Changed
+
+- The folder sections in the request tab are now collapsible 
+
+-----------------------------------------------------------------------
+
 ## [1.5.0] - 2019-02-15
 
 ### Added

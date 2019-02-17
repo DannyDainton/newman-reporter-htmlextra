@@ -36,7 +36,7 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 
 ![Skipped View](./examples/Skipped_View.PNG)
 
-This is the first attempt to expose any `console.log` statements that are really useful to have in your `Requests`. The event from Newman doesn't contain a lot of detail about the request that it was part of and this will involve, in it's current state a horrible hacky fix to map things together. In the meantime, the Postman `pm.info` function provides these for you and can just be added to the `console.log` statement, as workaround. Something like `${pm.info.requestName} | ${pm.info.eventName} | Interation: ${pm.info.iteration + 1}` will log out the missing event information.
+This is the first attempt to expose any `console.log` statements that are really useful to have in your `Requests`. The event from Newman doesn't contain a lot of detail about the request that it was part of and this will involve, in it's current state a horrible hacky fix to map things together. In the meantime, the Postman `pm.info` function provides these for you and can just be added to the `console.log` statement, as workaround. Something like `${pm.info.requestName} | ${pm.info.eventName} | Iteration: ${pm.info.iteration + 1}` will log out the missing event information.
 
 If the collection contains Console Logs, a new tab will appear, that will show all the details. This information is displayed in a similar way that you may have seen on the `Failed Tests` and `Skipped Tests`.
 
