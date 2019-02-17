@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.5.2] - 2019-02-17
+
+### Added
+
+- The Iteration panel on the dashboard will be `red` if any tests failed during the run 
+
+-----------------------------------------------------------------------
+
 ## [1.5.1] - 2019-02-17
 
 ### Changed
