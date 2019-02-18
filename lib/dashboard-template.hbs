@@ -133,7 +133,7 @@ body, html {
 <div class="row">
 {{#with summary}}
   <div class="col-md-9 col-lg-12 main">
-   <h1 class="display-2 text-center">Newman Run Dashboard</h1>
+   <h1 class="display-2 text-center">{{title}}</h1>
    <h4 class="text-center">{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}</h4>
    <div class="row">
     <div class="col-lg-3 col-md-6">
@@ -324,12 +324,15 @@ body, html {
                     <div class="col-sm-12 mb-3">
                     <div class="card-deck">
                         <div class="card border-warning">
-                            <div class="card-header bg-warning text-white text-center text-uppercase">
-                                <h5 class="card-title">{{assertion}}</h5>
+                            <div class="card-header bg-warning text-white">
+                                <a data-toggle="collapse" href="#" data-target="#skipped-collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="skipped-{{cursor.ref}}" class="collapsed text-white z-block">
+                                    Iteration {{inc cursor.iteration}} - {{assertion}} <i class="float-lg-right fa fa-chevron-down"></i>
+                                </a>
                             </div>
+                            <div id="skipped-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="skipped-{{cursor.ref}}">
                             <div class="card-body">
-                                <h5><strong>Iteration:</strong> {{inc cursor.iteration}}</h5>
                                 <h5><strong>Request Name:</strong> {{item.name}}</h5>
+                            </div>
                             </div>
                         </div>
                     </div>

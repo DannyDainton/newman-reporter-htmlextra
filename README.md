@@ -22,6 +22,7 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - Iterations separated by tabs in the `Requests` view
 - First attempt to add the `console.log` statements - These are currently separate from the parent requests but it's the first step in getting them on the report
 - A `Dark Theme` dashboard template - This is an option from the CLI using the `--reporter-htmlextra-darkTheme` flag or in a script by setting the `darkTheme` property to `true`.
+- A `helper` to give more control over the main `title` shown on the report. Use the `--reporter-htmlextra-title` flag to add your own unique headline.
 - More to come...
 
 ## Default Dashboard Report
@@ -77,6 +78,7 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 | `--reporter-htmlextra-export <path>` | Specify a path where the output HTML file will be written to disk. If not specified, the file will be written to `newman/` in the current working directory. |
 | `--reporter-htmlextra-template <path>` | Specify a path to the custom template which will be used to render the HTML report. This option depends on `--reporter htmlextra` and `--reporter-htmlextra-export` being present in the run command. If this option is not specified, the [default template](./lib/dashboard-template.hbs) is used |
 | `--reporter-htmlextra-darkTheme` | Use this optional flag to switch the reporter template to the `Dark Theme` dashboard. |
+| `--reporter-htmlextra-title` | This optional flag can be used to give your report a different main `Title` in the centre of the report. If this is not set, the report will show "Newman Run Dashboard". |
 
 Custom templates (currently handlebars only) can be passed to the HTML reporter via `--reporter-htmlextra-template <path>` with `--reporters htmlextra` and `--reporter-htmlextra-export`.
 The [default template](./lib/dashboard-template.hbs) is used in all other cases.
@@ -85,6 +87,12 @@ To create the `Dark Theme` report from the CLI, the following command can be use
 
 ```console
 newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra --reporter-htmlextra-darkTheme
+```
+
+To add a custom `Title` to your report from the CLI, the following command can be used:
+
+```console
+newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra --reporter-htmlextra-title "My new report title"
 ```
 
 #### With Newman as a Library
@@ -130,6 +138,27 @@ newman.run({
     console.log('collection run complete!');
 });
 ```
+Add the `title` property to the `htmlextra` object, to pass in your own custom title to the report. 
+
+```javascript
+const newman = require('newman');
+
+newman.run({
+    collection: require('./examples/Restful_Booker_Collection.json'), // can also provide a URL or path to a local JSON file.
+    environment: require('./examples/Restful_Booker_Environment.json'),
+    reporters: 'htmlextra',
+    reporter: {
+        htmlextra: {
+            export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
+            title: 'My new report title' // optional, tells the reporter to use this as the main title in the centre of the report 
+        }
+    }
+}, function (err) {
+    if (err) { throw err; }
+    console.log('collection run complete!');
+});
+```
+
 
 ## Compatibility
 

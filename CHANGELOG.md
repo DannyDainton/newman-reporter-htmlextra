@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.5.4] - 2019-02-18
+
+### Added
+
+- A new CLI option that allows the user to give the report a new main title  
+
+-----------------------------------------------------------------------
+
 ## [1.5.3] - 2019-02-17
 
 ### Changed
