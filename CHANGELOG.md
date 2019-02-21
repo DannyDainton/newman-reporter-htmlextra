@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+
+## [1.5.5] - 2019-02-18
+
+### Added
+
+- Displayed the number of the requests within each of the folders
+
+-----------------------------------------------------------------------
+
 ## [1.5.4] - 2019-02-18
 
 ### Added
