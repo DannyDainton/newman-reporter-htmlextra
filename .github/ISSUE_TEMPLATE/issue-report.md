@@ -17,9 +17,10 @@ If applicable, add screenshots to help explain your problem.
 **Collection File**
 If applicable, please provide a sample collection file. This will help to reproduce the issue locally and lead to a quicker fix.
 
-**Version Information:**
+**Version and Platform Information:**
  - Newman Version [e.g. 4.2.3]
- - NPM Package Version [e.g. 1.4.0]
+ - `newman-reporter-htmlextra` Package Version [e.g. 1.4.0]
+ - OS [Windows 10]
 
 **Additional context**
-Add any other context about the problem here.
+Add any other context about the problem here. Are you using the reporter from the command line or with a script? Are you using the default template or a custom version?
