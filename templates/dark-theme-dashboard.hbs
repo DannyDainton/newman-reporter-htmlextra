@@ -540,9 +540,19 @@ body, html {
                         <div class="card-body">
                             <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
                             {{#if response.header}}
-                                <div class="dyn-height">
-                                        <pre><code class="prettyPrint">{{JSONstringify response.header}}</code></pre>
-                                </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                <thead class="text-white text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                    <tbody>
+                                        {{#each response.header}}
+                                        <tr>
+                                            <td>{{key}}</td>
+                                            <td>{{value}}</td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
                             {{/if}}
                         </div>
                     </div>

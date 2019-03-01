@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.5.6] - 2019-03-01
+
+### Changed
+
+- If no export file name and location are included, the report name will include the collection name
+- Changed the style on the `Response Headers` to a table view.
+
+-----------------------------------------------------------------------
+
 ## [1.5.5] - 2019-02-18
 
 ### Added
