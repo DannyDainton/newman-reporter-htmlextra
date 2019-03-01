@@ -19,10 +19,12 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - Added the [helper-moment](https://github.com/helpers/helper-moment) module so you have more control over the display dates - e.g `{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}`
 - Exposed the `Skipped Tests` so you can tell which ones are skipped, in the main summary view. You can also see which tests are skipped within the single request view
 - Folder level descriptions with rendered Markdown syntax
+- Response Headers displayed for each of the requests
 - Iterations separated by tabs in the `Requests` view
 - First attempt to add the `console.log` statements - These are currently separate from the parent requests but it's the first step in getting them on the report
 - A `Dark Theme` dashboard template - This is an option from the CLI using the `--reporter-htmlextra-darkTheme` flag or in a script by setting the `darkTheme` property to `true`.
 - A `helper` to give more control over the main `title` shown on the report. Use the `--reporter-htmlextra-title` flag to add your own unique headline.
+- The default filename, if you do not supply the `export` location, is now includes the collection name in the filename rather that the reporter name.
 - More to come...
 
 ## Default Dashboard Report
