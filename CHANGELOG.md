@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.5.7] - 2019-03-02
+
+### Fixed
+
+- Prevented the `Response Header` name wrapping the text on the table view.
+
+-----------------------------------------------------------------------
+
 ## [1.5.6] - 2019-03-01
 
 ### Changed
