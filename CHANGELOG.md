@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.6.1] - 2019-03-04
+
+### Added
+
+- Extra information about the test failures in the request view
+
+-----------------------------------------------------------------------
+
 ## [1.6.0] - 2019-03-04
 
 ### Added

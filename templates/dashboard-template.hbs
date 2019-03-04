@@ -557,6 +557,32 @@ body, html {
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="row {{#lte cumulativeTests.failed 0}}d-none{{/lte}}">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-danger" style="width: 50rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase text-white text-center bg-danger">Test Failures</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                            <thead><tr class="text-nowrap"><th>Test Name</th><th>Assertion Error</th></tr></thead>
+                                                <tbody>
+                                                    {{#each assertions}}
+                                                    {{#isTheSame testFailure.test this.name}}
+                                                    <tr>
+                                                        <td class="w-45 text-nowrap">{{testFailure.test}}</td>
+                                                        <td class="w-55"><pre><code>{{testFailure.message}}</code></pre></td>
+                                                    </tr>
+                                                    {{/isTheSame}}
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
                             </div>                
                             {{else}}
                             <h5 class="card-text text-center text-uppercase">No Tests for this request</h5>
