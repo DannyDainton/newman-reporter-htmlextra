@@ -25,14 +25,23 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - A `Dark Theme` dashboard template - This is an option from the CLI using the `--reporter-htmlextra-darkTheme` flag or in a script by setting the `darkTheme` property to `true`.
 - A `helper` to give more control over the main `title` shown on the report. Use the `--reporter-htmlextra-title` flag to add your own unique headline.
 - The default filename, if you do not supply the `export` location, is now includes the collection name in the filename rather that the reporter name.
+- Use the `onlyShowFails` option to reduce the report down to just showing the requests that had test failures.
 - More to come...
 
 ## Install
 
-> The installation should be global if newman is installed globally, local otherwise. (Replace -g from the command below with -S for a local project installation)
+> The installation should be global if newman is installed globally, local otherwise. 
+
+For `global` install:
 
 ```console
 npm install -g newman-reporter-htmlextra
+```
+
+For `local` install:
+
+```console
+npm install -S newman-reporter-htmlextra
 ```
 
 ## Usage
@@ -58,7 +67,7 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 Custom templates (currently handlebars only) can be passed to the HTML reporter via `--reporter-htmlextra-template <path>` with `--reporters htmlextra` and `--reporter-htmlextra-export`.
 The [default template](./lib/dashboard-template.hbs) is used in all other cases.
 
-To create a report that only shows the request with `Failed` test from the CLI, the following command can be used:
+To create a report that only shows the requests with `Failed` tests, from the CLI, the following command can be used:
 
 ```console
 newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra --reporter-htmlextra-showOnlyFails
