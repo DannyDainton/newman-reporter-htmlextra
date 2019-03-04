@@ -29,7 +29,35 @@ describe('Newman and htmlextra run from a script', function () {
         newman.run({
             collection: 'test/requests/simple-get-request.json',
             reporters: ['htmlextra'],
-            reporter: { htmlextra: { export: outFile, darkTheme: true, title: 'My new report title' } }
+            reporter: { htmlextra: { export: outFile } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-get-request');
+            expect(summary.run.stats.iterations.total).to.equal(1);
+            fs.stat(outFile, done);
+        });
+    });
+
+    it('should correctly generate the dark theme html report for a successful run', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-get-request.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { export: outFile, darkTheme: true } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-get-request');
+            expect(summary.run.stats.iterations.total).to.equal(1);
+            fs.stat(outFile, done);
+        });
+    });
+
+    it('should correctly generate the html report with a new title for a successful run', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-get-request.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { export: outFile, title: 'My new report title' } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
             if (err) { return done(err); }
@@ -77,6 +105,21 @@ describe('Newman and htmlextra run from a script', function () {
             collection: 'test/requests/simple-failing-request.json',
             reporters: ['htmlextra'],
             reporter: { htmlextra: { export: outFile } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(err).to.be.null;
+            expect(summary.run.stats.assertions.failed, 'should have 2 failed assertions').to.equal(2);
+            expect(summary.run.failures, 'should have 2 failures').to.have.lengthOf(2);
+            fs.stat(outFile, done);
+        });
+    });
+
+    it('should correctly generate the html report with only the requests that have test failures', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-failing-request.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { export: outFile, showOnlyFails: true } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
             if (err) { return done(err); }

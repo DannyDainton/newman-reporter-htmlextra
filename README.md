@@ -27,37 +27,9 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - The default filename, if you do not supply the `export` location, is now includes the collection name in the filename rather that the reporter name.
 - More to come...
 
-## Default Dashboard Report
-
-![Dashboard Template](./examples/Dashboard_Template.PNG)
-
-![Request View Iterations](./examples/Request_View_Iterations.PNG)
-
-![Request View](./examples/Request_View.PNG)
-
-![Failed View](./examples/Failed_View.PNG)
-
-![Skipped View](./examples/Skipped_View.PNG)
-
-This is the first attempt to expose any `console.log` statements that are really useful to have in your `Requests`. The event from Newman doesn't contain a lot of detail about the request that it was part of and this will involve, in it's current state a horrible hacky fix to map things together. In the meantime, the Postman `pm.info` function provides these for you and can just be added to the `console.log` statement, as workaround. Something like `${pm.info.requestName} | ${pm.info.eventName} | Iteration: ${pm.info.iteration + 1}` will log out the missing event information.
-
-If the collection contains Console Logs, a new tab will appear, that will show all the details. This information is displayed in a similar way that you may have seen on the `Failed Tests` and `Skipped Tests`.
-
-![Console Log](./examples/Console_Log_View.PNG)
-
-### Dark Theme Dashboard
-
-A dark theme version of the Dashboard has been added to the `./templates` directory, this will have a few 'quirks' and maybe not as dark as you would like it but it's an alternative to the default dashboard view.
-
-![Dark Theme Dashboard](./examples/Dark_Theme_Dashboard.PNG)
-
-![Dark Theme Request View](./examples/Dark_Theme_Request_View.PNG)
-
-
 ## Install
 
 > The installation should be global if newman is installed globally, local otherwise. (Replace -g from the command below with -S for a local project installation)
-
 
 ```console
 npm install -g newman-reporter-htmlextra
@@ -79,11 +51,18 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 |-------------|-------------------|
 | `--reporter-htmlextra-export <path>` | Specify a path where the output HTML file will be written to disk. If not specified, the file will be written to `newman/` in the current working directory. |
 | `--reporter-htmlextra-template <path>` | Specify a path to the custom template which will be used to render the HTML report. This option depends on `--reporter htmlextra` and `--reporter-htmlextra-export` being present in the run command. If this option is not specified, the [default template](./lib/dashboard-template.hbs) is used |
+| `--reporter-htmlextra-showOnlyFails` | Use this optional flag to tell the reporter to display only the requests with failed tests. This is currently only available in the `light` version of the dashboard. |
 | `--reporter-htmlextra-darkTheme` | Use this optional flag to switch the reporter template to the `Dark Theme` dashboard. |
 | `--reporter-htmlextra-title` | This optional flag can be used to give your report a different main `Title` in the centre of the report. If this is not set, the report will show "Newman Run Dashboard". |
 
 Custom templates (currently handlebars only) can be passed to the HTML reporter via `--reporter-htmlextra-template <path>` with `--reporters htmlextra` and `--reporter-htmlextra-export`.
 The [default template](./lib/dashboard-template.hbs) is used in all other cases.
+
+To create a report that only shows the request with `Failed` test from the CLI, the following command can be used:
+
+```console
+newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra --reporter-htmlextra-showOnlyFails
+```
 
 To create the `Dark Theme` report from the CLI, the following command can be used:
 
@@ -99,7 +78,7 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 
 #### With Newman as a Library
 
-The CLI functionality is available for programmatic use as well.
+All the CLI functionality is available for programmatic use as well within a `nodejs` script.
 
 ```javascript
 const newman = require('newman');
@@ -120,7 +99,27 @@ newman.run({
 });
 ```
 
-To use the `dark theme` template within a script - Add the `darkTheme` property to the `htmlextra` object. If the `template` option is also part of the object, this will overwrite the `darkTheme` option. 
+Add the `showOnlyFails` property to the `htmlextra` object, to create a report showing only requests with test failures.
+
+```javascript
+const newman = require('newman');
+
+newman.run({
+    collection: require('./examples/Restful_Booker_Collection.json'), // can also provide a URL or path to a local JSON file.
+    environment: require('./examples/Restful_Booker_Environment.json'),
+    reporters: 'htmlextra',
+    reporter: {
+        htmlextra: {
+            export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
+            showOnlyFails: true // optional, tells the reporter to create a report showing only the requests with failed tests.
+    }
+}, function (err) {
+    if (err) { throw err; }
+    console.log('collection run complete!');
+});
+```
+
+To use the `dark theme` template within a script - Add the `darkTheme` property to the `htmlextra` object. If the `template` option is also part of the object, this will overwrite the `darkTheme` option.
 
 ```javascript
 const newman = require('newman');
@@ -140,6 +139,7 @@ newman.run({
     console.log('collection run complete!');
 });
 ```
+
 Add the `title` property to the `htmlextra` object, to pass in your own custom title to the report. 
 
 ```javascript
@@ -161,6 +161,39 @@ newman.run({
 });
 ```
 
+## Default Dashboard
+
+![Dashboard Template](./examples/Dashboard_Template.PNG)
+
+![Request View Iterations](./examples/Request_View_Iterations.PNG)
+
+![Request View](./examples/Request_View.PNG)
+
+![Failed View](./examples/Failed_View.PNG)
+
+![Skipped View](./examples/Skipped_View.PNG)
+
+## Dark Theme Dashboard
+
+A dark theme version of the Dashboard has been added to the `./templates` directory, this will have a few 'quirks' and maybe not as dark as you would like it but it's an alternative to the default dashboard view.
+
+![Dark Theme Dashboard](./examples/Dark_Theme_Dashboard.PNG)
+
+![Dark Theme Request View](./examples/Dark_Theme_Request_View.PNG)
+
+### Show Only Failures
+
+If you have mulitiple requests in your collections the report can become quite verbose, I've added a flag option to just create the report with only the requests that have `Failed` tests. The is very similar to the default report but the folder will already be expanded, if thier are any failed tests. This is currently only available in the `light` view of the dashboard but I will be adding a dark view soon.
+
+![Failed Requests View](./examples/Failed_Requests_View.PNG)
+
+### Console Logs
+
+This is the first attempt to expose any `console.log` statements that are really useful to have in your `Requests`. The event from Newman doesn't contain a lot of detail about the request that it was part of and this will involve, in it's current state a horrible hacky fix to map things together. In the meantime, the Postman `pm.info` function provides these for you and can just be added to the `console.log` statement, as workaround. Something like `${pm.info.requestName} | ${pm.info.eventName} | Iteration: ${pm.info.iteration + 1}` will log out the missing event information.
+
+If the collection contains Console Logs, a new tab will appear, that will show all the details. This information is displayed in a similar way that you may have seen on the `Failed Tests` and `Skipped Tests`.
+
+![Console Log](./examples/Console_Log_View.PNG)
 
 ## Compatibility
 

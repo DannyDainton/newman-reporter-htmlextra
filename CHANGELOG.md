@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.6.0] - 2019-03-04
+
+### Added
+
+- A `--reporter-htmlextra-showOnlyFails` option to tell the reporter to display only the requests with failed tests
+
+-----------------------------------------------------------------------
+
 ## [1.5.7] - 2019-03-02
 
 ### Fixed
