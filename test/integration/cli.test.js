@@ -62,7 +62,7 @@ describe('Newman and htmlextra run from the CLI', function () {
             });
     });
 
-    it('should correctly generate the html report for a failed run showing only the requests with failed tests', function (done) {
+    it('should correctly generate the html report showing only the requests with failed tests', function (done) {
         // eslint-disable-next-line max-len
         exec(`${newman} run test/requests/simple-failing-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showOnlyFails`,
             function (code) {
