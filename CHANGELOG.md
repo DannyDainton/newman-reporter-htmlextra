@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.6.2] - 2019-03-05
+
+### Added
+
+- Added a `dark` theme when showing only the test fails
+
+-----------------------------------------------------------------------
+
 ## [1.6.1] - 2019-03-04
 
 ### Added

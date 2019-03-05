@@ -130,6 +130,21 @@ describe('Newman and htmlextra run from a script', function () {
         });
     });
 
+    it('should correctly generate the dark html report with only the requests that have test fails', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-failing-request.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { export: outFile, showOnlyFails: true, darkTheme: true } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(err).to.be.null;
+            expect(summary.run.stats.assertions.failed, 'should have 2 failed assertions').to.equal(2);
+            expect(summary.run.failures, 'should have 2 failures').to.have.lengthOf(2);
+            fs.stat(outFile, done);
+        });
+    });
+
     it('should correctly produce the html report for a run with skipped Tests', function (done) {
         newman.run({
             collection: 'test/requests/simple-skipped-request.json',

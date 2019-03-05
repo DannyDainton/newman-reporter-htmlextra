@@ -71,6 +71,15 @@ describe('Newman and htmlextra run from the CLI', function () {
             });
     });
 
+    it('should correctly generate the dark html report showing only the requests with failed tests', function (done) {
+        // eslint-disable-next-line max-len
+        exec(`${newman} run test/requests/simple-failing-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showOnlyFails --reporter-htmlextra-darkTheme`,
+            function (code) {
+                expect(code, 'should have exit code of 1').to.equal(1);
+                fs.stat(outFile, done);
+            });
+    });
+
     it('should correctly produce the html report for a collection with an environment file', function (done) {
         // eslint-disable-next-line max-len
         exec(`${newman} run test/requests/simple-request-with-env.json -e test/requests/simple-env.json -r htmlextra --reporter-htmlextra-export ${outFile}`,

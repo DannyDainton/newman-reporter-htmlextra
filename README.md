@@ -60,7 +60,7 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 |-------------|-------------------|
 | `--reporter-htmlextra-export <path>` | Specify a path where the output HTML file will be written to disk. If not specified, the file will be written to `newman/` in the current working directory. |
 | `--reporter-htmlextra-template <path>` | Specify a path to the custom template which will be used to render the HTML report. This option depends on `--reporter htmlextra` and `--reporter-htmlextra-export` being present in the run command. If this option is not specified, the [default template](./lib/dashboard-template.hbs) is used |
-| `--reporter-htmlextra-showOnlyFails` | Use this optional flag to tell the reporter to display only the requests with failed tests. This is currently only available in the `light` version of the dashboard. |
+| `--reporter-htmlextra-showOnlyFails` | Use this optional flag to tell the reporter to display only the requests with failed tests. |
 | `--reporter-htmlextra-darkTheme` | Use this optional flag to switch the reporter template to the `Dark Theme` dashboard. |
 | `--reporter-htmlextra-title` | This optional flag can be used to give your report a different main `Title` in the centre of the report. If this is not set, the report will show "Newman Run Dashboard". |
 
@@ -184,17 +184,19 @@ newman.run({
 
 ## Dark Theme Dashboard
 
-A dark theme version of the Dashboard has been added to the `./templates` directory, this will have a few 'quirks' and maybe not as dark as you would like it but it's an alternative to the default dashboard view.
-
 ![Dark Theme Dashboard](./examples/Dark_Theme_Dashboard.PNG)
 
 ![Dark Theme Request View](./examples/Dark_Theme_Request_View.PNG)
 
 ### Show Only Failures
 
-If you have mulitiple requests in your collections the report can become quite verbose, I've added a flag option to just create the report with only the requests that have `Failed` tests. The is very similar to the default report but the folder will already be expanded, if thier are any failed tests. This is currently only available in the `light` view of the dashboard but I will be adding a dark view soon.
+If you have mulitiple requests in your collections the report can become quite verbose, I've added a flag option to just create the report with only the requests that have `Failed` tests. The is very similar to the default report but the folder will already be expanded, if thier are any failed tests.
 
 ![Failed Requests View](./examples/Failed_Requests_View.PNG)
+
+Add the `darkTheme` flag to see this in the `dark` view.
+
+![Failed Requests Dark View](./examples/Failed_Requests_Dark_View.PNG)
 
 ### Console Logs
 

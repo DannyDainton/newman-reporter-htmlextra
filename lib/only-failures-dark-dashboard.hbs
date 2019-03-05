@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Newman Summary Report</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+  <link rel="stylesheet prefetch" href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github-gist.min.css">
+
+<style>
+body {
+  padding-top:30px;
+}
+
+body, html {
+  height:100%;
+}
+
+.badge-outline-success {
+    color: #27ae60;
+    border: 1px solid #27ae60;
+    background-color: transparent;
+}
+
+.badge-outline {
+    color: #27ae60;
+    border: 1px solid #27ae60;
+    background-color: transparent;
+}
+
+.card {
+    overflow:hidden;
+}
+
+.card-footer {
+    background-color:#4b4949;
+}
+
+.card-body .rotate {
+    z-index: 8;
+    float: right;
+    height: 100%;
+}
+
+.card-body .rotate i {
+    color: rgba(20, 20, 20, 0.15);
+    position: absolute;
+    left: 0;
+    left: auto;
+    right: -10px;
+    bottom: 0;
+    display: block;
+    -webkit-transform: rotate(-44deg);
+    -moz-transform: rotate(-44deg);
+    -o-transform: rotate(-44deg);
+    -ms-transform: rotate(-44deg);
+    transform: rotate(-44deg);
+}
+.dyn-height {
+    max-height:350px;
+    overflow-y:auto;
+}
+
+.nav-pills .nav-link.active {
+    background-color: transparent!important;
+}
+
+#topOfScreen {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  outline: none;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#topOfScreen:hover {
+  background-color: #00bc8ca8!important;
+}
+
+.custom-tab {
+    padding: 10px 15px;
+    margin-right: 3px;
+    border: solid 1px #fff;
+    border-bottom: none;
+    cursor:pointer;
+}
+.custom-tab .active {
+    border-bottom:solid 1px #032a33;
+}
+
+#execution-data {
+    padding: 10px;
+    border: solid 1px #fff;
+    border-top: none;
+}
+
+.card-header .fa {
+  transition: .3s transform ease-in-out;
+}
+.card-header .collapsed .fa {
+  transform: rotate(90deg);
+}
+
+.hljs {
+    background: #0f0f0f82!important;
+    color: #8d8787!important;
+}
+
+.bg-info {
+    background-color: #3498dbc2!important;
+}
+
+.bg-success {
+    background-color: #00bc8ca8!important;
+}
+
+.alert-success {
+    background-color: #00bc8ca8!important;
+}
+
+.alert-warning {
+    background-color: #ce8818!important
+}
+
+.bg-warning {
+    background-color: #f39c12cf!important;
+}
+
+.table-warning>td {
+    background-color: #ce8818!important;
+}
+
+.alert-danger {
+    background-color: #bd4539!important
+}
+
+.bg-danger {
+    background-color: #e74c3cc4!important;
+}
+
+.table-danger>td {
+    background-color: #bd4539!important;
+}
+
+</style>
+</head>
+<body>
+  <div class="container">
+        {{#with summary}}
+        <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+            <li class="nav-item bg-info active" data-toggle="tooltip" title="Click to view the Summary">
+                <a class="nav-link text-white" id="pills-summary-tab" data-toggle="pill" href="#pills-summary" role="tab" aria-controls="pills-summary" aria-selected="true">Summary</a>
+            </li>
+            <li class="nav-item bg-success" data-toggle="tooltip" title="Click to view the Requests">
+                <a class="nav-link text-white" id="pills-requests-tab" data-toggle="pill" href="#pills-requests" role="tab" aria-controls="pills-requests" aria-selected="false">Total Requests <span class="badge badge-light">{{stats.requests.total}}</span></a>
+            </li>
+            <li class="nav-item bg-danger" data-toggle="tooltip" title="Click to view the Failed Tests">
+                <a class="nav-link text-white" id="pills-failed-tab" data-toggle="pill" href="#pills-failed" role="tab" aria-controls="pills-failed" aria-selected="false">Failed Tests <span class="badge badge-light">{{failures.length}}</span></a>
+            </li>
+            <li class="nav-item bg-warning" data-toggle="tooltip" title="Click to view the Skipped Tests">
+                <a class="nav-link text-white" id="pills-skipped-tab" data-toggle="pill" href="#pills-skipped" role="tab" aria-controls="pills-skipped" aria-selected="false">Skipped Tests <span class="badge badge-light">{{#gt skippedTests.length 0}}{{skippedTests.length}}{{else}}0{{/gt}}</span></a>
+            </li>
+            {{#if consoleLogs.length}}
+            <li class="nav-item bg-info" data-toggle="tooltip" title="Click to view the Console Logs">
+                <a class="nav-link text-white" id="pills-logs-tab" data-toggle="pill" href="#pills-logs" role="tab" aria-controls="pills-logs" aria-selected="false">Console Logs <span class="badge badge-light">{{consoleLogs.length}}</span></a>
+            </li>
+            {{/if}}
+            </ul>
+        {{/with}}
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-summary" role="tabcard" aria-labelledby="pills-summary-tab"> 
+<div class="row">
+{{#with summary}}
+  <div class="col-md-9 col-lg-12 main">
+   <h1 class="display-2 text-center">{{title}}</h1>
+   <h4 class="text-center">{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}</h4>
+   <div class="row">
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-success">
+      <div class="card-body {{#gt failures.length 0}}bg-danger{{else}}bg-success{{/gt}}">
+       <div class="rotate">
+        <i class="fa fa-retweet fa-5x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Iterations</h6>
+       <h1 class="display-1">{{stats.iterations.total}}</h1>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-danger">
+      <div class="card-body bg-success">
+       <div class="rotate">
+        <i class="fa fa-list fa-4x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Assertions</h6>
+       <h1 class="display-1">{{totalTests stats.assertions.total skippedTests.length}}</h1>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-info">
+      <div class="card-body {{#gt failures.length 0}}bg-danger{{else}}bg-success{{/gt}}">
+       <div class="rotate">
+        <i class="fa fa-plus-circle fa-5x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Failed Tests</h6>
+       <h1 class="display-1">{{failures.length}}</h1>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+     <div class="card text-white card-warning">
+      <div class="card-body {{#gt skippedTests.length 0}}bg-warning{{else}}bg-success{{/gt}}">
+       <div class="rotate">
+        <i class="fa fa-share fa-5x"></i>
+       </div>
+       <h6 class="text-uppercase">Total Skipped Tests</h6>
+       <h1 class="display-1">{{#gt skippedTests.length 0}}{{skippedTests.length}}{{else}}0{{/gt}}</h1>
+      </div>
+     </div>
+    </div>
+   </div>
+   <hr>
+    <div class="row">
+    <div class="col">
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="card border-info">
+                <div class="card-body">
+                <h5 class="card-title text-uppercase text-white text-center bg-info">File Information</h5>
+                <span><i class="fas fa-file-code"></i></span><strong> Collection:</strong> {{collection.name}}<br>
+                {{#if environment.name}}<span><i class="fas fa-file-code"></i></span><strong> Environment:</strong> {{environment.name}}<br>{{/if}}
+                </div>
+            </div>
+        </div>
+        </div>
+        {{#if collection.description}}
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="card border-info">
+                <div class="card-body">          
+                <h5 class="card-title text-uppercase text-white text-center bg-info">Collection Description</h5>
+                <div class="dyn-height">
+                    <pre id="description">{{collection.description}}</pre>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        {{/if}}
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="card border-info">
+                <div class="card-body">
+                <h5 class="card-title text-uppercase text-white text-center bg-info">Timings and Data</h5>
+                <span><i class="fas fa-stopwatch"></i></span><strong> Total run duration:</strong> {{duration}}<br>
+                <span><i class="fas fa-database"></i></span><strong> Total data received:</strong> {{responseTotal}}<br>
+                <span><i class="fas fa-stopwatch"></i></span><strong> Average response time:</strong> {{responseAverage}}<br>
+                </div>
+            </div>
+        </div>
+        </div>
+    {{/with}}
+        <div class="row">
+        <div class="col-sm-12 mb-3">
+            <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-inverse">
+                    <tr class="text-center">
+                        <th class="text-uppercase">Summary Item</th>
+                        <th class="text-uppercase">Total</th>
+                        <th class="text-uppercase">Failed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#with summary.stats}}
+                    <tr>
+                        <td>Requests</td>
+                        <td class="text-center">{{requests.total}}</td>
+                        <td class="text-center">{{requests.failed}}</td>
+                    </tr>
+                    <tr>
+                        <td>Prerequest Scripts</td>
+                        <td class="text-center">{{prerequestScripts.total}}</td>
+                        <td class="text-center">{{prerequestScripts.failed}}</td>
+                    </tr>
+                    <tr>
+                        <td>Test Scripts</td>
+                        <td class="text-center">{{testScripts.total}}</td>
+                        <td class="text-center">{{testScripts.failed}}</td>
+                    </tr>
+                    {{/with}}
+                    {{#with summary}}
+                    <tr class="{{#gt failures.length 0}}table-danger{{/gt}}">
+                        <td>Assertions</td>
+                        <td class="text-center">{{totalTests stats.assertions.total skippedTests.length}}</td>
+                        <td class="text-center">{{stats.assertions.failed}}</td>
+                    </tr>
+                    <tr class="{{#gt skippedTests.length 0}}table-warning{{/gt}}">
+                        <td>Skipped Tests</td>
+                        <td class="text-center">{{#gt skippedTests.length 0}}{{skippedTests.length}}{{else}}0{{/gt}}</td>
+                        <td class="text-center">-</td>
+                    </tr>
+                    {{/with}}
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    <hr>
+   </div>
+   </div>
+  </div>
+ </div>
+        </div>
+            <div class="tab-pane fade" id="pills-failed" role="tabcard" aria-labelledby="pills-failed-tab">
+
+                {{#if summary.failures.length}}
+                    {{#with summary}}
+                    <div class="alert alert-danger text-uppercase text-center">
+                        <h4>Showing {{failures.length}} {{#gt failures.length 1}}Failures{{else}}Failure{{/gt}}</h4>
+                    </div>
+                    {{/with}}
+                    {{#each summary.failures}}
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger">
+                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="fails-{{cursor.ref}}" class="collapsed text-white z-block">
+                                    Iteration {{inc cursor.iteration}} - {{error.name}} - {{source.name}} <i class="float-lg-right fa fa-chevron-down"></i>
+                                </a>
+                            </div>
+                            <div id="fails-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="fails-{{cursor.ref}}">
+                            <div class="card-body">
+                                <h5><strong>Failed Test:</strong> {{error.test}}</h5>
+                            <hr>
+                            <h5 class="card-title text-uppercase text-white text-center bg-danger">Assertion Error Message</h5>
+                            <div>
+                                <pre><code>{{error.message}}</code></pre>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    {{/each}}
+                {{else}}
+                <div class="alert alert-success text-uppercase text-center">
+                     <br><br><h1 class="text-center">There are no failed tests <span><i class="far fa-thumbs-up"></i></span></h1><br><br>
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="tab-pane fade" id="pills-skipped" role="tabcard" aria-labelledby="pills-skipped-tab">
+
+                {{#if summary.skippedTests.length}}
+                    {{#with summary}}
+                    <div class="alert alert-warning text-uppercase text-center">
+                        <h4>Showing {{skippedTests.length}} Skipped {{#gt skippedTests.length 1}}Tests{{else}}Test{{/gt}}</h4>
+                    </div>
+                    {{/with}}
+                    {{#each summary.skippedTests}}
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-warning">
+                            <div class="card-header bg-warning text-white">
+                                <a data-toggle="collapse" href="#" data-target="#skipped-collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="skipped-{{cursor.ref}}" class="collapsed text-white z-block">
+                                    Iteration {{inc cursor.iteration}} - {{assertion}} <i class="float-lg-right fa fa-chevron-down"></i>
+                                </a>
+                            </div>
+                            <div id="skipped-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="skipped-{{cursor.ref}}">
+                            <div class="card-body">
+                                <h5><strong>Request Name:</strong> {{item.name}}</h5>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    {{/each}}
+                {{else}}
+                <div class="alert alert-success text-uppercase text-center">
+                    <br><br><h1 class="text-center">There are no skipped tests <span><i class="far fa-thumbs-up"></i></span></h1><br><br>
+                </div>
+                {{/if}}
+            </div>
+            <div class="tab-pane fade" id="pills-logs" role="tabcard" aria-labelledby="pills-logs-tab">
+
+                {{#if summary.consoleLogs.length}}
+                    {{#with summary}}
+                    <div class="alert alert-info text-uppercase text-center">
+                        <h4>Showing {{consoleLogs.length}} Console Log {{#gt consoleLogs.length 1}}Messages{{else}}Message{{/gt}}</h4>
+                    </div>
+                    {{/with}}
+                    {{#each summary.consoleLogs}}
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-info">
+                            <div class="card-header bg-info text-white text-center text-uppercase">
+                                <h5 class="card-title">Log Message</h5>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <pre><code>{{messages}}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    {{/each}}
+                {{/if}}
+            </div> 
+            <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
+            
+            <button class="btn btn-outline-success btn-sm" onclick="topFunction()" id="topOfScreen">Go To Top</button>
+
+        {{!-- <div class="row">
+            <div class="col-sm-12 mb-3">
+            <input type="text" id="myFilter" class="form-control" placeholder="Filter requests...">
+            </div>
+        </div> --}}
+    <div class="text-uppercase" id="execution-menu">
+        {{#with summary}}
+        <h6>{{stats.iterations.total}} {{#gt stats.iterations.total 1}}Iterations{{else}}Iteration{{/gt}} available to view</h6>
+        {{/with}}
+        <ul class="nav nav-tabs">
+        </ul>
+    </div>
+	<div class="tab-content" id="execution-data">
+{{#each aggregations}}
+        {{#if parent.name}}
+        <div class="alert alert-dark text-uppercase text-center iteration-{{parent.iteration}}">
+        <a data-toggle="collapse" href="#" data-target="#folder-collapse-{{parent.id}}" aria-expanded="false" aria-controls="collapse" id="folder-{{parent.id}}" class="collapsed text-white z-block">
+            {{parent.name}} - {{executions.length}} {{#gt executions.length 1}}Requests{{else}}Request{{/gt}} in the folder <i class="float-lg-right fa fa-chevron-down"></i>
+        </a>
+        </div>
+        {{> aggregations}}
+        {{else}}
+        {{> aggregations}}
+        {{/if}}
+{{/each}} 
+        </div>      
+    </div>
+    </div>
+    </div>
+</body>
+</html>
+
+{{#*inline "aggregations"}}
+{{#each executions}}
+{{#gt cumulativeTests.failed 0}}
+    <div class="card-deck iteration-{{cursor.iteration}}">
+    <div class="row iteration-{{cursor.iteration}}">
+        <div class="col-sm-12 mb-3 iteration-{{cursor.iteration}}">
+        <div class="card iteration-{{cursor.iteration}}">
+            <div class="card-header {{#if cumulativeTests.failed}} bg-danger{{else}} bg-success{{/if}} iteration-{{cursor.iteration}}">
+                <a data-toggle="collapse" href="#" data-target="#collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="requests-{{cursor.ref}}" class="collapsed text-white z-block">
+            Iteration: {{inc cursor.iteration}} - {{item.name}} <i class="float-lg-right fa fa-chevron-down"></i>
+        </a>
+            </div>
+            <div id="collapse-{{cursor.ref}}" class="collapse" aria-labelledby="requests-{{cursor.ref}}">
+            <div class="card-body">
+                {{#with request}}
+                {{#if description.content}}
+                <div class="row">
+                    <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                        <div class="card border-info" style="width: 50rem;">
+                            <div class="card-body">
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
+                                <div class="dyn-height">
+                                    <code id="description">{{description.content}}</code>
+                                </div>
+                            </div>                    
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {{/if}}
+                {{/with}}  
+                <div class="row">
+                    <div class="col-sm-12 mb-3">
+                        <div class="card-deck">
+                        <div class="card border-info" style="width: 50rem;">
+                            <div class="card-body">
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
+                            <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> {{request.method}}</span><br>
+                            <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="{{request.url}}" target="_blank">{{request.url}}</a><br>
+                            </div>
+                        </div>
+                        <div class="card border-info" style="width: 50rem;">
+                            <div class="card-body">
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Response Information</h5>
+                            <span><i class="fas fa-info-circle"></i></span><strong> Response Code:</strong> <span class="float-right badge-outline badge badge-success"> {{response.code}} - {{response.status}}</span><br>
+                            <span><i class="fas fa-stopwatch"></i></span><strong> Mean time per request:</strong> <span class="float-right badge-outline badge badge-success"> {{mean.time}}</span><br>
+                            <span><i class="fas fa-database"></i></span><strong> Mean size per request:</strong> <span class="float-right badge-outline badge badge-success"> {{mean.size}}</span><br>
+                            <hr>
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
+                            <div>
+                                <div class="progress" style="height: 40px;">
+                                    <div class="progress-bar {{#if cumulativeTests.failed}} bg-danger{{else}} bg-success{{/if}}" style="width: 100%" role="progressbar">
+                                    <h5><strong>{{#gte cumulativeTests.passed 1}}{{percent cumulativeTests.passed cumulativeTests.failed}} %{{else}}0 %{{/gte}}</strong></h5>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {{#with request}}
+                {{#if body.raw}}
+                <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                    <div class="card border-info" style="width: 50rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
+                                <div class="dyn-height">
+                                    <pre><code>{{body.raw}}</code></pre>
+                                </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                {{/if}}
+                {{/with}}
+                <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                    <div class="card border-info" style="width: 50rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Response Headers</h5>
+                            {{#if response.header}}
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                <thead class="text-white text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                    <tbody>
+                                        {{#each response.header}}
+                                        <tr>
+                                            <td class="text-nowrap">{{key}}</td>
+                                            <td>{{value}}</td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                    <div class="card border-info" style="width: 50rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
+                            {{#if response.body}}
+                                <div class="dyn-height">
+                                        <pre><code id="copyText-{{item.id}}" class="prettyPrint">{{response.body}}</code></pre>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-secondary copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-{{item.id}}">Copy to Clipboard</button>
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card border-info">
+                        <div class="card-body">
+                        <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
+                            {{#if assertions.length}}
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-hover">
+                                <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
+                                    <tbody>
+                                        {{#each assertions}}
+                                        <tr>
+                                            <td>{{this.name}}</td>
+                                            <td class="text-center {{#if this.passed}}bg-success{{/if}}">{{this.passed}}</td>
+                                            <td class="text-center {{#if this.failed}}bg-danger{{/if}}">{{this.failed}}</td>
+                                            <td class="text-center {{#if this.skipped}}bg-warning{{/if}}">{{this.skipped}}</td>
+                                        </tr>
+                                        {{/each}}
+                                        <tr class="bg-light">
+                                            <td><strong>Total</strong></td>
+                                            <td class="text-center">{{cumulativeTests.passed}}</td>
+                                            <td class="text-center">{{cumulativeTests.failed}}</td>
+                                            <td class="text-center">{{cumulativeTests.skipped}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row {{#lte cumulativeTests.failed 0}}d-none{{/lte}}">
+                            <div class="col-sm-12 mb-3">
+                                <div class="card-deck">
+                                <div class="card border-danger" style="width: 50rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase text-white text-center bg-danger">Test Failures</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                            <thead><tr class="text-nowrap"><th>Test Name</th><th>Assertion Error</th></tr></thead>
+                                                <tbody>
+                                                    {{#each assertions}}
+                                                    {{#isTheSame testFailure.test this.name}}
+                                                    <tr>
+                                                        <td class="w-45 text-nowrap">{{testFailure.test}}</td>
+                                                        <td class="w-55"><pre><code>{{testFailure.message}}</code></pre></td>
+                                                    </tr>
+                                                    {{/isTheSame}}
+                                                    {{/each}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>                
+                            {{else}}
+                            <h5 class="card-text text-center text-uppercase">No Tests for this request</h5>
+                            {{/if}}                           
+                        </div>
+                    </div>
+                </div>           
+            </div>
+            </div>
+        </div>      
+        </div>
+    </div>
+    </div>
+{{/gt}}   
+{{/each}}
+{{/inline}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger : 'hover'
+    })
+})
+</script>
+
+<script>
+    function isJSON(data) 
+{
+    var ret = true;
+    try {
+            JSON.parse(data);
+    }catch(e) {
+            ret = false;
+    }
+    return ret;
+}
+
+$(".prettyPrint").each(function () {        
+        var data = $(this).text();
+        // Verify whether data is JSON
+        if(isJSON(data))
+        {
+                obj = JSON.parse(data);
+                data = JSON.stringify(obj, null, 2);
+        }
+        $(this).text(data);
+});
+</script>
+
+
+<!-- Copy Response Body To Clipboard -->
+<script>
+    var clipboard = new ClipboardJS('.copyButton');
+    
+    clipboard.on('success', function(e) {        
+        e.clearSelection();
+        $(".copyButton").addClass("bg-success text-white")
+        e.trigger.textContent = '✔ Copied!';
+        window.setTimeout(function() {
+            $(".copyButton").removeClass("bg-success text-white")
+            e.trigger.textContent = 'Copy to Clipboard';
+        }, 2000);
+    });
+    clipboard.on('error', function(e) {
+        e.clearSelection();
+        $(".copyButton").addClass("bg-danger text-white")
+        e.trigger.textContent = '✗ Not Copied';
+        window.setTimeout(function() {
+            $(".copyButton").removeClass("bg-danger text-white")
+            e.trigger.textContent = 'Copy to Clipboard';
+        }, 2000);
+    });
+
+</script>
+
+<!-- Filter the requests -->
+<script>
+$(document).ready(function(){
+    $('#myFilter').keyup(function (){
+        $('.card').removeClass('d-none');
+        var filter = $(this).val();
+        $('.card').find('.card .card.border-info .card-body h5.card-title:not(:contains("'+filter+'"))').parent().parent().addClass('d-none');
+    })
+})
+</script>
+
+<!-- Render the Description Markdown -->
+<script>
+    const remarkable = new Remarkable();
+    
+    const descriptions = document.querySelectorAll("#description");
+    descriptions.forEach(description => {
+        description.innerHTML = renderHtmlFromMarkdown(description.textContent);
+    });
+    function renderHtmlFromMarkdown(markdown) {
+        return remarkable.render(trim(markdown));
+    }
+    function trim(string) {
+        return string ? string.replace(/^ +| +$/gm, "") : string;
+    }
+</script>
+
+<script>
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("topOfScreen").style.display = "block";
+  } else {
+    document.getElementById("topOfScreen").style.display = "none";
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+<script type="text/javascript">
+    "use strict";
+
+window.onload = function () {
+
+  // hides all blocks of response
+  var allItems = document.querySelectorAll('[class*=iteration-]');
+  allItems.forEach(function(elem){
+    elem.style.display = 'none';
+  });
+
+  {{#with summary}} {{#with stats}}
+  let totalIterations = {{iterations.total}};
+  {{/with}} {{/with}}
+
+  let menu = document.querySelector('#execution-menu .nav');
+
+  for(var i = 0; i < totalIterations; i++)
+  {
+    let li = document.createElement('li');
+    li.appendChild(document.createTextNode((i + 1)));
+    li.setAttribute('id', 'iteration-' + i);
+    li.classList.add("custom-tab");
+
+    li.addEventListener('click', function() {
+
+      let allItems = document.querySelectorAll('[class*=iteration-]');
+      allItems.forEach(function(elem) {
+        elem.style.display = 'none';
+      })
+
+      let allMenus = document.querySelectorAll('[id*=iteration-');
+      allMenus.forEach(function(elem){
+        elem.style.borderBottom = 'none';
+      })
+
+      this.style.borderBottom = 'solid 1px #032a33';
+
+      let items = document.querySelectorAll("." + this.id);
+      items.forEach(function(elem) {
+        elem.style.display = elem.style.display == 'block' ? 'none' : 'block';
+      })
+    });
+
+    menu.appendChild(li);
+  }
+
+    //shows first tab data
+  document.getElementById('iteration-0').click();
+}
+</script>
