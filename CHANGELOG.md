@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.6.4] - 2019-03-09
+
+### Added
+
+- Added a search and filter feature to the test result tables
+
+-----------------------------------------------------------------------
+
 ## [1.6.3] - 2019-03-05
 
 ### Fixed

@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
   <link rel="stylesheet prefetch" href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github-gist.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+
 
 <style>
 body {
@@ -419,12 +421,7 @@ body, html {
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
             
             <button class="btn btn-outline-success btn-sm" onclick="topFunction()" id="topOfScreen">Go To Top</button>
-
-        {{!-- <div class="row">
-            <div class="col-sm-12 mb-3">
-            <input type="text" id="myFilter" class="form-control" placeholder="Filter requests...">
-            </div>
-        </div> --}}
+            
     <div class="text-uppercase" id="execution-menu">
         {{#with summary}}
         <h6>{{stats.iterations.total}} {{#gt stats.iterations.total 1}}Iterations{{else}}Iteration{{/gt}} available to view</h6>
@@ -572,6 +569,8 @@ body, html {
                                 <div class="card-footer">
                                     <button class="btn btn-secondary copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-{{item.id}}">Copy to Clipboard</button>
                                 </div>
+                            {{else}}
+                            <h5 class="card-text text-center text-uppercase">No Response Body for this request</h5>
                             {{/if}}
                         </div>
                     </div>
@@ -584,7 +583,7 @@ body, html {
                         <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
                             {{#if assertions.length}}
                             <div class="table-responsive text-nowrap">
-                                <table class="table table-hover">
+                                <table id="myTable-{{item.id}}" class="table table-hover">
                                 <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
                                     <tbody>
                                         {{#each assertions}}
@@ -595,13 +594,15 @@ body, html {
                                             <td class="text-center {{#if this.skipped}}bg-warning{{/if}}">{{this.skipped}}</td>
                                         </tr>
                                         {{/each}}
+                                    </tbody>
+                                    <tfoot>
                                         <tr class="bg-light">
                                             <td><strong>Total</strong></td>
                                             <td class="text-center">{{cumulativeTests.passed}}</td>
                                             <td class="text-center">{{cumulativeTests.failed}}</td>
                                             <td class="text-center">{{cumulativeTests.skipped}}</td>
                                         </tr>
-                                    </tbody>
+                                    </tfoot>
                                 </table>
                             </div>
                             <div class="row {{#lte cumulativeTests.failed 0}}d-none{{/lte}}">
@@ -609,7 +610,7 @@ body, html {
                                 <div class="card-deck">
                                 <div class="card border-danger" style="width: 50rem;">
                                     <div class="card-body">
-                                        <h5 class="card-title text-uppercase text-white text-center bg-danger">Test Failures</h5>
+                                        <h5 class="card-title text-uppercase text-white text-center bg-danger">Test {{#lte cumulativeTests.failed 1}}Failure{{else}}Failures{{/lte}}</h5>
                                         <div class="table-responsive">
                                             <table class="table table-hover">
                                             <thead><tr class="text-nowrap"><th>Test Name</th><th>Assertion Error</th></tr></thead>
@@ -646,11 +647,25 @@ body, html {
 {{/inline}}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+{{#each aggregations}}
+{{#each executions}}
+$(document).ready( function () {
+    $('#myTable-{{item.id}}').DataTable({
+        "paging": false,
+        "info": false
+    });
+});
+{{/each}}
+{{/each}}
+</script>
 
 <script>
 $(document).ready(function() {
@@ -708,17 +723,6 @@ $(".prettyPrint").each(function () {
         }, 2000);
     });
 
-</script>
-
-<!-- Filter the requests -->
-<script>
-$(document).ready(function(){
-    $('#myFilter').keyup(function (){
-        $('.card').removeClass('d-none');
-        var filter = $(this).val();
-        $('.card').find('.card .card.border-info .card-body h5.card-title:not(:contains("'+filter+'"))').parent().parent().addClass('d-none');
-    })
-})
 </script>
 
 <!-- Render the Description Markdown -->
