@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.6.6] - 2019-03-10
+
+### Changed
+
+- Changed the flag name from `paging` to `testPaging`
+
+-----------------------------------------------------------------------
+
 ## [1.6.5] - 2019-03-10
 
 ### Added
