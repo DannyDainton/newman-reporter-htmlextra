@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.6.5] - 2019-03-10
+
+### Added
+
+- Added a `paging` flag to allow the pagination of the tests in the request view
+
+-----------------------------------------------------------------------
+
 ## [1.6.4] - 2019-03-09
 
 ### Added

@@ -664,7 +664,7 @@ body, html {
 {{#each executions}}
 $(document).ready( function () {
     $('#myTable-{{item.id}}').DataTable({
-        "paging": false,
+        "paging": {{paging}},
         "info": false
     });
 });

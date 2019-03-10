@@ -30,7 +30,7 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 
 ## Install
 
-> The installation should be global if newman is installed globally, local otherwise. 
+> The installation should be global if newman is installed globally, local otherwise.
 
 For `global` install:
 
@@ -62,6 +62,7 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 | `--reporter-htmlextra-template <path>` | Specify a path to the custom template which will be used to render the HTML report. This option depends on `--reporter htmlextra` and `--reporter-htmlextra-export` being present in the run command. If this option is not specified, the [default template](./lib/dashboard-template.hbs) is used |
 | `--reporter-htmlextra-showOnlyFails` | Use this optional flag to tell the reporter to display only the requests with failed tests. |
 | `--reporter-htmlextra-darkTheme` | Use this optional flag to switch the reporter template to the `Dark Theme` dashboard. |
+| `--reporter-htmlextra-paging` | Use this optional flag to add pagination to the tests in the request view. |
 | `--reporter-htmlextra-title` | This optional flag can be used to give your report a different main `Title` in the centre of the report. If this is not set, the report will show "Newman Run Dashboard". |
 
 Custom templates (currently handlebars only) can be passed to the HTML reporter via `--reporter-htmlextra-template <path>` with `--reporters htmlextra` and `--reporter-htmlextra-export`.
@@ -99,7 +100,7 @@ newman.run({
     reporter: {
         htmlextra: {
             export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
-            template: '<template path>' // optional, the default template will be used if one is not specified 
+            template: '<template path>' // optional, the default template will be used if one is not specified
         }
     }
 }, function (err) {
@@ -149,7 +150,7 @@ newman.run({
 });
 ```
 
-Add the `title` property to the `htmlextra` object, to pass in your own custom title to the report. 
+Add the `title` property to the `htmlextra` object, to pass in your own custom title to the report.
 
 ```javascript
 const newman = require('newman');
@@ -161,7 +162,7 @@ newman.run({
     reporter: {
         htmlextra: {
             export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
-            title: 'My new report title' // optional, tells the reporter to use this as the main title in the centre of the report 
+            title: 'My new report title' // optional, tells the reporter to use this as the main title in the centre of the report
         }
     }
 }, function (err) {

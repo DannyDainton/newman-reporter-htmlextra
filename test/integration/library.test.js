@@ -67,6 +67,20 @@ describe('Newman and htmlextra run from a script', function () {
         });
     });
 
+    it('should correctly generate the html report with test pagination for a successful run', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-get-request.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { export: outFile, paging: true } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-get-request');
+            expect(summary.run.stats.iterations.total).to.equal(1);
+            fs.stat(outFile, done);
+        });
+    });
+
     it('should correctly generate the html report for a successful run with more than 1 iteration', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request.json',
