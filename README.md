@@ -190,7 +190,7 @@ newman.run({
 
 ### Show Only Failures
 
-If you have mulitiple requests in your collections the report can become quite verbose, I've added a flag option to just create the report with only the requests that have `Failed` tests. The is very similar to the default report but the folder will already be expanded, if thier are any failed tests.
+If you have mulitiple requests in your collections the report can become quite verbose, I've added a flag option to just create the report with only the requests that have `Failed` tests. This is very similar to the default report but the folders will already be expanded, if their are any failed tests.
 
 ![Failed Requests View](./examples/Failed_Requests_View.PNG)
 
@@ -228,4 +228,4 @@ This software is licensed under Apache-2.0. Copyright Postdot Technologies, Inc.
 
 This work have been hugely inspired and copied several aspects of the great work done by [Martijn Vander Vlag](https://github.com/martijnvandervlag) to create the [newman-reporter-htmlfull](https://github.com/martijnvandervlag/newman-reporter-htmlfull) package. Check out that package too, this contains many of the same features.
 
-It was also brought together by reviewing some of the feature requests, for the official Postman reporter.
+It was also brought together by reviewing some of the feature requests, for the official Postman HTML reporter.
