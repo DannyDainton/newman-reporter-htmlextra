@@ -659,6 +659,7 @@ body, html {
 {{#each executions}}
 $(document).ready( function () {
     $('#myTable-{{item.id}}').DataTable({
+        "retrieve": true,
         "paging": {{paging}},
         "info": false
     });

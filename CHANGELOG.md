@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.6.7] - 2019-03-15
+
+### Added
+
+- Added the `retrieve` property to the DataTables object
+
+-----------------------------------------------------------------------
+
 ## [1.6.6] - 2019-03-10
 
 ### Changed
