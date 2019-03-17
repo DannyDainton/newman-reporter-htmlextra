@@ -177,6 +177,8 @@ newman.run({
 
 ![Request View Iterations](./examples/Request_View_Iterations.PNG)
 
+![Multiple Folders](./examples/Multiple_Folders.PNG)
+
 ![Request View](./examples/Request_View.PNG)
 
 ![Failed View](./examples/Failed_View.PNG)
