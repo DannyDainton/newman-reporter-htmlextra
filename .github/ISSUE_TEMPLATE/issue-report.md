@@ -9,7 +9,7 @@ Steps to reproduce the behavior:
 3. Select the `Request` view '....'
 4. See the error in `X` section
 
-The command that you're using the run the collection, would be real help or the `newman` script, if you're using one.
+The command that you're using to run the collection, would be a real help or the `newman` script, if you're using one.
 
 **What Are You Seeing**
 A clear and concise description of what you see happening. '_It doesn't work_' or '_Something fails_' doesn't really help anyone so please be as descriptive as possible. If you see an error message, please do include this in the issue report.
