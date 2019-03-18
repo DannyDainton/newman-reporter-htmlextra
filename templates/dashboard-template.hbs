@@ -469,6 +469,32 @@ body, html {
                     </div>
                 </div>
                 {{#with request}}
+                <div class="row">
+                    <div class="col-sm-12 mb-3">
+                        <div class="card-deck">
+                        <div class="card border-info" style="width: 50rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-uppercase text-white text-center bg-info">Request Headers</h5>
+                                {{#if headers}}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                    <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
+                                        <tbody>
+                                            {{#each headers.members}}
+                                            <tr>
+                                                <td class="text-nowrap">{{key}}</td>
+                                                <td>{{value}}</td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>                
                 {{#if body.raw}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
