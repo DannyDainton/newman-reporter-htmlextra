@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.6.8] - 2019-03-18
+
+### Added
+
+- Added the `Request Headers` table to all the templates
+
+-----------------------------------------------------------------------
+
 ## [1.6.7] - 2019-03-15
 
 ### Added
