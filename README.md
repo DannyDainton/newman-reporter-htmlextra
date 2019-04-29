@@ -28,6 +28,16 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - Use the `onlyShowFails` option to reduce the report down to just showing the requests that had test failures.
 - More to come...
 
+## Interactive Report Examples
+
+To give you an idea of what the final reports will look like, I've added a few working examples here:
+
+- [All the Tests Passing](https://s3.eu-west-2.amazonaws.com/newman-htmlextra-reports/All_Passed.html)
+- [Failed and Skipped Tests during the Collection run](https://s3.eu-west-2.amazonaws.com/newman-htmlextra-reports/Fails_And_Skips.html)
+- [The Dark Theme version of the final report](https://s3.eu-west-2.amazonaws.com/newman-htmlextra-reports/Dark_Theme.html)
+
+These a _just_ a few of the reports that can be produced from the reporter. You will find more options available to help configure the final output, in the sections below.
+
 ## Install
 
 > The installation should be global if newman is installed globally, local otherwise.

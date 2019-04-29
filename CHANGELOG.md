@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.6.11] - 2019-04-29
+
+### Updated
+
+- Updated the `README` with links to an interactive set of reports
+
+-----------------------------------------------------------------------
+
 ## [1.6.10] - 2019-03-31
 
 ### Updated
