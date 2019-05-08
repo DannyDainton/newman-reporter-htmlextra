@@ -177,7 +177,7 @@ describe('Newman and htmlextra run from a script', function () {
         newman.run({
             collection: 'test/requests/simple-get-request-with-log-messages.json',
             reporters: ['htmlextra'],
-            reporter: { htmlextra: { export: outFile } }
+            reporter: { htmlextra: { export: outFile, logs: true } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
             if (err) { return done(err); }

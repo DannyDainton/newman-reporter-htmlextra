@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.7.0] - 2019-05-08
+
+### Added
+
+- A optional flag has been added to display the `console.log()` statements in the report
+
+-----------------------------------------------------------------------
+
 ## [1.6.11] - 2019-04-29
 
 ### Updated
