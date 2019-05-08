@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.7.1] - 2019-05-08
+
+### Updated
+
+- The `Failed Tests` tab now also includes the folder path of the failed test.
+
+-----------------------------------------------------------------------
+
 ## [1.7.0] - 2019-05-08
 
 ### Added
