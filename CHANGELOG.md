@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.7.2] - 2019-05-11
+
+### Added
+
+- Added a helper to change the browser title element from the CLI
+
+-----------------------------------------------------------------------
+
 ## [1.7.1] - 2019-05-08
 
 ### Updated
