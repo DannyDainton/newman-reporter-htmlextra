@@ -79,6 +79,10 @@ body, html {
   background-color: #28a745;
 }
 
+#openAll:hover {
+  background-color: #28a745;
+}
+
 .custom-tab {
     padding: 10px 15px;
     margin-right: 3px;
@@ -101,6 +105,11 @@ body, html {
 }
 .card-header .collapsed .fa {
   transform: rotate(90deg);
+}
+
+.resultsInfo {
+    color: green;
+    padding-top: 4px;
 }
 
 </style>
@@ -374,8 +383,10 @@ body, html {
             </div> 
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
             
-            <button class="btn btn-outline-success btn-sm" onclick="topFunction()" id="topOfScreen">Go To Top</button>
-            
+            <button id="topOfScreen" class="btn btn-outline-success btn-sm" onclick="topFunction()">Go To Top</button>
+            <button id="closeAll" class="btn btn-outline-success btn-sm float-right">Collaspe Folders</button>
+            <button id="openAll" class="btn btn-outline-success btn-sm float-right">Expand Folders</button>
+    
     <div class="text-uppercase" id="execution-menu">
         {{#with summary}}
         <h6>{{stats.iterations.total}} {{#gt stats.iterations.total 1}}Iterations{{else}}Iteration{{/gt}} available to view</h6>
@@ -390,7 +401,8 @@ body, html {
         {{#if parent.name}}
         <div class="alert alert-dark text-uppercase text-center iteration-{{parent.iteration}}">
         <a data-toggle="collapse" href="#" data-target="#folder-collapse-{{parent.id}}" aria-expanded="false" aria-controls="collapse" id="folder-{{parent.id}}" class="collapsed text-dark z-block">
-            {{parent.name}} - {{executions.length}} {{#gt executions.length 1}}Requests{{else}}Request{{/gt}} in the folder <i class="float-lg-right fa fa-chevron-down"></i>
+            <i class="fas fa-info-circle float-left resultsInfo" {{#each executions}}{{#if cumulativeTests.failed}} style="color: red; padding-top: 4px;"{{/if}}{{/each}}></i>
+            {{parent.name}} - {{executions.length}} {{#gt executions.length 1}}Requests{{else}}Request{{/gt}} in the folder <i class="float-lg-right fa fa-chevron-down" style="padding-top: 4px;"></i>
         </a>
         </div>
         <div id="folder-collapse-{{parent.id}}" class="collapse" aria-labelledby="folder-{{parent.id}}">
@@ -660,6 +672,24 @@ $(document).ready(function() {
 </script>
 
 <script>
+$('#openAll').on('click', function(e) {
+{{#each aggregations}}
+    $('#folder-{{parent.id}}').removeClass('collapsed')
+    $('#folder-collapse-{{parent.id}}').addClass('show')
+{{/each}}
+})
+</script>
+
+<script>
+$('#closeAll').on('click', function(e) {
+{{#each aggregations}}
+    $('#folder-{{parent.id}}').addClass('collapsed')
+    $('#folder-collapse-{{parent.id}}').removeClass('show')
+{{/each}}
+})
+</script>
+
+<script>
     function isJSON(data) 
 {
     var ret = true;
@@ -731,8 +761,12 @@ window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     document.getElementById("topOfScreen").style.display = "block";
+    document.getElementById("openAll").style.display = "none";
+    document.getElementById("closeAll").style.display = "none";
   } else {
     document.getElementById("topOfScreen").style.display = "none";
+    document.getElementById("openAll").style.display = "block";
+    document.getElementById("closeAll").style.display = "block";
   }
 }
 

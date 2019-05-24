@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.7.3] - 2019-05-24
+
+### Added
+
+- Added buttons to expand / collapse all the folders in the `Total Requests` tab
+- Added a visual indicator on the folder bar to show if any of the requests have failed tests in them
+
+-----------------------------------------------------------------------
+
 ## [1.7.2] - 2019-05-11
 
 ### Added
