@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.7.4] - 2019-05-29
+
+### Added
+
+- Added a new `titleSize` cli option to change the size of the main heading which becomes truncated when using the `title` flag
+
+-----------------------------------------------------------------------
+
 ## [1.7.3] - 2019-05-24
 
 ### Added
