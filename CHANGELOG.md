@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.7.5] - 2019-06-24
+
+### Updated
+
+- Updated the jQuery links inside the templates
+
+-----------------------------------------------------------------------
+
 ## [1.7.4] - 2019-05-29
 
 ### Added

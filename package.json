@@ -1,6 +1,6 @@
 {
   "name": "newman-reporter-htmlextra",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "description": "A newman reporter with added handlebars helpers and separated request iterations",
   "main": "index.js",
   "preferGlobal": true,
@@ -28,7 +28,7 @@
     "handlebars": "^4.1.2",
     "handlebars-helpers": "^0.10.0",
     "helper-moment": "^0.2.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "pretty-ms": "^5.0.0"
   },
   "author": "Danny Dainton",
@@ -40,7 +40,7 @@
     "newman": ">=4"
   },
   "devDependencies": {
-    "async": "^3.0.1",
+    "async": "^3.1.0",
     "chai": "^4.2.0",
     "colors": "^1.3.3",
     "eslint": "^6.0.0",
@@ -51,7 +51,7 @@
     "eslint-plugin-mocha": "^5.3.0",
     "eslint-plugin-security": "^1.4.0",
     "mocha": "^6.1.4",
-    "newman": "^4.5.0",
+    "newman": "^4.5.1",
     "packity": "^0.3.2",
     "parse-gitignore": "^1.0.1",
     "recursive-readdir": "^2.2.2",
