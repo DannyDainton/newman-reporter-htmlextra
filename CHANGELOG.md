@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.7.6] - 2019-06-26
+
+### Fixed
+
+- Incorrect spelling on the template
+
+-----------------------------------------------------------------------
+
 ## [1.7.5] - 2019-06-24
 
 ### Updated
