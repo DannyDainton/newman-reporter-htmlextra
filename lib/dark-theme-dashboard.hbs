@@ -182,7 +182,7 @@ body, html {
             </ul>
         {{/with}}
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-summary" role="tabcard" aria-labelledby="pills-summary-tab"> 
+            <div class="tab-pane fade show active" id="pills-summary" role="tabcard" aria-labelledby="pills-summary-tab">
 <div class="row">
 {{#with summary}}
   <div class="col-md-9 col-lg-12 main">
@@ -252,7 +252,7 @@ body, html {
         <div class="row">
         <div class="col-sm-12 mb-3">
             <div class="card border-info">
-                <div class="card-body">          
+                <div class="card-body">
                 <h5 class="card-title text-uppercase text-white text-center bg-info">Collection Description</h5>
                 <div class="dyn-height">
                     <pre id="description">{{collection.description}}</pre>
@@ -422,13 +422,13 @@ body, html {
                     </div>
                     {{/each}}
                 {{/if}}
-            </div> 
+            </div>
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
-            
+
             <button class="btn btn-outline-success btn-sm" onclick="topFunction()" id="topOfScreen">Go To Top</button>
             <button id="closeAll" class="btn btn-outline-success btn-sm float-right">Collapse Folders</button>
             <button id="openAll" class="btn btn-outline-success btn-sm float-right">Expand Folders</button>
-            
+
     <div class="text-uppercase" id="execution-menu">
         {{#with summary}}
         <h6>{{stats.iterations.total}} {{#gt stats.iterations.total 1}}Iterations{{else}}Iteration{{/gt}} available to view</h6>
@@ -451,8 +451,8 @@ body, html {
         {{else}}
         {{> aggregations}}
         {{/if}}
-{{/each}} 
-        </div>      
+{{/each}}
+        </div>
     </div>
     </div>
     </div>
@@ -483,13 +483,13 @@ body, html {
                                 <div class="dyn-height">
                                     <code id="description">{{description.content}}</code>
                                 </div>
-                            </div>                    
+                            </div>
                         </div>
                     </div>
                     </div>
                 </div>
                 {{/if}}
-                {{/with}}  
+                {{/with}}
                 <div class="row">
                     <div class="col-sm-12 mb-3">
                         <div class="card-deck">
@@ -546,7 +546,7 @@ body, html {
                         </div>
                         </div>
                     </div>
-                </div> 
+                </div>
                 {{#if body.raw}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
@@ -562,6 +562,22 @@ body, html {
                     </div>
                 </div>
                 </div>
+                {{/if}}
+                {{#if body.formdata.members}}
+                    <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
+                                        <div class="dyn-height">
+                                            <pre><code id="copyText-{{item.id}}" class="prettyPrint">{{{formdata body}}}</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {{/if}}
                 {{/with}}
                 <div class="row">
@@ -664,19 +680,19 @@ body, html {
                                 </div>
                                 </div>
                             </div>
-                            </div>                
+                            </div>
                             {{else}}
                             <h5 class="alert alert-success text-uppercase text-center">No Tests for this request</h5>
-                            {{/if}}                           
+                            {{/if}}
                         </div>
                     </div>
-                </div>           
+                </div>
             </div>
             </div>
-        </div>      
+        </div>
         </div>
     </div>
-    </div>   
+    </div>
 {{/each}}
 {{/inline}}
 
@@ -729,7 +745,7 @@ $('#closeAll').on('click', function(e) {
 </script>
 
 <script>
-    function isJSON(data) 
+    function isJSON(data)
 {
     var ret = true;
     try {
@@ -740,7 +756,7 @@ $('#closeAll').on('click', function(e) {
     return ret;
 }
 
-$(".prettyPrint").each(function () {        
+$(".prettyPrint").each(function () {
         var data = $(this).text();
         // Verify whether data is JSON
         if(isJSON(data))
@@ -756,8 +772,8 @@ $(".prettyPrint").each(function () {
 <!-- Copy Response Body To Clipboard -->
 <script>
     var clipboard = new ClipboardJS('.copyButton');
-    
-    clipboard.on('success', function(e) {        
+
+    clipboard.on('success', function(e) {
         e.clearSelection();
         $(".copyButton").addClass("bg-success text-white")
         e.trigger.textContent = '✔ Copied!';
@@ -781,7 +797,7 @@ $(".prettyPrint").each(function () {
 <!-- Render the Description Markdown -->
 <script>
     const remarkable = new Remarkable();
-    
+
     const descriptions = document.querySelectorAll("#description");
     descriptions.forEach(description => {
         description.innerHTML = renderHtmlFromMarkdown(description.textContent);
