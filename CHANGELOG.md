@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.8.1] - 2019-06-28
+
+### Fixed
+
+- Syntax error in the templates causing iterations on Safari to fail (Credit to @sam-viz)
+
+-----------------------------------------------------------------------
+
 ## [1.8.0] - 2019-06-28
 
 ### Added
