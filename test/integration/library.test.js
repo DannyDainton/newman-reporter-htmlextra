@@ -53,6 +53,29 @@ describe('Newman and htmlextra run from a script', function () {
         });
     });
 
+    it('should correctly generate html report for a formdata POST request', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-post-request-with-formdata.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { export: outFile } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-post-request-with-formdata');
+            expect(summary.run.stats.iterations.total).to.equal(1);
+            expect(summary.run.executions[0].item.request.body.formdata.members[0].key).to.equal('myKey');
+            expect(summary.run.executions[0].item.request.body.formdata.members[0].value).to.equal('myValue');
+            expect(summary.run.executions[0].item.request.body.formdata.members[0].src).to.be.undefined;
+            expect(summary.run.executions[0].item.request.body.formdata.members[1].key).to.equal('anotherKey');
+            expect(summary.run.executions[0].item.request.body.formdata.members[1].value).to.equal('anotherValue');
+            expect(summary.run.executions[0].item.request.body.formdata.members[1].src).to.be.undefined;
+            expect(summary.run.executions[0].item.request.body.formdata.members[2].key).to.equal('demoFile');
+            expect(summary.run.executions[0].item.request.body.formdata.members[2].src).to.equal('demoFile.jpg');
+            expect(summary.run.executions[0].item.request.body.formdata.members).to.have.lengthOf(3);
+            fs.stat(outFile, done);
+        });
+    });
+
     it('should correctly generate the html report with a new title for a successful run', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request.json',

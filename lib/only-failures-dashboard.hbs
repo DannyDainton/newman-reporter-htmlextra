@@ -486,7 +486,23 @@ body, html {
                         </div>
                         </div>
                     </div>
-                </div> 
+                </div>
+                {{#if body.formdata.members}}
+                    <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
+                                        <div class="dyn-height">
+                                            <pre><code class="prettyPrint">{{{formdata body.formdata.members}}}</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}} 
                 {{#if body.raw}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">

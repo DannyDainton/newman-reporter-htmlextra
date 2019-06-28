@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.8.0] - 2019-06-28
+
+### Added
+
+- Added support for `formdata` request bodies (Credit to @Prachi481992)
+- Added new tests to cover this request body type
+
+-----------------------------------------------------------------------
+
 ## [1.7.6] - 2019-06-26
 
 ### Fixed
