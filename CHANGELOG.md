@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.8.2] - 2019-07-12
+
+### Fixed
+
+- Fixed the incorrectly formatted JSON on the response body
+
+-----------------------------------------------------------------------
+
 ## [1.8.1] - 2019-06-28
 
 ### Fixed
