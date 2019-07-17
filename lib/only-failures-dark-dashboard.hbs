@@ -460,6 +460,9 @@ body, html {
                 <a data-toggle="collapse" href="#" data-target="#collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="requests-{{cursor.ref}}" class="collapsed text-white z-block">
             Iteration: {{inc cursor.iteration}} - {{item.name}} <i class="float-lg-right fa fa-chevron-down"></i>
         </a>
+        {{#if cumulativeTests.skipped}}
+        <span class="badge badge-warning text-white text-uppercase">{{cumulativeTests.skipped}} Skipped {{#gt cumulativeTests.skipped 1}}Tests{{else}}Test{{/gt}}</span>
+        {{/if}}
             </div>
             <div id="collapse-{{cursor.ref}}" class="collapse" aria-labelledby="requests-{{cursor.ref}}">
             <div class="card-body">
@@ -569,6 +572,22 @@ body, html {
                     </div>
                 </div>
                 </div>
+                {{/if}}
+                {{#if body.urlencoded.members}}
+                    <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card-deck">
+                                <div class="card border-info" style="width: 50rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
+                                        <div class="dyn-height">
+                                            <pre><code class="prettyPrint">{{formdata body.urlencoded.members}}</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {{/if}}
                 {{/with}}
                 <div class="row">

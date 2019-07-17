@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "24e2d971-1e40-487a-890f-929e12326420",
+		"name": "simple-post-request-with-urlencoded",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "simple-post-request-with-urlencoded",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"name": "Content-Type",
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "myKey",
+							"value": "myValue"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

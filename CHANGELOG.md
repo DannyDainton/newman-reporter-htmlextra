@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.8.3] - 2019-07-17
+
+### Added
+
+- Added support for `urlencoded` request bodies
+- Added new tests to cover this request body type
+- Added a visual clue to the `request` bar to show the number of `skipped` tests
+
+-----------------------------------------------------------------------
+
 ## [1.8.2] - 2019-07-12
 
 ### Fixed

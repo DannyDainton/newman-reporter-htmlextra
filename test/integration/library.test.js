@@ -76,6 +76,23 @@ describe('Newman and htmlextra run from a script', function () {
         });
     });
 
+    it('should correctly generate html report for a urlencoded POST request', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-post-request-with-urlencoded.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { export: outFile } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-post-request-with-urlencoded');
+            expect(summary.run.stats.iterations.total).to.equal(1);
+            expect(summary.run.executions[0].item.request.body.urlencoded.members[0].key).to.equal('myKey');
+            expect(summary.run.executions[0].item.request.body.urlencoded.members[0].value).to.equal('myValue');
+            expect(summary.run.executions[0].item.request.body.urlencoded.members).to.have.lengthOf(1);
+            fs.stat(outFile, done);
+        });
+    });
+
     it('should correctly generate the html report with a new title for a successful run', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request.json',
