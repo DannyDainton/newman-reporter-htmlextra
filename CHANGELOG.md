@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.8.4] - 2019-07-17
+
+### Fixed
+
+- Bumping the version to manually publish a new NPM version
+
+-----------------------------------------------------------------------
+
 ## [1.8.3] - 2019-07-17
 
 ### Added
