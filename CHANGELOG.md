@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.8.5] - 2019-07-17
+
+### Fixed
+
+- Fixed a bug that prevented the Expand/Collapse buttons from working on multiple iterations
+
+-----------------------------------------------------------------------
+
 ## [1.8.4] - 2019-07-17
 
 ### Fixed

@@ -426,6 +426,7 @@ body, html {
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
 
             <button class="btn btn-outline-success btn-sm" onclick="topFunction()" id="topOfScreen">Go To Top</button>
+            
             <button id="closeAll" class="btn btn-outline-success btn-sm float-right">Collapse Folders</button>
             <button id="openAll" class="btn btn-outline-success btn-sm float-right">Expand Folders</button>
 
@@ -440,12 +441,12 @@ body, html {
 {{#each aggregations}}
         {{#if parent.name}}
         <div class="alert alert-dark text-uppercase text-center iteration-{{parent.iteration}}">
-        <a data-toggle="collapse" href="#" data-target="#folder-collapse-{{parent.id}}" aria-expanded="false" aria-controls="collapse" id="folder-{{parent.id}}" class="collapsed text-white z-block">
+        <a data-toggle="collapse" href="#" data-target="#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}" aria-expanded="false" aria-controls="collapse" id="folder-{{parent.id}}-iteration-{{parent.iteration}}" class="collapsed text-white z-block">
             <i class="float-left fas fa-info-circle resultsInfo"{{#each executions}}{{#if cumulativeTests.failed}}style="padding-top: 4px; color: #c14c3f;"{{/if}}{{/each}}></i>
             {{parent.name}} - {{executions.length}} {{#gt executions.length 1}}Requests{{else}}Request{{/gt}} in the folder <i class="float-lg-right fa fa-chevron-down" style="padding-top: 4px;"></i>
         </a>
         </div>
-        <div id="folder-collapse-{{parent.id}}" class="collapse" aria-labelledby="folder-{{parent.id}}">
+        <div id="folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}" class="collapse" aria-labelledby="folder-{{parent.id}}">
         {{> aggregations}}
         </div>
         {{else}}
@@ -748,8 +749,8 @@ $(document).ready(function() {
 <script>
 $('#openAll').on('click', function(e) {
 {{#each aggregations}}
-    $('#folder-{{parent.id}}').removeClass('collapsed')
-    $('#folder-collapse-{{parent.id}}').addClass('show')
+    $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('collapsed')
+    $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').addClass('show')
 {{/each}}
 })
 </script>
@@ -757,8 +758,8 @@ $('#openAll').on('click', function(e) {
 <script>
 $('#closeAll').on('click', function(e) {
 {{#each aggregations}}
-    $('#folder-{{parent.id}}').addClass('collapsed')
-    $('#folder-collapse-{{parent.id}}').removeClass('show')
+    $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').addClass('collapsed')
+    $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('show')
 {{/each}}
 })
 </script>
