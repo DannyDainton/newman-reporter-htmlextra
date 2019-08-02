@@ -4,7 +4,6 @@ require('shelljs/global');
 require('colors');
 
 var async = require('async'),
-    packity = require('packity'),
     expect = require('chai').expect,
     Mocha = require('mocha'),
     recursive = require('recursive-readdir'),
@@ -21,17 +20,6 @@ module.exports = function (exit) {
     console.info('\nRunning system tests...\n'.yellow.bold);
 
     async.series([
-
-        /**
-         * Enforces sanity checks on installed packages via packity.
-         *
-         * @param {Function} next - The callback function invoked when the package sanity check has concluded.
-         * @returns {*}
-         */
-        function (next) {
-            console.info('checking installed packages...\n');
-            packity({ path: '.' }, packity.cliReporter({}, next));
-        },
 
         /**
          * Runs system tests on SPEC_SOURCE_DIR using Mocha.

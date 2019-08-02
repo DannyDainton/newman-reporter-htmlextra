@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.8.6] - 2019-08-02
+
+### Updated
+
+- Updated the node package dependencies
+
+-----------------------------------------------------------------------
+
 ## [1.8.5] - 2019-07-17
 
 ### Fixed
