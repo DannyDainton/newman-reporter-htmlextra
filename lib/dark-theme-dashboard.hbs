@@ -765,7 +765,7 @@ $('#closeAll').on('click', function(e) {
 </script>
 
 <script>
-    function isJSON(data)
+function isJSON(data)
 {
     var ret = true;
     try {
@@ -776,6 +776,35 @@ $('#closeAll').on('click', function(e) {
     return ret;
 }
 
+function isXML(data)
+{
+    return (data.length > 0 && data[0] === '<');
+}
+
+// see https://gist.github.com/sente/1083506/d2834134cd070dbcc08bf42ee27dabb746a1c54d#gistcomment-2254622
+function formatXML(data) {
+    const PADDING = ' '.repeat(2); // set desired indent size here
+    const reg = /(>)(<)(\/*)/g;
+    let pad = 0;
+    xml = data.replace(reg, '$1\r\n$2$3');
+
+    return xml.split('\r\n').map((node, index) => {
+        let indent = 0;
+        if (node.match(/.+<\/\w[^>]*>$/)) {
+            indent = 0;
+        } else if (node.match(/^<\/\w/) && pad > 0) {
+            pad -= 1;
+        } else if (node.match(/^<\w[^>]*[^\/]>.*$/)) {
+            indent = 1;
+        } else {
+            indent = 0;
+        }
+
+        pad += indent;
+        return PADDING.repeat(pad - indent) + node;
+    }).join('\r\n');
+}
+
 $(".prettyPrint").each(function () {
         var data = $(this).text();
         // Verify whether data is JSON
@@ -783,6 +812,9 @@ $(".prettyPrint").each(function () {
         {
                 obj = JSON.parse(data);
                 data = JSON.stringify(obj, null, 2);
+        }
+        else if(isXML(data)) {
+            data = formatXML(data);            
         }
         $(this).text(data);
 });
