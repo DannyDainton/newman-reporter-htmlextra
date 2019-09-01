@@ -559,7 +559,10 @@ body, html {
                         <div class="card-body">
                             <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
                                 <div class="dyn-height">
-                                    <pre><code class="prettyPrint">{{body.raw}}</code></pre>
+                                    <pre><code id="copyReqText-{{@key}}" class="prettyPrint">{{body.raw}}</code></pre>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyReqText-{{@key}}">Copy to Clipboard</button>
                                 </div>
                         </div>
                     </div>
@@ -575,7 +578,10 @@ body, html {
                                     <div class="card-body">
                                         <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
                                         <div class="dyn-height">
-                                            <pre><code class="prettyPrint">{{formdata body.formdata.members}}</code></pre>
+                                            <pre><code id="copyReqText-{{@key}}" class="prettyPrint">{{formdata body.formdata.members}}</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyReqText-{{@key}}">Copy to Clipboard</button>
                                         </div>
                                     </div>
                                 </div>
@@ -591,7 +597,10 @@ body, html {
                                     <div class="card-body">
                                         <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
                                         <div class="dyn-height">
-                                            <pre><code class="prettyPrint">{{formdata body.urlencoded.members}}</code></pre>
+                                            <pre><code id="copyReqText-{{@key}}" class="prettyPrint">{{formdata body.urlencoded.members}}</code></pre>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyReqText-{{@key}}">Copy to Clipboard</button>
                                         </div>
                                     </div>
                                 </div>

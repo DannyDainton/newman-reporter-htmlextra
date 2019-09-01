@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.8.8] - 2019-09-01
+
+### Added
+
+- Added a button to give users the ability to copy the `request body` to the clipboard
+
+-----------------------------------------------------------------------
+
+## [1.8.7] - 2019-09-01
+
+### Added
+
+- Added support to format XML responses (Credit to @ldz-w)
+
+-----------------------------------------------------------------------
+
 ## [1.8.6] - 2019-08-02
 
 ### Updated

@@ -1,6 +1,6 @@
 {
   "name": "newman-reporter-htmlextra",
-  "version": "1.8.7",
+  "version": "1.8.8",
   "description": "A newman reporter with added handlebars helpers and separated request iterations",
   "main": "index.js",
   "preferGlobal": true,
@@ -55,5 +55,10 @@
     "parse-gitignore": "^1.0.1",
     "recursive-readdir": "^2.2.2",
     "shelljs": "^0.8.3"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "eslint-plugin-jsdoc"
+    ]
   }
 }
