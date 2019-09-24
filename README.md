@@ -26,6 +26,8 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - A `helper` to give more control over the main `title` shown on the report. Use the `--reporter-htmlextra-title` flag to add your own unique headline.
 - The default filename, if you do not supply the `export` location, is now includes the collection name in the filename rather that the reporter name.
 - Use the `onlyShowFails` option to reduce the report down to just showing the requests that had test failures.
+- The `skipHeaders` option lets you optionally specify an array of header names that should be skipped in the report.
+- Setting the `skipSensitiveData` will skip outputting the headers and bodies for all requests and responses.
 - More to come...
 
 ## Interactive Report Examples
