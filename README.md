@@ -192,7 +192,7 @@ newman.run({
 });
 ```
 
-Add the `logs` property to the `htmlextra` object, to pass in your own custom title to the report.
+Add the `logs` property to the `htmlextra` object, to add console log statement output in the report.
 
 ```javascript
 const newman = require('newman');
@@ -205,6 +205,48 @@ newman.run({
         htmlextra: {
             export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
             logs: true // optional, tells the reporter to display the console log statements in the report. This is False by default.
+        }
+    }
+}, function (err) {
+    if (err) { throw err; }
+    console.log('collection run complete!');
+});
+```
+
+Add the `skipHeaders` property to the `htmlextra` object, to pass in an array of header names. It will then not output those headers and their values to the report, for both requests and responses.
+
+```javascript
+const newman = require('newman');
+
+newman.run({
+    collection: require('./examples/Restful_Booker_Collection.json'), // can also provide a URL or path to a local JSON file.
+    environment: require('./examples/Restful_Booker_Environment.json'),
+    reporters: 'htmlextra',
+    reporter: {
+        htmlextra: {
+            export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
+            skipHeaders: [ 'Server', 'Authorization', 'X-Powered-By' ] // optional, tells the reporter to not output these headers and their values in the report. This is False by default.
+        }
+    }
+}, function (err) {
+    if (err) { throw err; }
+    console.log('collection run complete!');
+});
+```
+
+Add the `skipSensitiveData` property to the `htmlextra` object, to exclude headers and bodies in all requests and responses.
+
+```javascript
+const newman = require('newman');
+
+newman.run({
+    collection: require('./examples/Restful_Booker_Collection.json'), // can also provide a URL or path to a local JSON file.
+    environment: require('./examples/Restful_Booker_Environment.json'),
+    reporters: 'htmlextra',
+    reporter: {
+        htmlextra: {
+            export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
+            skipSensitiveData: true // optional, tells the not to output headers and bodies for each request and response in the report. This is False by default.
         }
     }
 }, function (err) {

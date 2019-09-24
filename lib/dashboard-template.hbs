@@ -498,10 +498,12 @@ body, html {
                                     <thead class="thead-light text-center"><tr><th>Header Name</th><th>Header Value</th></tr></thead>
                                         <tbody>
                                             {{#each headers.members}}
+                                            {{#isNotIn key @root.skipHeaders}}
                                             <tr>
                                                 <td class="text-nowrap">{{key}}</td>
                                                 <td>{{value}}</td>
                                             </tr>
+                                            {{/isNotIn}}
                                             {{/each}}
                                         </tbody>
                                     </table>
