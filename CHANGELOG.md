@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.8.9] - 2019-09-24
+
+### Added
+
+- Added an option to hide certain headers from requests and responses by name (Credit to @bassie1995)
+- Added an option to skip outputting headers and bodies in all requests and responses (Credit to @bassie1995)
+
+-----------------------------------------------------------------------
+
 ## [1.8.8] - 2019-09-01
 
 ### Added
