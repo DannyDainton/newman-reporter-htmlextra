@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "filesize": "^4.1.2",
-    "handlebars": "^4.1.2",
+    "handlebars": "^4.3.0",
     "handlebars-helpers": "^0.10.0",
     "helper-moment": "^0.2.0",
     "lodash": "^4.17.14",
