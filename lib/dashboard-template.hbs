@@ -62,7 +62,7 @@ body, html {
     background-color: transparent!important;
 }
 
-#topOfScreen {
+.backToTop {
   display: none;
   position: fixed;
   bottom: 20px;
@@ -75,7 +75,7 @@ body, html {
   border-radius: 4px;
 }
 
-#topOfScreen:hover {
+.backToTop:hover {
   background-color: #28a745;
 }
 
@@ -286,8 +286,8 @@ body, html {
  </div>
         </div>
             <div class="tab-pane fade" id="pills-failed" role="tabcard" aria-labelledby="pills-failed-tab">
-
                 {{#if summary.failures.length}}
+                <button id="topOfFailuresScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
                     {{#with summary}}
                     <div class="alert alert-danger text-uppercase text-center">
                         <h4>Showing {{failures.length}} {{#gt failures.length 1}}Failures{{else}}Failure{{/gt}}</h4>
@@ -324,8 +324,8 @@ body, html {
             </div>
 
             <div class="tab-pane fade" id="pills-skipped" role="tabcard" aria-labelledby="pills-skipped-tab">
-
                 {{#if summary.skippedTests.length}}
+                <button id="topOfSkippedScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
                     {{#with summary}}
                     <div class="alert alert-warning text-uppercase text-center">
                         <h4>Showing {{skippedTests.length}} Skipped {{#gt skippedTests.length 1}}Tests{{else}}Test{{/gt}}</h4>
@@ -356,8 +356,8 @@ body, html {
                 {{/if}}
             </div>
             <div class="tab-pane fade" id="pills-logs" role="tabcard" aria-labelledby="pills-logs-tab">
-
                 {{#if summary.consoleLogs.length}}
+                <button id="topOfLogsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
                     {{#with summary}}
                     <div class="alert alert-info text-uppercase text-center">
                         <h4>Showing {{consoleLogs.length}} Console Log {{#gt consoleLogs.length 1}}Messages{{else}}Message{{/gt}}</h4>
@@ -367,13 +367,15 @@ body, html {
                     <div class="col-sm-12 mb-3">
                     <div class="card-deck">
                         <div class="card border-info">
-                            <div class="card-header bg-info text-white text-center text-uppercase">
-                                <h5 class="card-title">Log Message</h5>
+                            <div class="card-header bg-info text-white">
+                                <a data-toggle="collapse" href="#" data-target="#logs-collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="logs-{{cursor.ref}}" class="collapsed text-white z-block">
+                                    Iteration {{inc cursor.iteration}} - Log Message <i class="float-lg-right fa fa-chevron-down"></i>
+                                </a>
                             </div>
+                            <div id="logs-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="logs-{{cursor.ref}}">
                             <div class="card-body">
-                                <div>
-                                    <pre><code>{{messages}}</code></pre>
-                                </div>
+                                <pre><code>{{messages}}</code></pre>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -383,7 +385,7 @@ body, html {
             </div>
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
 
-            <button id="topOfScreen" class="btn btn-outline-success btn-sm" onclick="topFunction()">Go To Top</button>
+            <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
             
             <button id="closeAll" class="btn btn-outline-success btn-sm float-right">Collapse Folders</button>
             <button id="openAll" class="btn btn-outline-success btn-sm float-right">Expand Folders</button>
@@ -874,11 +876,17 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    document.getElementById("topOfScreen").style.display = "block";
+    document.getElementById("topOfRequestsScreen").style.display = "block";
+    document.getElementById("topOfFailuresScreen").style.display = "block";
+    document.getElementById("topOfSkippedScreen").style.display = "block";
+    document.getElementById("topOfLogsScreen").style.display = "block";
     document.getElementById("openAll").style.display = "none";
     document.getElementById("closeAll").style.display = "none";
   } else {
-    document.getElementById("topOfScreen").style.display = "none";
+    document.getElementById("topOfRequestsScreen").style.display = "none";
+    document.getElementById("topOfFailuresScreen").style.display = "none";
+    document.getElementById("topOfSkippedScreen").style.display = "none";
+    document.getElementById("topOfLogsScreen").style.display = "none";
     document.getElementById("openAll").style.display = "block";
     document.getElementById("closeAll").style.display = "block";
   }

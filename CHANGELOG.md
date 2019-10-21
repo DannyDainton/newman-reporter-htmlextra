@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.9.1] - 2019-10-21
+
+### Added
+
+- Includes a `Back To Top` button for all the different tabs
+- Fixed some inconsistency in the style of the different tabs
+
+-----------------------------------------------------------------------
+
 ## [1.9.0] - 2019-10-21
 
 ### Added
