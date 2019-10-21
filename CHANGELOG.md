@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.9.0] - 2019-10-21
+
+### Added
+
+- Supports displaying a GraphQL Request Body and any GraphQL Variables
+
+-----------------------------------------------------------------------
+
 ## [1.8.9] - 2019-09-24
 
 ### Added
