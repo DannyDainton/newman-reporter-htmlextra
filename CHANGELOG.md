@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.9.2] - 2019-10-23
+
+### Fixed
+
+- Fixed an issue with the `Back To Top` button that caused a flood of errors in the console
+
+-----------------------------------------------------------------------
 
 ## [1.9.1] - 2019-10-21
 
