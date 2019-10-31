@@ -24,7 +24,7 @@
     "htmlextra"
   ],
   "dependencies": {
-    "filesize": "^5.0.0",
+    "filesize": "^6.0.0",
     "handlebars": "^4.3.0",
     "handlebars-helpers": "^0.10.0",
     "helper-moment": "^0.2.0",
