@@ -78,7 +78,9 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 | `--reporter-htmlextra-browserTitle` | Use this optional flag to change the name of the title in the browser tab. The default name is "Newman Summary Report". |
 | `--reporter-htmlextra-title` | This optional flag can be used to give your report a different main `Title` in the centre of the report. If this is not set, the report will show "Newman Run Dashboard". |
 | `--reporter-htmlextra-titleSize` | An optional flag to reduce the size of the main report title. The sizes range from `1` to `6`, the higher the number, the smaller the title will be. The default size is `2`. |
-| `--reporter-htmlextra-logs` | This optional flag shows any console log statements in the collection, on the final report. The is `false` by default. |
+| `--reporter-htmlextra-logs` | This optional flag shows any console log statements in the collection, on the final report. This is `false` by default. |
+| `--reporter-htmlextra-skipHeaders` | An optional flag which allows you to exclude certain `Headers` from the final report |
+| `--reporter-htmlextra-skipSensitiveData` | An optional flag that will exclude all the `Request/Response Headers` and the `Request/Response bodies`, from each request in the final report. This will only show the main request info and the Test Results. This is `false` by default. |
 
 Custom templates (currently handlebars only) can be passed to the HTML reporter via `--reporter-htmlextra-template <path>` with `--reporters htmlextra` and `--reporter-htmlextra-export`.
 The [default template](./lib/dashboard-template.hbs) is used in all other cases.
@@ -106,6 +108,19 @@ To show the `console.log()` statements on the report from the CLI, the following
 ```console
 newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra --reporter-htmlextra-logs
 ```
+
+To exclude a certain `Header` from the final report, the following command can be used:
+
+```console
+newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv --folder 'Authentication Methods' -r htmlextra --reporter-htmlextra-skipHeaders Authorization
+```
+
+To exclude all the `Request/Response Headers` and the `Request/Response Body` information from the final report, the following command can be used:
+
+```console
+newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra --reporter-htmlextra-skipSensitiveData
+```
+
 
 #### With Newman as a Library
 
