@@ -53,7 +53,7 @@ npm install -g newman-reporter-htmlextra
 For `local` install:
 
 ```console
-npm install -S newman-reporter-htmlextra
+npm install -D newman-reporter-htmlextra
 ```
 
 ## Usage
