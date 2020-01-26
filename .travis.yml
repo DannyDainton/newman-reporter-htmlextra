@@ -8,10 +8,10 @@ dist: trusty
 install:
   - npm ci 
 
-deploy:
-  provider: npm
-  edge: true
-  email: dannydainton@gmail.com
-  api_key: $NPM_TOKEN
-  on:
-    branch: master
+# deploy:
+#   provider: npm
+#   edge: true
+#   email: dannydainton@gmail.com
+#   api_key: $NPM_TOKEN
+#   on:
+#     branch: master
