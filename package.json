@@ -50,7 +50,7 @@
     "eslint-plugin-markdown": "^1.0.0",
     "eslint-plugin-mocha": "^6.1.0",
     "eslint-plugin-security": "^1.4.0",
-    "mocha": "^6.2.2",
+    "mocha": "^7.0.1",
     "newman": "^4.5.5",
     "parse-gitignore": "^1.0.1",
     "recursive-readdir": "^2.2.2",
