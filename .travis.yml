@@ -10,7 +10,8 @@ install:
 
 deploy:
   provider: npm
+  edge: true
   email: dannydainton@gmail.com
   api_key: $NPM_TOKEN
   on:
-    all_branches: true
+    branch: master
