@@ -1,6 +1,6 @@
 # newman-reporter-htmlextra
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dannydainton/newman-reporter-htmlextra/CI)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dannydainton/newman-reporter-htmlextra/CI)](https://github.com/DannyDainton/newman-reporter-htmlextra/actions)
 [![NPM Version](https://img.shields.io/npm/v/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 [![NPM Weekly Downloads](https://img.shields.io/npm/dw/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 [![NPM Downloads](https://img.shields.io/npm/dt/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra) [![Greenkeeper badge](https://badges.greenkeeper.io/DannyDainton/newman-reporter-htmlextra.svg)](https://greenkeeper.io/)
