@@ -387,8 +387,12 @@ body, html {
 
             <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
             
-            <button id="closeAll" class="btn btn-outline-success btn-sm float-right">Collapse Folders</button>
-            <button id="openAll" class="btn btn-outline-success btn-sm float-right">Expand Folders</button>
+            <div class="btn-group float-right" role="group" aria-label="Button Group">
+                <button id="openAll" class="btn btn-outline-success btn-sm float-right">Expand Folders</button>
+                <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right">Expand Requests</button>
+                <button id="closeAll" class="btn btn-outline-success btn-sm float-right">Collapse Folders</button>
+                <button id="closeAllRequests" class="btn btn-outline-success btn-sm float-right">Collapse Requests</button>
+            </div>
 
     <div class="text-uppercase" id="execution-menu">
         {{#with summary}}
@@ -775,6 +779,32 @@ $('#closeAll').on('click', function(e) {
 {{#each aggregations}}
     $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').addClass('collapsed')
     $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('show')
+{{/each}}
+})
+</script>
+
+<script>
+$('#openAllRequests').on('click', function(e) {
+{{#each aggregations}}
+{{#each executions}}
+    $('#requests-{{cursor.ref}}').removeClass('collapsed')
+    $('#collapse-{{cursor.ref}}').removeClass('collapsed')
+    $('#requests-{{cursor.ref}}').addClass('show')
+    $('#collapse-{{cursor.ref}}').addClass('show')
+{{/each}}
+{{/each}}
+})
+</script>
+
+<script>
+$('#closeAllRequests').on('click', function(e) {
+{{#each aggregations}}
+{{#each executions}}
+    $('#requests-{{cursor.ref}}').addClass('collapsed')
+    $('#collapse-{{cursor.ref}}').addClass('collapsed')
+    $('#requests-{{cursor.ref}}').removeClass('show')
+    $('#collapse-{{cursor.ref}}').removeClass('show')
+{{/each}}
 {{/each}}
 })
 </script>

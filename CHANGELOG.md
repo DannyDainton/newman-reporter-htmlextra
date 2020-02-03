@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.10.1] - 2020-02-03
+
+### Added
+
+- Includes additional buttons for expanding/collapsing all the requests
+
+-----------------------------------------------------------------------
+
 ## [1.10.0] - 2020-02-03
 
 ### Fixed
