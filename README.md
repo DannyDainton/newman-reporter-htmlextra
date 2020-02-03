@@ -80,6 +80,7 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 | `--reporter-htmlextra-titleSize` | An optional flag to reduce the size of the main report title. The sizes range from `1` to `6`, the higher the number, the smaller the title will be. The default size is `2`. |
 | `--reporter-htmlextra-logs` | This optional flag shows any console log statements in the collection, on the final report. This is `false` by default. |
 | `--reporter-htmlextra-skipHeaders` | An optional flag which allows you to exclude certain `Headers` from the final report |
+| `--reporter-htmlextra-omitHeaders` | An optional flag which allows you to exclude all `Headers` from the final report |
 | `--reporter-htmlextra-skipSensitiveData` | An optional flag that will exclude all the `Request/Response Headers` and the `Request/Response bodies`, from each request in the final report. This will only show the main request info and the Test Results. This is `false` by default. |
 
 Custom templates (currently handlebars only) can be passed to the HTML reporter via `--reporter-htmlextra-template <path>` with `--reporters htmlextra` and `--reporter-htmlextra-export`.
@@ -113,6 +114,12 @@ To exclude a certain `Header` from the final report, the following command can b
 
 ```console
 newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv --folder 'Authentication Methods' -r htmlextra --reporter-htmlextra-skipHeaders Authorization
+```
+
+To exclude all the `Request/Response Headers` from the final report, the following command can be used:
+
+```console
+newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra --reporter-htmlextra-omitHeaders
 ```
 
 To exclude all the `Request/Response Headers` and the `Request/Response Body` information from the final report, the following command can be used:
@@ -240,7 +247,28 @@ newman.run({
     reporter: {
         htmlextra: {
             export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
-            skipHeaders: [ 'Server', 'Authorization', 'X-Powered-By' ] // optional, tells the reporter to not output these headers and their values in the report. This is False by default.
+            skipHeaders: [ 'Server', 'Authorization', 'X-Powered-By' ] // optional, tells the reporter to not output these headers and their values in the report. This is false by default.
+        }
+    }
+}, function (err) {
+    if (err) { throw err; }
+    console.log('collection run complete!');
+});
+```
+
+Add the `omitHeaders` property to the `htmlextra` object, to exclude all the request and response headers.
+
+```javascript
+const newman = require('newman');
+
+newman.run({
+    collection: require('./examples/Restful_Booker_Collection.json'), // can also provide a URL or path to a local JSON file.
+    environment: require('./examples/Restful_Booker_Environment.json'),
+    reporters: 'htmlextra',
+    reporter: {
+        htmlextra: {
+            export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
+            omitHeaders: true // optional, tells the reporter not to output the headers for each request and response in the report. This is false by default.
         }
     }
 }, function (err) {
@@ -261,7 +289,7 @@ newman.run({
     reporter: {
         htmlextra: {
             export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
-            skipSensitiveData: true // optional, tells the not to output headers and bodies for each request and response in the report. This is False by default.
+            skipSensitiveData: true // optional, tells the reporter not to output headers and bodies for each request and response in the report. This is false by default.
         }
     }
 }, function (err) {

@@ -196,7 +196,7 @@ body, html {
         <i class="fa fa-retweet fa-5x"></i>
        </div>
        <h6 class="text-uppercase">Total Iterations</h6>
-       <h1 class="display-1">{{stats.iterations.total}}</h1>
+       <h1 class="display-{{#gt stats.assertions.total 9999 }}4{{else}}1{{/gt}}">{{stats.iterations.total}}</h1>
       </div>
      </div>
     </div>
@@ -207,7 +207,7 @@ body, html {
         <i class="fa fa-list fa-4x"></i>
        </div>
        <h6 class="text-uppercase">Total Assertions</h6>
-       <h1 class="display-1">{{totalTests stats.assertions.total skippedTests.length}}</h1>
+       <h1 class="display-{{#gt stats.assertions.total 9999 }}4{{else}}1{{/gt}}">{{totalTests stats.assertions.total skippedTests.length}}</h1>
       </div>
      </div>
     </div>
@@ -218,7 +218,7 @@ body, html {
         <i class="fa fa-plus-circle fa-5x"></i>
        </div>
        <h6 class="text-uppercase">Total Failed Tests</h6>
-       <h1 class="display-1">{{failures.length}}</h1>
+       <h1 class="display-{{#gt stats.assertions.total 9999 }}4{{else}}1{{/gt}}">{{failures.length}}</h1>
       </div>
      </div>
     </div>
@@ -229,7 +229,7 @@ body, html {
         <i class="fa fa-share fa-5x"></i>
        </div>
        <h6 class="text-uppercase">Total Skipped Tests</h6>
-       <h1 class="display-1">{{#gt skippedTests.length 0}}{{skippedTests.length}}{{else}}0{{/gt}}</h1>
+       <h1 class="display-{{#gt stats.assertions.total 9999 }}4{{else}}1{{/gt}}">{{#gt skippedTests.length 0}}{{skippedTests.length}}{{else}}0{{/gt}}</h1>
       </div>
      </div>
     </div>
@@ -529,6 +529,7 @@ body, html {
                     </div>
                 </div>
                 {{#with request}}
+                {{#unless @root.omitHeaders}}
                 {{#unless @root.skipSensitiveData}}
                 <div class="row">
                     <div class="col-sm-12 mb-3">
@@ -558,6 +559,7 @@ body, html {
                         </div>
                     </div>
                 </div>
+                {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
                 {{#if body.raw}}
@@ -644,6 +646,7 @@ body, html {
                 {{/if}}
                 {{/unless}}
                 {{/with}}
+                {{#unless @root.omitHeaders}}
                 {{#unless @root.skipSensitiveData}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
@@ -673,6 +676,7 @@ body, html {
                     </div>
                 </div>
                 </div>
+                {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
                 <div class="row">
@@ -973,9 +977,11 @@ window.onload = function () {
       let allMenus = document.querySelectorAll('[id*=iteration-]');
       allMenus.forEach(function(elem){
         elem.style.borderBottom = 'none';
+        elem.style.background = 'none';
       })
-
+      
       this.style.borderBottom = 'solid 1px #032a33';
+      this.style.background = '#303030';
 
       let items = document.querySelectorAll("." + this.id);
       items.forEach(function(elem) {

@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.10.0] - 2020-02-03
+
+### Fixed
+
+- Fixed the sizing on the main summary panels if the number are greater than 9999
+- Iteration tab is now more visible when the iteration is selected
+- Closed some unclosed `<div>` tags in the default templates (Credit to @bassie1995)
+
+### Added
+
+- Added the `omitHeaders` flag to hide _all_ headers from the requests and responses
+
+-----------------------------------------------------------------------
+
 ## [1.9.2] - 2019-10-23
 
 ### Fixed
