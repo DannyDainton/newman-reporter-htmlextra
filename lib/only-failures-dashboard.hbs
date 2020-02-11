@@ -81,14 +81,23 @@ body, html {
 }
 
 .custom-tab {
-    padding: 10px 15px;
-    margin-right: 3px;
-    border: solid 1px #fff;
-    border-bottom: none;
-    cursor:pointer;
+  padding: 10px 15px;
+  margin-right: 0px;
+  height: 46px;
+  width: 59px;
+  text-align: center;
+  border: solid 1px #fff;
+  border-bottom: none;
+  cursor:pointer;
 }
-.custom-tab .active {
-    border-bottom:solid 1px #032a33;
+
+.itPassed {
+  background: #28a744;
+  color: white;
+}
+.itFailed {
+  background: #dd3544;
+  color: white;
 }
 
 #execution-data {
@@ -102,6 +111,28 @@ body, html {
 }
 .card-header .collapsed .fa {
   transform: rotate(90deg);
+}
+
+.nav-tabs {
+  padding-top: 10px;
+  height: 105px;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 </style>
 </head>
@@ -377,11 +408,13 @@ body, html {
 
     <div class="text-uppercase" id="execution-menu">
         {{#with summary}}
-        <h6>{{stats.iterations.total}} {{#gt stats.iterations.total 1}}Iterations{{else}}Iteration{{/gt}} available to view</h6>
+        <h5>{{stats.iterations.total}} {{#gt stats.iterations.total 1}}Iterations{{else}}Iteration{{/gt}} available to view</h5>
+        {{#gt stats.iterations.total 18}}<input class="form-control w-25" style="margin-bottom: 5px;" id="filterInput" type="number" min="1" placeholder="Filter Iterations">{{/gt}}
         {{/with}}
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs" id="iterationList">
         </ul>
     </div>
+    <h6 class="text-uppercase text-muted" id="iterationSelected" style="padding-top: 10px;"></h6>
 	<div class="tab-content" id="execution-data">
 {{#each aggregations}}
         {{#if parent.name}}
@@ -715,9 +748,10 @@ body, html {
 <script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+{{#eq noSyntaxHighlighting false}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
-
+{{/eq}}
 <script>
 {{#each aggregations}}
 {{#each executions}}
@@ -884,6 +918,7 @@ window.onload = function () {
     li.appendChild(document.createTextNode((i + 1)));
     li.setAttribute('id', 'iteration-' + i);
     li.classList.add("custom-tab");
+    li.classList.add("itPassed");
 
     li.addEventListener('click', function() {
 
@@ -895,11 +930,9 @@ window.onload = function () {
       let allMenus = document.querySelectorAll('[id*=iteration-]');
       allMenus.forEach(function(elem){
         elem.style.borderBottom = 'none';
-        elem.style.background = 'none';
       })
       
-      this.style.borderBottom = 'solid 1px #032a33';
-      this.style.background = '#d7d8d9';
+      this.style.borderBottom = 'solid 3px #032a33';
 
       let items = document.querySelectorAll("." + this.id);
       items.forEach(function(elem) {
@@ -912,5 +945,34 @@ window.onload = function () {
 
     //shows first tab data
   document.getElementById('iteration-0').click();
+  document.getElementById('iterationSelected').innerHTML = `Iteration ${document.getElementById('iteration-0').innerHTML} selected`
+  
+  {{#each aggregations}}
+  {{#each executions}}
+  {{#if cumulativeTests.failed}}
+    $("#iteration-{{cursor.iteration}}").removeClass('itPassed').addClass('itFailed')
+  {{/if}}
+  {{/each}}
+  {{/each}}
 }
+</script>
+
+<script>
+$(function() {
+    $("#iterationList li").click(function() {
+        document.getElementById('iterationSelected').innerHTML = "Iteration " + this.innerHTML + " selected"
+    });
+})
+</script>
+
+
+<script>
+$(document).ready(function(){
+  $("#filterInput").on("input paste", function() {
+    var value = $(this).val();
+    $("#iterationList li").filter(function() {
+      $(this).toggle($(this).text().indexOf(value) > -1)
+    });
+  });
+});
 </script>

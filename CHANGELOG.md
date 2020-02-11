@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+
+## [1.11.0] - 2020-02-11
+
+### Added
+
+- Pass/Fail iteration tab colours
+- Filter for Iterations
+- Selected Iteration label
+- Style changes to the Iteration tabs
+
+-----------------------------------------------------------------------
+
 ## [1.10.1] - 2020-02-03
 
 ### Added
