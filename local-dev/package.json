@@ -1,0 +1,15 @@
+{
+    "name": "local_dev",
+    "version": "1.0.0",
+    "description": "A demo project to test the htmlextra package",
+    "main": "test.js",
+    "scripts": {
+        "start": "node test.js"
+    },
+    "author": "Danny Dainton",
+    "license": "ISC",
+    "dependencies": {
+        "newman": "^4.5.7",
+        "newman-reporter-htmlextra": "^1.11.1"
+    }
+}
