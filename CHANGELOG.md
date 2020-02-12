@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.11.1] - 2020-02-12
+
+### Fixed
+
+- Spacing on the Iteration tabs when only a single row is shown
+
+-----------------------------------------------------------------------
+
 ## [1.11.0] - 2020-02-11
 
 ### Added

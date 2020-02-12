@@ -127,6 +127,11 @@ body, html {
   overflow-y: auto;
 }
 
+.single-line-tabs {
+  padding-top: 10px;
+  height: 60px;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -431,7 +436,7 @@ body, html {
         {{#gt stats.iterations.total 18}}<input class="form-control w-25" style="margin-bottom: 5px;" id="filterInput" type="number" min="1" placeholder="Filter Iterations">{{/gt}}
         {{/with}}
         <nav class="table-responsive">
-        <ul class="nav nav-tabs" id="iterationList">
+        <ul class="nav {{#gt summary.stats.iterations.total 18}}nav-tabs{{else}}single-line-tabs{{/gt}}" id="iterationList">
         </ul>
         </nav>
     </div>

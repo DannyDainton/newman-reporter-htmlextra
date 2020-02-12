@@ -172,6 +172,11 @@ body, html {
   overflow-y: auto;
 }
 
+.single-line-tabs {
+  padding-top: 10px;
+  height: 60px;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -467,7 +472,7 @@ body, html {
         <h5>{{stats.iterations.total}} {{#gt stats.iterations.total 1}}Iterations{{else}}Iteration{{/gt}} available to view</h5>
         {{#gt stats.iterations.total 18}}<input class="form-control w-25" style="margin-bottom: 5px;" id="filterInput" type="number" min="1" placeholder="Filter Iterations">{{/gt}}
         {{/with}}
-        <ul class="nav nav-tabs" id="iterationList">
+        <ul class="nav {{#gt summary.stats.iterations.total 18}}nav-tabs{{else}}single-line-tabs{{/gt}}" id="iterationList">
         </ul>
     </div>
     <h6 class="text-uppercase text-muted" id="iterationSelected" style="padding-top: 10px;"></h6>
