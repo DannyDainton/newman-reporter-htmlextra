@@ -6,3 +6,6 @@ node_modules
 /out/
 /newman/
 /.temp/
+/local-dev/node_modules
+/local-dev/package-lock.json
+/local-dev/report.html
