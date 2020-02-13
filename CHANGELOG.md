@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.11.2] - 2020-02-13
+
+### Fixed
+
+- Numbers wrapping in the summary boxes under certain conditions
+
+-----------------------------------------------------------------------
+
 ## [1.11.1] - 2020-02-12
 
 ### Fixed
