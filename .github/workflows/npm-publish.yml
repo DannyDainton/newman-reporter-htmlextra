@@ -21,34 +21,21 @@ jobs:
   
     npm-publish:
       needs: [build]
-      name: Publish package to NPM
+      name: Publish Package
       runs-on: ubuntu-latest
       steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Check for a new version change
-        uses: EndBug/version-check@v1
-        id: check
-        with:
-          diff-search: true
-        
-      - name: No version update detected
-        if: steps.check.outputs.changed != 'true'
-        run: 'echo "Version not changed!"'
-
-      - name: Version update detected
-        if: steps.check.outputs.changed == 'true'
-        run: 'echo "Version change found! New version: ${{ steps.check.outputs.version }}"'
-
-      - name: Set up Node.js for NPM
-        if: steps.check.outputs.changed == 'true'
+      
+      - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Publish package to NPM
-        if: steps.check.outputs.changed == 'true'
-        run: npm publish
+          node-version: '10.x'
+      
+      - name: Publish if version has been updated
+        uses: pascalgn/npm-publish-action@master
+        with:
+          commit_pattern: "^Release (\\S+)"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
