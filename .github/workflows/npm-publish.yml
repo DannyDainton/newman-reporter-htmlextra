@@ -8,9 +8,9 @@ jobs:
       name: Build and Test
       runs-on: ubuntu-latest
       steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Set up Node.js 
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: 10.0.0
         
@@ -42,7 +42,7 @@ jobs:
 
       - name: Set up Node.js for NPM
         if: steps.check.outputs.changed == 'true'
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           registry-url: "https://registry.npmjs.org"
 
