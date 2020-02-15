@@ -35,7 +35,7 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 To give you an idea of what the final reports will look like, I've added a few working examples here:
 
 - [All the Tests Passing](https://s3.eu-west-2.amazonaws.com/newman-htmlextra-reports/All_Passed.html)
-- [Failed and Skipped Tests during the Collection run](https://s3.eu-west-2.amazonaws.com/newman-htmlextra-reports/Fails_And_Skips.html)
+- [Passing and Failing Iterations](https://s3.eu-west-2.amazonaws.com/newman-htmlextra-reports/Passing_And_Failing.html)
 - [The Dark Theme version of the final report](https://s3.eu-west-2.amazonaws.com/newman-htmlextra-reports/Dark_Theme.html)
 
 These a _just_ a few of the reports that can be produced from the reporter. You will find more options available to help configure the final output, in the sections below.
