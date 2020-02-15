@@ -14,14 +14,13 @@ jobs:
         with:
           node-version: 10.0.0
         
-      - name: npm install, build and test
+      - name: Install and run tests
         run: |
-          npm install
-          npm test
+          npm ci
   
     npm-publish:
       needs: [build]
-      name: npm-publish
+      name: Publish package to NPM
       runs-on: ubuntu-latest
       steps:
       - name: Checkout repository
@@ -29,13 +28,13 @@ jobs:
         with:
           ref: master
 
-      - name: Check version changes
+      - name: Check for a new version change
         uses: EndBug/version-check@v1
         id: check
         
-      - name: Log when unchanged
+      - name: No version update detected
         if: steps.check.outputs.changed != 'true'
-        run: 'echo "No version change :/"'
+        run: 'echo "Version not changed!"'
 
       - name: Version update detected
         if: steps.check.outputs.changed == 'true'
