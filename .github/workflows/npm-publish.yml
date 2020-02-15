@@ -25,13 +25,26 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: Checkout repository
-        uses: actions/checkout@master
-      - name: Set up Node.js
-        uses: actions/setup-node@master
+        uses: actions/checkout@v2
         with:
-          node-version: 10.0.0
-      - name: Publish if version has been updated
-        uses: pascalgn/npm-publish-action@master
+          ref: master
+
+      - name: Check version changes
+        uses: EndBug/version-check@v1
+        id: check
+
+      - name: Version update detected
+        if: steps.check.outputs.changed == 'true'
+        run: 'echo "Version change found! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
+
+      - name: Set up Node.js for NPM
+        if: steps.check.outputs.changed == 'true'
+        uses: actions/setup-node@v1
+        with:
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Publish package to NPM
+        if: steps.check.outputs.changed == 'true'
+        run: npm publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }
