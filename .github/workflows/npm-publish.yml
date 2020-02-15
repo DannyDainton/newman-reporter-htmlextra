@@ -32,10 +32,8 @@ jobs:
         with:
           node-version: '10.x'
       
-      - name: Publish if version has been updated
-        uses: pascalgn/npm-publish-action@master
-        with:
-          commit_pattern: "^Release (\\S+)"
+      - name: Publish new version
+        run: npm publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
