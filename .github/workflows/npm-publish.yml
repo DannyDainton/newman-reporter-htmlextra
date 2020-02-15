@@ -26,12 +26,12 @@ jobs:
       steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          ref: master
 
       - name: Check for a new version change
         uses: EndBug/version-check@v1
         id: check
+        with:
+          diff-search: true
         
       - name: No version update detected
         if: steps.check.outputs.changed != 'true'
