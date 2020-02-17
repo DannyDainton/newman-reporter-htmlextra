@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.12.0] - 2020-02-17
+
+### Added
+
+- Dark/Light theme switcher included for the default templates
+- All darkTheme functionality remains in place but will be removed in later versions
+
+-----------------------------------------------------------------------
+
 ## [1.11.3] - 2020-02-15
 
 ### Updated

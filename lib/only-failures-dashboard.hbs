@@ -10,57 +10,264 @@
 
 
 <style>
+.theme-dark {
+    --background-color: #222;
+    --bg-card-deck: #444444;
+    --text-color: #ccd2d8;
+    --tab-border: solid 1px #444;
+    --success: #3c9372;
+    --failure: #c24a3f;
+    --warning: #d28c23;
+    --info: #4083b6;
+    --badge-outline: #3c9372;
+    --badge-bg: #cdd3db;
+    --badge-text: #ccd2d9;
+    --failure-row: #c24a3f;
+    --warning-row: #d28c23;
+    --card-bg: #444;
+    --card-footer: #4f5758;
+    --form-input: #ececb5;
+    --hov-text: #d2dae5;
+    --h4-text: #ccd1d9;
+}
+
+.theme-light {
+    --tab-border: solid 1px #fff;
+    --text-color: #000000;
+    --success: #42a745;
+    --failure: #dc3544;
+    --warning: #f4c10b;
+    --info: #49a1b8;
+    --badge-outline: #040411;
+    --badge-bg: #f8f9fa;
+    --badge-text: #fff;
+    --failure-row: #f5c6cb;
+    --warning-row: #ffeeba;
+    --card-bg: #f7f7f7;
+    --hov-text: #fff;
+    --h4-text: #ffffff;
+}
+
 body {
   padding-top:30px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#execution-data {
+  padding: 10px;
+  border: var(--tab-border);
+  border-top: none;
+}
+
+.nav-tabs {
+  padding-top: 10px;
+  height: 105px;
+  overflow-y: auto;
+}
+
+.card-header {
+    background-color: var(--card-bg)!important;
+}
+
+.card-body {
+    background-color: var(--card-bg)!important;
+}
+
+.card-footer {
+    padding: .75rem 1.25rem;
+    background-color: var(--card-footer);
+}
+
+.card-deck {
+    background-color: var(--bg-card-deck)!important;
+}
+.form-control, .form-control:focus {
+    background: var(--form-input);
+}
+
+.custom-tab {
+  padding: 10px 15px;
+  margin-right: 0px;
+  height: 46px;
+  width: 59px;
+  text-align: center;
+  border: var(--tab-border);
+  border-bottom: none;
+  cursor:pointer;
+}
+
+body.theme-dark .text-white {
+    color: #ccd2d9!important;
+}
+h4 {
+    color: var(--h4-text);
+}
+
+body.theme-dark h1 {
+    color: #ccd2da;
+}
+
+body.theme-dark .bg-light>td {
+    background: #4f5858!important;
+}
+
+body.theme-dark .hljs {
+    background: #0f0f0f82!important;
+    color: #8d8787!important;
+}
+
+.bg-info {
+    background-color: var(--info)!important;
+}
+.bg-success {
+    background-color: var(--success)!important;
+}
+
+.alert-success {
+    background-color: var(--success)!important;
+}
+
+.alert-warning {
+    background-color: var(--warning)!important;
+}
+
+.alert-info {
+    background-color: var(--info)!important;
+}
+
+.bg-warning {
+    background-color: var(--warning)!important;
+}
+
+.badge-warning {
+    color: var(--badge-text)!important;
+    background-color: var(--warning)!important;
+}
+
+.table-warning>td {
+    background-color: var(--warning-row);
+}
+
+.alert-danger {
+    background-color: var(--failure)!important;
+}
+
+body.theme-dark .alert-dark {
+    background-color: #636467!important;
+}
+
+body.theme-dark .text-dark {
+    color: #d1dae4!important;
+}
+
+.badge-light {
+    color: #212529;
+    background-color: var(--badge-bg);
+}
+
+.bg-danger {
+    background-color: var(--failure)!important;
+}
+
+.table-danger>td {
+    background-color: var(--failure-row);
+}
+
+body.theme-dark .table .thead-light th {
+    background-color: #4f5858!important;
+    border-color: #dee2e6!important;
+    color: #ccd2d8!important;
+}
+
+.itPassed {
+  background: var(--success);
+  color: white;
+}
+.itFailed {
+  background: var(--failure);
+  color: white;
+}
+
+.resultsInfoPass {
+  color: var(--success);
+  padding-top: 4px;
+}
+
+.resultsInfoFail {
+  color: var(--failure);
+  padding-top: 4px;
+}
+
+.badge-outline-success {
+  color: var(--success);
+  border: 1px solid var(--success);
+  background-color: transparent;
+}
+
+.badge-outline {
+  color: var(--badge-outline);
+  border: 1px solid var(--badge-outline);
+  background-color: transparent;
+}
+
+.btn-outline-success {
+    color: var(--success)!important;
+    border-color: var(--success)!important;
+}
+
+.backToTop:hover {
+  background-color: var(--success);
+  border-color: var(--success);
+  color: var(--hov-text)!important;
+}
+
+.btn-outline-success:hover {
+  background-color: var(--success);
+  border-color: var(--success);
+  color: var(--hov-text)!important;
+}
+
+.btn-outline-secondary {
+  background-color: var(--success)!important;
+  color: var(--hov-text)!important;
 }
 
 body, html {
   height:100%;
 }
 
-.badge-outline-success {
-    color: #27ae60;
-    border: 1px solid #27ae60;
-    background-color: transparent;
-}
-
-.badge-outline {
-    color: #040411;
-    border: 1px solid #040411;
-    background-color: transparent;
-}
-
 .card {
-    overflow:hidden;
+  overflow:hidden;
 }
 
 .card-body .rotate {
-    z-index: 8;
-    float: right;
-    height: 100%;
+  z-index: 8;
+  float: right;
+  height: 100%;
 }
 
 .card-body .rotate i {
-    color: rgba(20, 20, 20, 0.15);
-    position: absolute;
-    left: 0;
-    left: auto;
-    right: -10px;
-    bottom: 0;
-    display: block;
-    -webkit-transform: rotate(-44deg);
-    -moz-transform: rotate(-44deg);
-    -o-transform: rotate(-44deg);
-    -ms-transform: rotate(-44deg);
-    transform: rotate(-44deg);
+  color: rgba(20, 20, 20, 0.15);
+  position: absolute;
+  left: 0;
+  left: auto;
+  right: -10px;
+  bottom: 0;
+  display: block;
+  -webkit-transform: rotate(-44deg);
+  -moz-transform: rotate(-44deg);
+  -o-transform: rotate(-44deg);
+  -ms-transform: rotate(-44deg);
+  transform: rotate(-44deg);
 }
 .dyn-height {
-    max-height:350px;
-    overflow-y:auto;
+  max-height:350px;
+  overflow-y:auto;
 }
 
 .nav-pills .nav-link.active {
-    background-color: transparent!important;
+  background-color: transparent!important;
 }
 
 .backToTop {
@@ -76,47 +283,11 @@ body, html {
   border-radius: 4px;
 }
 
-.backToTop:hover {
-  background-color: #28a745;
-}
-
-.custom-tab {
-  padding: 10px 15px;
-  margin-right: 0px;
-  height: 46px;
-  width: 59px;
-  text-align: center;
-  border: solid 1px #fff;
-  border-bottom: none;
-  cursor:pointer;
-}
-
-.itPassed {
-  background: #28a744;
-  color: white;
-}
-.itFailed {
-  background: #dd3544;
-  color: white;
-}
-
-#execution-data {
-    padding: 10px;
-    border: solid 1px #fff;
-    border-top: none;
-}
-
 .card-header .fa {
   transition: .3s transform ease-in-out;
 }
 .card-header .collapsed .fa {
   transform: rotate(90deg);
-}
-
-.nav-tabs {
-  padding-top: 10px;
-  height: 105px;
-  overflow-y: auto;
 }
 
 .single-line-tabs {
@@ -139,10 +310,91 @@ body, html {
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px #2020203d;
+  background: white;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input:checked + .slider {
+  background-color: #4083b6;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #4083b6;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+  background: white;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 </style>
 </head>
 <body>
   <div class="container">
+        <div class="container">
+            <label>Light</label>
+            <label id="switch" class="switch">
+                <input type="checkbox" onchange="toggleTheme()" id="slider">
+                <span class="slider round"></span>
+            </label>
+            <label>Dark</label>
+        </div>
         {{#with summary}}
         <div class="card">
         <div class="card-header">
@@ -410,6 +662,11 @@ body, html {
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
             
             <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
+
+            <div class="btn-group float-right" role="group" aria-label="Button Group">
+                <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right">Expand Requests</button>
+                <button id="closeAllRequests" class="btn btn-outline-success btn-sm float-right">Collapse Requests</button>
+            </div>
 
     <div class="text-uppercase" id="execution-menu">
         {{#with summary}}
@@ -757,6 +1014,7 @@ body, html {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {{/eq}}
+
 <script>
 {{#each aggregations}}
 {{#each executions}}
@@ -776,6 +1034,32 @@ $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip({
         trigger : 'hover'
     })
+})
+</script>
+
+<script>
+$('#openAllRequests').on('click', function(e) {
+{{#each aggregations}}
+{{#each executions}}
+    $('#requests-{{cursor.ref}}').removeClass('collapsed')
+    $('#collapse-{{cursor.ref}}').removeClass('collapsed')
+    $('#requests-{{cursor.ref}}').addClass('show')
+    $('#collapse-{{cursor.ref}}').addClass('show')
+{{/each}}
+{{/each}}
+})
+</script>
+
+<script>
+$('#closeAllRequests').on('click', function(e) {
+{{#each aggregations}}
+{{#each executions}}
+    $('#requests-{{cursor.ref}}').addClass('collapsed')
+    $('#collapse-{{cursor.ref}}').addClass('collapsed')
+    $('#requests-{{cursor.ref}}').removeClass('show')
+    $('#collapse-{{cursor.ref}}').removeClass('show')
+{{/each}}
+{{/each}}
 })
 </script>
 
@@ -886,11 +1170,15 @@ function scrollFunction() {
     document.getElementById("topOfFailuresScreen").style.display = "block";
     document.getElementById("topOfSkippedScreen").style.display = "block";
     document.getElementById("topOfLogsScreen").style.display = "block";
+    document.getElementById("openAllRequests").style.display = "none";
+    document.getElementById("closeAllRequests").style.display = "none";
   } else {
     document.getElementById("topOfRequestsScreen").style.display = "none";
     document.getElementById("topOfFailuresScreen").style.display = "none";
     document.getElementById("topOfSkippedScreen").style.display = "none";
     document.getElementById("topOfLogsScreen").style.display = "none";
+    document.getElementById("openAllRequests").style.display = "block";
+    document.getElementById("closeAllRequests").style.display = "block";
   }
 }
 
@@ -963,11 +1251,13 @@ window.onload = function () {
 </script>
 
 <script>
-$(function() {
-    $("#iterationList li").click(function() {
-        document.getElementById('iterationSelected').innerHTML = "Iteration " + this.innerHTML + " selected"
+$(document).ready(function(){
+    $(function() {
+        $("#iterationList li").click(function() {
+            document.getElementById('iterationSelected').innerHTML = "Iteration " + this.innerHTML + " selected"
+        });
     });
-})
+});
 </script>
 
 
@@ -980,4 +1270,29 @@ $(document).ready(function(){
     });
   });
 });
+</script>
+
+<script>
+function setTheme(themeName) {
+    localStorage.setItem('theme', themeName);
+    document.body.className = themeName;
+}
+
+function toggleTheme() {
+    if (localStorage.getItem('theme') === 'theme-light') {
+        setTheme('theme-dark');
+    } else {
+        setTheme('theme-light');
+    }
+}
+
+(function () {
+    if (localStorage.getItem('theme') === 'theme-light') {
+        setTheme('theme-light');
+        document.getElementById('slider').checked = false;
+    } else {
+        setTheme('theme-dark');
+        document.getElementById('slider').checked = true;
+    }
+})();
 </script>

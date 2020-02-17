@@ -1088,11 +1088,13 @@ window.onload = function () {
 </script>
 
 <script>
-$(function() {
-    $("#iterationList li").click(function() {
-        document.getElementById('iterationSelected').innerHTML = "Iteration " + this.innerHTML + " selected"
+$(document).ready(function(){
+    $(function() {
+        $("#iterationList li").click(function() {
+            document.getElementById('iterationSelected').innerHTML = "Iteration " + this.innerHTML + " selected"
+        });
     });
-})
+});
 </script>
 
 

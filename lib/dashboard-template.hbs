@@ -9,24 +9,231 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
 
 <style>
-body {
-  padding-top:30px;
+.theme-dark {
+    --background-color: #222;
+    --bg-card-deck: #444444;
+    --text-color: #ccd2d8;
+    --tab-border: solid 1px #444;
+    --success: #3c9372;
+    --failure: #c24a3f;
+    --warning: #d28c23;
+    --info: #4083b6;
+    --badge-outline: #3c9372;
+    --badge-bg: #cdd3db;
+    --badge-text: #ccd2d9;
+    --failure-row: #c24a3f;
+    --warning-row: #d28c23;
+    --card-bg: #444;
+    --card-footer: #4f5758;
+    --form-input: #ececb5;
+    --hov-text: #d2dae5;
+    --h4-text: #ccd1d9;
 }
 
-body, html {
-  height:100%;
+.theme-light {
+    --tab-border: solid 1px #fff;
+    --text-color: #000000;
+    --success: #42a745;
+    --failure: #dc3544;
+    --warning: #f4c10b;
+    --info: #49a1b8;
+    --badge-outline: #040411;
+    --badge-bg: #f8f9fa;
+    --badge-text: #fff;
+    --failure-row: #f5c6cb;
+    --warning-row: #ffeeba;
+    --card-bg: #f7f7f7;
+    --hov-text: #fff;
+    --h4-text: #ffffff;
+}
+
+body {
+  padding-top:30px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#execution-data {
+  padding: 10px;
+  border: var(--tab-border);
+  border-top: none;
+}
+
+.nav-tabs {
+  padding-top: 10px;
+  height: 105px;
+  overflow-y: auto;
+}
+
+.card-header {
+    background-color: var(--card-bg)!important;
+}
+
+.card-body {
+    background-color: var(--card-bg)!important;
+}
+
+.card-footer {
+    padding: .75rem 1.25rem;
+    background-color: var(--card-footer);
+}
+
+.card-deck {
+    background-color: var(--bg-card-deck)!important;
+}
+.form-control {
+    background: var(--form-input);
+}
+
+.custom-tab {
+  padding: 10px 15px;
+  margin-right: 0px;
+  height: 46px;
+  width: 59px;
+  text-align: center;
+  border: var(--tab-border);
+  border-bottom: none;
+  cursor:pointer;
+}
+
+body.theme-dark .text-white {
+    color: #ccd2d9!important;
+}
+h4 {
+    color: var(--h4-text);
+}
+
+body.theme-dark h1 {
+    color: #ccd2da;
+}
+
+body.theme-dark .bg-light>td {
+    background: #4f5858!important;
+}
+
+body.theme-dark .hljs {
+    background: #0f0f0f82!important;
+    color: #8d8787!important;
+}
+
+.bg-info {
+    background-color: var(--info)!important;
+}
+.bg-success {
+    background-color: var(--success)!important;
+}
+
+.alert-success {
+    background-color: var(--success)!important;
+}
+
+.alert-warning {
+    background-color: var(--warning)!important;
+}
+
+.alert-info {
+    background-color: var(--info)!important;
+}
+
+.bg-warning {
+    background-color: var(--warning)!important;
+}
+
+.badge-warning {
+    color: var(--badge-text)!important;
+    background-color: var(--warning)!important;
+}
+
+.table-warning>td {
+    background-color: var(--warning-row);
+}
+
+.alert-danger {
+    background-color: var(--failure)!important;
+}
+
+body.theme-dark .alert-dark {
+    background-color: #636467!important;
+}
+
+body.theme-dark .text-dark {
+    color: #d1dae4!important;
+}
+
+.badge-light {
+    color: #212529;
+    background-color: var(--badge-bg);
+}
+
+.bg-danger {
+    background-color: var(--failure)!important;
+}
+
+.table-danger>td {
+    background-color: var(--failure-row);
+}
+
+body.theme-dark .table .thead-light th {
+    background-color: #4f5858!important;
+    border-color: #dee2e6!important;
+    color: #ccd2d8!important;
+}
+
+.itPassed {
+  background: var(--success);
+  color: white;
+}
+.itFailed {
+  background: var(--failure);
+  color: white;
+}
+
+.resultsInfoPass {
+  color: var(--success);
+  padding-top: 4px;
+}
+
+.resultsInfoFail {
+  color: var(--failure);
+  padding-top: 4px;
 }
 
 .badge-outline-success {
-  color: #27ae60;
-  border: 1px solid #27ae60;
+  color: var(--success);
+  border: 1px solid var(--success);
   background-color: transparent;
 }
 
 .badge-outline {
-  color: #040411;
-  border: 1px solid #040411;
+  color: var(--badge-outline);
+  border: 1px solid var(--badge-outline);
   background-color: transparent;
+}
+
+.btn-outline-success {
+    color: var(--success)!important;
+    border-color: var(--success)!important;
+}
+
+.backToTop:hover {
+  background-color: var(--success);
+  border-color: var(--success);
+  color: var(--hov-text)!important;
+}
+
+.btn-outline-success:hover {
+  background-color: var(--success);
+  border-color: var(--success);
+  color: var(--hov-text)!important;
+}
+
+.btn-outline-secondary {
+  background-color: var(--success)!important;
+  color: var(--hov-text)!important;
+}
+
+body, html {
+  height:100%;
 }
 
 .card {
@@ -75,56 +282,11 @@ body, html {
   border-radius: 4px;
 }
 
-.backToTop:hover {
-  background-color: #28a745;
-}
-
-#openAll:hover {
-  background-color: #28a745;
-}
-
-.custom-tab {
-  padding: 10px 15px;
-  margin-right: 0px;
-  height: 46px;
-  width: 59px;
-  text-align: center;
-  border: solid 1px #fff;
-  border-bottom: none;
-  cursor:pointer;
-}
-
-.itPassed {
-  background: #28a744;
-  color: white;
-}
-.itFailed {
-  background: #dd3544;
-  color: white;
-}
-
-#execution-data {
-  padding: 10px;
-  border: solid 1px #fff;
-  border-top: none;
-}
-
 .card-header .fa {
   transition: .3s transform ease-in-out;
 }
 .card-header .collapsed .fa {
   transform: rotate(90deg);
-}
-
-.resultsInfo {
-  color: green;
-  padding-top: 4px;
-}
-
-.nav-tabs {
-  padding-top: 10px;
-  height: 105px;
-  overflow-y: auto;
 }
 
 .single-line-tabs {
@@ -148,10 +310,90 @@ body, html {
   background: #555; 
 }
 
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px #2020203d;
+  background: white;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input:checked + .slider {
+  background-color: #4083b6;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #4083b6;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+  background: white;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 </style>
 </head>
-<body>
+<body class="">
   <div class="container">
+        <div class="container">
+            <label>Light</label>
+            <label id="switch" class="switch">
+                <input type="checkbox" onchange="toggleTheme()" id="slider">
+                <span class="slider round"></span>
+            </label>
+            <label>Dark</label>
+        </div>
         {{#with summary}}
         <div class="card">
         <div class="card-header">
@@ -181,7 +423,7 @@ body, html {
 {{#with summary}}
   <div class="col-md-9 col-lg-12 main">
    <h1 class="display-{{titleSize}} text-center">{{title}}</h1>
-   <h4 class="text-center">{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}</h4>
+   <h5 class="text-center">{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}</h5>
    <div class="row">
     <div class="col-lg-3 col-md-6">
      <div class="card text-white card-success">
@@ -446,7 +688,7 @@ body, html {
         {{#if parent.name}}
         <div class="alert alert-dark text-uppercase text-center iteration-{{parent.iteration}}">
         <a data-toggle="collapse" href="#" data-target="#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}" aria-expanded="false" aria-controls="collapse" id="folder-{{parent.id}}-iteration-{{parent.iteration}}" class="collapsed text-dark z-block">
-            <i class="fas fa-info-circle float-left resultsInfo" {{#each executions}}{{#if cumulativeTests.failed}} style="color: red; padding-top: 4px;"{{/if}}{{/each}}></i>
+            <i class="fas fa-info-circle float-left {{#each executions}}{{#if cumulativeTests.failed}}resultsInfoFail{{else}}resultsInfoPass{{/if}}{{/each}}"></i>
             {{parent.name}} - {{executions.length}} {{#gt executions.length 1}}Requests{{else}}Request{{/gt}} in the folder <i class="float-lg-right fa fa-chevron-down" style="padding-top: 4px;"></i>
         </a>
         </div>
@@ -1038,11 +1280,13 @@ window.onload = function () {
 </script>
 
 <script>
-$(function() {
-    $("#iterationList li").click(function() {
-        document.getElementById('iterationSelected').innerHTML = "Iteration " + this.innerHTML + " selected"
+$(document).ready(function(){
+    $(function() {
+        $("#iterationList li").click(function() {
+            document.getElementById('iterationSelected').innerHTML = "Iteration " + this.innerHTML + " selected"
+        });
     });
-})
+});
 </script>
 
 
@@ -1055,4 +1299,29 @@ $(document).ready(function(){
     });
   });
 });
+</script>
+
+<script>
+        function setTheme(themeName) {
+            localStorage.setItem('theme', themeName);
+            document.body.className = themeName;
+        }
+
+        function toggleTheme() {
+            if (localStorage.getItem('theme') === 'theme-light') {
+                setTheme('theme-dark');
+            } else {
+                setTheme('theme-light');
+            }
+        }
+
+        (function () {
+            if (localStorage.getItem('theme') === 'theme-light') {
+                setTheme('theme-light');
+                document.getElementById('slider').checked = false;
+            } else {
+                setTheme('theme-dark');
+                document.getElementById('slider').checked = true;
+            }
+        })();
 </script>
