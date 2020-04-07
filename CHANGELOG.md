@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.13.0] - 2020-04-07
+
+### Added
+
+- Added to new handlebar helpers to calculate the `totalFolders` and `totalFailedFolders`in the templates
+- Fallback default report name is used if a collection name is not supplied when creating collections with the SDK
+
+### Fixed
+
+- Fixed issue where the `skipHeaders` list was case-sensitive and not removing certain headers
+
+### Updated
+
+- Project npm modules
+
+-----------------------------------------------------------------------
 
 ## [1.12.1] - 2020-02-17
 
