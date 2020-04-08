@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+
+## [1.13.1] - 2020-04-08
+
+### Fixed
+
+- Reverted change to the `skipHeaders` helper
+- Added tests for the `skipHeaders` and `omitHeaders` flags  
+
+-----------------------------------------------------------------------
+
 ## [1.13.0] - 2020-04-07
 
 ### Added

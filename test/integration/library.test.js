@@ -252,4 +252,30 @@ describe('Newman and htmlextra run from a script', function () {
             fs.stat(outFile, done);
         });
     });
+
+    it('should correctly generate the html report for a successful run and remove a single header', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-get-request-with-headers.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { skipHeaders: 'testHeader', export: outFile } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-get-request-with-headers');
+            fs.stat(outFile, done);
+        });
+    });
+
+    it('should correctly generate the html report for a successful run and remove all headers', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-get-request-with-headers.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { omitHeaders: true, export: outFile } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-get-request-with-headers');
+            fs.stat(outFile, done);
+        });
+    });
 });

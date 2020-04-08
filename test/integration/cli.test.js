@@ -123,4 +123,22 @@ describe('Newman and htmlextra run from the CLI', function () {
                 fs.stat(outFile, done);
             });
     });
+
+    it('should correctly generate the html report for a successful run and remove a single header', function (done) {
+        // eslint-disable-next-line max-len
+        exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-skipHeaders testHeader`,
+            function (code) {
+                expect(code, 'should have exit code of 0').to.equal(0);
+                fs.stat(outFile, done);
+            });
+    });
+
+    it('should correctly generate the html report for a successful run and remove all headers', function (done) {
+        // eslint-disable-next-line max-len
+        exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-omitHeaders`,
+            function (code) {
+                expect(code, 'should have exit code of 0').to.equal(0);
+                fs.stat(outFile, done);
+            });
+    });
 });
