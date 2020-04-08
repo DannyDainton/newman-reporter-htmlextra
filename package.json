@@ -51,7 +51,7 @@
     "eslint-plugin-mocha": "^6.3.0",
     "eslint-plugin-security": "^1.4.0",
     "mocha": "^7.1.1",
-    "newman": "^4.6.1",
+    "newman": "^5.0.0",
     "parse-gitignore": "^1.0.1",
     "recursive-readdir": "^2.2.2",
     "shelljs": "^0.8.3"
