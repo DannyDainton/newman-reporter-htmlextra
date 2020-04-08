@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.13.2] - 2020-04-08
+
+### Added
+
+- Second go at fixing issue where the `skipHeaders` list was case-sensitive and not removing certain headers
+- Added more tests for the `skipHeaders` and `omitHeaders` flags  
+
+-----------------------------------------------------------------------
+
 ## [1.13.1] - 2020-04-08
 
 ### Fixed

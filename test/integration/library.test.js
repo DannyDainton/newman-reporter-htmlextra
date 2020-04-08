@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 describe('Newman and htmlextra run from a script', function () {
-    var outFile = 'out/newman-report.htmlextra';
+    var outFile = 'out/newman-report.htmlextra.html';
 
     beforeEach(function (done) {
         // eslint-disable-next-line consistent-return
@@ -258,6 +258,19 @@ describe('Newman and htmlextra run from a script', function () {
             collection: 'test/requests/simple-get-request-with-headers.json',
             reporters: ['htmlextra'],
             reporter: { htmlextra: { skipHeaders: 'testHeader', export: outFile } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-get-request-with-headers');
+            fs.stat(outFile, done);
+        });
+    });
+
+    it('should correctly generate the html report for a successful run and remove a multiple headers', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-get-request-with-headers.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { skipHeaders: ['testHeader', 'host', 'User-Agent'], export: outFile } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
             if (err) { return done(err); }
