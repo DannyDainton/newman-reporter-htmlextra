@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 var fs = require('fs');
 
 describe('Newman and htmlextra run from a script', function () {
@@ -199,7 +200,7 @@ describe('Newman and htmlextra run from a script', function () {
         });
     });
 
-    it('should correctly produce the html report for a run with skipped Tests', function (done) {
+    it('should correctly generate the html report for a run with skipped Tests', function (done) {
         newman.run({
             collection: 'test/requests/simple-skipped-request.json',
             reporters: ['htmlextra'],
@@ -213,7 +214,7 @@ describe('Newman and htmlextra run from a script', function () {
         });
     });
 
-    it('should correctly produce the html report for a run with console logs', function (done) {
+    it('should correctly generate the html report for a run with console logs', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request-with-log-messages.json',
             reporters: ['htmlextra'],
@@ -221,8 +222,10 @@ describe('Newman and htmlextra run from a script', function () {
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
             if (err) { return done(err); }
+            let key = Object.keys(summary.consoleLogs);
+
             expect(err).to.be.null;
-            expect(summary.consoleLogs, 'should have 2 console log messages').to.have.lengthOf(2);
+            expect(summary.consoleLogs[key], 'should have 2 console log messages').to.have.lengthOf(2);
             fs.stat(outFile, done);
         });
     });
