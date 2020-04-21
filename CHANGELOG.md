@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.14.0] - 2020-04-21
+
+### Added
+
+- The `console.logs` are now part of the main request view and not a seperate section
+
+-----------------------------------------------------------------------
+
 ## [1.13.2] - 2020-04-08
 
 ### Added

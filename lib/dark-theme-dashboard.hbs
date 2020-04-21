@@ -218,11 +218,6 @@ body, html {
             <li class="nav-item bg-warning" data-toggle="tooltip" title="Click to view the Skipped Tests">
                 <a class="nav-link text-white" id="pills-skipped-tab" data-toggle="pill" href="#pills-skipped" role="tab" aria-controls="pills-skipped" aria-selected="false">Skipped Tests <span class="badge badge-light">{{#gt skippedTests.length 0}}{{skippedTests.length}}{{else}}0{{/gt}}</span></a>
             </li>
-            {{#if consoleLogs.length}}
-            <li class="nav-item bg-info" data-toggle="tooltip" title="Click to view the Console Logs">
-                <a class="nav-link text-white" id="pills-logs-tab" data-toggle="pill" href="#pills-logs" role="tab" aria-controls="pills-logs" aria-selected="false">Console Logs <span class="badge badge-light">{{consoleLogs.length}}</span></a>
-            </li>
-            {{/if}}
             </ul>
         {{/with}}
         <div class="tab-content" id="pills-tabContent">
@@ -385,7 +380,7 @@ body, html {
                         <div class="card border-danger">
                             <div class="card-header bg-danger">
                                 <a data-toggle="collapse" href="#" data-target="#fails-collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="fails-{{cursor.ref}}" class="collapsed text-white z-block">
-                                    Iteration {{inc cursor.iteration}} - {{error.name}} - {{parent.name}} - {{source.name}} <i class="float-lg-right fa fa-chevron-down"></i>
+                                    Iteration {{inc cursor.iteration}} - {{error.name}} - {{parent.name}} - {{source.name}} <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
                                 </a>
                             </div>
                             <div id="fails-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="fails-{{cursor.ref}}">
@@ -423,7 +418,7 @@ body, html {
                         <div class="card border-warning">
                             <div class="card-header bg-warning text-white">
                                 <a data-toggle="collapse" href="#" data-target="#skipped-collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="skipped-{{cursor.ref}}" class="collapsed text-white z-block">
-                                    Iteration {{inc cursor.iteration}} - {{assertion}} <i class="float-lg-right fa fa-chevron-down"></i>
+                                    Iteration {{inc cursor.iteration}} - {{assertion}} <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
                                 </a>
                             </div>
                             <div id="skipped-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="skipped-{{cursor.ref}}">
@@ -439,34 +434,6 @@ body, html {
                 <div class="alert alert-success text-uppercase text-center">
                     <br><br><h1 class="text-center">There are no skipped tests <span><i class="far fa-thumbs-up"></i></span></h1><br><br>
                 </div>
-                {{/if}}
-            </div>
-            <div class="tab-pane fade" id="pills-logs" role="tabcard" aria-labelledby="pills-logs-tab">
-                <button id="topOfLogsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
-                {{#if summary.consoleLogs.length}}
-                    {{#with summary}}
-                    <div class="alert alert-info text-uppercase text-center">
-                        <h4>Showing {{consoleLogs.length}} Console Log {{#gt consoleLogs.length 1}}Messages{{else}}Message{{/gt}}</h4>
-                    </div>
-                    {{/with}}
-                    {{#each summary.consoleLogs}}
-                    <div class="col-sm-12 mb-3">
-                    <div class="card-deck">
-                        <div class="card border-info">
-                            <div class="card-header bg-info text-white">
-                                <a data-toggle="collapse" href="#" data-target="#logs-collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="logs-{{cursor.ref}}" class="collapsed text-white z-block">
-                                    Iteration {{inc cursor.iteration}} - Log Message <i class="float-lg-right fa fa-chevron-down"></i>
-                                </a>
-                            </div>
-                            <div id="logs-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="logs-{{cursor.ref}}">
-                            <div class="card-body">
-                                <pre><code>{{messages}}</code></pre>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    {{/each}}
                 {{/if}}
             </div>
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
@@ -495,7 +462,7 @@ body, html {
         <div class="alert alert-dark text-uppercase text-center iteration-{{parent.iteration}}">
         <a data-toggle="collapse" href="#" data-target="#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}" aria-expanded="false" aria-controls="collapse" id="folder-{{parent.id}}-iteration-{{parent.iteration}}" class="collapsed text-white z-block">
             <i class="float-left fas fa-info-circle resultsInfo"{{#each executions}}{{#if cumulativeTests.failed}}style="padding-top: 4px; color: #c14c3f;"{{/if}}{{/each}}></i>
-            {{parent.name}} - {{executions.length}} {{#gt executions.length 1}}Requests{{else}}Request{{/gt}} in the folder <i class="float-lg-right fa fa-chevron-down" style="padding-top: 4px;"></i>
+            {{parent.name}} - {{executions.length}} {{#gt executions.length 1}}Requests{{else}}Request{{/gt}} in the folder <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
         </a>
         </div>
         <div id="folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}" class="collapse" aria-labelledby="folder-{{parent.id}}">
@@ -522,7 +489,7 @@ body, html {
         <div class="card iteration-{{cursor.iteration}}">
             <div class="card-header {{#if cumulativeTests.failed}} bg-danger{{else}} bg-success{{/if}} iteration-{{cursor.iteration}}">
                 <a data-toggle="collapse" href="#" data-target="#collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="requests-{{cursor.ref}}" class="collapsed text-white z-block">
-            Iteration: {{inc cursor.iteration}} - {{item.name}} <i class="float-lg-right fa fa-chevron-down"></i>
+            Iteration: {{inc cursor.iteration}} - {{item.name}} <i class="float-lg-right fa fa-chevron-down" style="padding-top: 5px;"></i>
         </a>
         {{#if cumulativeTests.skipped}}
         <span class="badge badge-warning text-white text-uppercase">{{cumulativeTests.skipped}} Skipped {{#gt cumulativeTests.skipped 1}}Tests{{else}}Test{{/gt}}</span>
@@ -567,11 +534,19 @@ body, html {
                             <hr>
                             <h5 class="card-title text-uppercase text-white text-center bg-info">Test Pass Percentage</h5>
                             <div>
+                                {{#if assertions.length}}
                                 <div class="progress" style="height: 40px;">
                                     <div class="progress-bar {{#if cumulativeTests.failed}} bg-danger{{else}} bg-success{{/if}}" style="width: 100%" role="progressbar">
                                     <h5><strong>{{#gte cumulativeTests.passed 1}}{{percent cumulativeTests.passed cumulativeTests.failed}} %{{else}}0 %{{/gte}}</strong></h5>
                                     </div>
                                 </div>
+                                {{else}}
+                                <div class="progress" style="height: 40px;">
+                                    <div class="progress-bar bg-success" style="width: 100%" role="progressbar">
+                                    <h5 class="text-uppercase text-white text-center" style="padding-top:5px;"><strong>No Tests for this request</strong></h5>
+                                    </div>
+                                </div>
+                                {{/if}}
                             </div>
                             </div>
                         </div>
@@ -751,6 +726,33 @@ body, html {
                     </div>
                 </div>
                 {{/unless}}
+                {{#if consoleLogs.length}}
+                <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                    <div class="card border-info" style="width: 50rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Console Logs</h5>
+                            <div class="dyn-height">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                <thead class="thead-light text-center"><tr><th>Log Messages</th></tr></thead>
+                                    <tbody>
+                                        {{#each consoleLogs}}
+                                        <tr>
+                                            <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;"><pre><code class="prettyPrint">{{#each messages}}{{this}}{{/each}}</code></pre></td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                {{/if}}
                 <div class="row">
                     <div class="card border-info">
                         <div class="card-body">
@@ -1001,7 +1003,6 @@ function scrollFunction() {
     document.getElementById("topOfRequestsScreen").style.display = "block";
     document.getElementById("topOfFailuresScreen").style.display = "block";
     document.getElementById("topOfSkippedScreen").style.display = "block";
-    document.getElementById("topOfLogsScreen").style.display = "block";
     document.getElementById("openAll").style.display = "none";
     document.getElementById("closeAll").style.display = "none";
     document.getElementById("openAllRequests").style.display = "none";
@@ -1010,7 +1011,6 @@ function scrollFunction() {
     document.getElementById("topOfRequestsScreen").style.display = "none";
     document.getElementById("topOfFailuresScreen").style.display = "none";
     document.getElementById("topOfSkippedScreen").style.display = "none";
-    document.getElementById("topOfLogsScreen").style.display = "none";
     document.getElementById("openAll").style.display = "block";
     document.getElementById("closeAll").style.display = "block";
     document.getElementById("openAllRequests").style.display = "block";
