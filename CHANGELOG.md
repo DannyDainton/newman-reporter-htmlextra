@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.14.1] - 2020-04-24
+
+### Removed
+
+- Tidied up the old `console.log()` code that was previously used to capture the statements
+
+-----------------------------------------------------------------------
+
 ## [1.14.0] - 2020-04-21
 
 ### Added
