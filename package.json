@@ -29,7 +29,7 @@
     "handlebars-helpers": "^0.10.0",
     "helper-moment": "^0.2.0",
     "lodash": "^4.17.14",
-    "pretty-ms": "^6.0.1"
+    "pretty-ms": "^7.0.0"
   },
   "author": "Danny Dainton",
   "license": "Apache-2.0",
