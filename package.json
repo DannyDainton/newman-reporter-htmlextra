@@ -9,7 +9,9 @@
     "test-integration": "node npm/test-integration.js",
     "test-lint": "node npm/test-lint.js",
     "test-system": "node npm/test-system.js",
-    "pre-publish": "node npm/test-all.js && npm pack"
+    "pre-publish": "node npm/test-all.js && npm pack",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "deprecated": false,
   "repository": {
@@ -29,7 +31,8 @@
     "handlebars-helpers": "^0.10.0",
     "helper-moment": "^0.2.0",
     "lodash": "^4.17.14",
-    "pretty-ms": "^6.0.1"
+    "pretty-ms": "^6.0.1",
+    "snyk": "^1.316.1"
   },
   "author": "Danny Dainton",
   "license": "Apache-2.0",
@@ -60,5 +63,6 @@
     "ignore": [
       "eslint-plugin-jsdoc"
     ]
-  }
+  },
+  "snyk": true
 }
