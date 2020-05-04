@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-var fs = require('fs');
+var fs = require('fs'),
+    _ = require('lodash');
 
 describe('Newman and htmlextra run from a script', function () {
     var outFile = 'out/newman-report.htmlextra.html',
@@ -66,7 +67,7 @@ describe('Newman and htmlextra run from a script', function () {
                 if (file.includes('invalid')) {
                     name = 'newman_htmlextra';
                     name = (outputFile[0])
-                        .match(new RegExp('^(' + name +
+                        .match(new RegExp('^(' + _.escapeRegExp(name) +
                         ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
                     expect(outputFile[0]).to.include(name[0]);
                 }
@@ -77,7 +78,7 @@ describe('Newman and htmlextra run from a script', function () {
 
                     name = (name).includes('\\') ? (name).split('\\').slice(-1)[0] : name;
                     name = (outputFile[0])
-                        .match(new RegExp('^(' + name +
+                        .match(new RegExp('^(' + _.escapeRegExp(name) +
                         ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
 
                     expect(outputFile[0]).to.equal(name[0]);
@@ -114,7 +115,7 @@ describe('Newman and htmlextra run from a script', function () {
                 if (file.includes('invalid')) {
                     name = 'newman_htmlextra';
                     name = (outputFile[0])
-                        .match(new RegExp('^(' + name +
+                        .match(new RegExp('^(' + _.escapeRegExp(name) +
                         ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
                     expect(outputFile[0]).to.include(name[0]);
                 }
@@ -125,7 +126,7 @@ describe('Newman and htmlextra run from a script', function () {
 
                     name = (name).includes('\\') ? (name).split('\\').slice(-1)[0] : name;
                     name = (outputFile[0])
-                        .match(new RegExp('^(' + name +
+                        .match(new RegExp('^(' + _.escapeRegExp(name) +
                         ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
 
                     expect(outputFile[0]).to.equal(name[0]);
