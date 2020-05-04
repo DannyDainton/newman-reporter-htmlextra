@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "521e8868-6228-425e-88c6-974b4f7d9f84",
+		"name": "test\"test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test|test",
+			"item": [
+				{
+					"name": "GET Simple request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "06f3048d-24b8-4fcd-a9ed-8bc7cf330f71",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d60a87c0-c9c4-45d1-ab44-514ce30882dd",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://jsonplaceholder.typicode.com/posts/1",
+							"protocol": "http",
+							"host": [
+								"jsonplaceholder",
+								"typicode",
+								"com"
+							],
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "71983446-754b-4677-9ef7-95be243899a2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f8a2cecd-1953-4edf-8bb2-02ffc305fa33",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
