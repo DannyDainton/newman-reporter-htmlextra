@@ -20,7 +20,6 @@ describe('Newman and htmlextra run from the CLI', function () {
             if (err) {
                 return fs.mkdir('out', done);
             }
-
             done();
         });
     });
@@ -28,7 +27,6 @@ describe('Newman and htmlextra run from the CLI', function () {
     afterEach(function (done) {
         let files = fs.readdirSync('newman');
 
-        // delete newman folder content
         files.forEach(function (file) {
             fs.unlinkSync('newman/' + file);
         });
@@ -37,7 +35,6 @@ describe('Newman and htmlextra run from the CLI', function () {
             if (err) {
                 return done();
             }
-
             fs.unlink(outFile, done);
         });
     });
@@ -47,109 +44,44 @@ describe('Newman and htmlextra run from the CLI', function () {
         return (/^((?!(package(-lock)?))|.+)\.json/).test(file);
     });
 
-    // For each collection run newman and validate output
+    // For each collection send newman.run and validate output
     files.forEach(function (file) {
-        // Get collection file as JSON and get collection name as obj.info.name
-        let obj = JSON.parse(fs.readFileSync(invalidCollectionNameFolder + '/' + file, 'utf8'));
+        let collectionFile = JSON.parse(fs.readFileSync(invalidCollectionNameFolder + '/' + file, 'utf8')),
+            regCreator = function (name) {
+                return (new RegExp('^(' + _.escapeRegExp(name) +
+                            ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
+            },
+            checkFileExistance = function (input, outputFile) {
+                let status;
 
-        it('should correctly generate the dark theme html report for collection' +
-        'name (' + obj.info.name + ')', function (done) {
+                input = (input).includes('\\') ? (input).split('\\').slice(-1)[0] : input;
+                if (outputFile.length !== 0) {
+                    input = (outputFile[0]).match(regCreator(input));
+                    status = input === null ? 'File name was not as expected, got' + outputFile[0] :
+                        input[0];
+                }
+                else if (outputFile.length === 0) {
+                    status = 'No output files were created';
+                }
+
+                return status;
+            };
+
+        it('should correctly generate the html report for collection' +
+        'name (' + collectionFile.info.name + ')', function (done) {
+            // eslint-disable-next-line max-len
             let collection = invalidCollectionNameFolder + '/' + file;
 
             exec(`${newman} run ${collection} -r htmlextra  --reporter-htmlextra-darkTheme`,
                 function (code) {
                     expect(code, 'should have exit code of 0').to.equal(0);
-
-                    // output will be stored to newman folder , read the output files
                     let outputFile = fs.readdirSync('newman'),
-                        name = obj.info.name;
+                        name = collectionFile.info.name,
+                        status = (name).match(pattern) === null ?
+                            checkFileExistance('newman_htmlextra', outputFile) :
+                            checkFileExistance(name, outputFile);
 
-                    /* If the file is for invalid character then ,
-                    validate the html file name to be newman_htmlextra-{timestamp}.html*/
-                    if ((obj.info.name).match(pattern) === null) {
-                        name = 'newman_htmlextra';
-                        if (outputFile.length !== 0) {
-                            name = (outputFile[0])
-                                .match(new RegExp('^(' + _.escapeRegExp(name) +
-                                ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
-                            name === null ? expect
-                                .fail('File name was ' + outputFile[0]) : expect(outputFile[0]).to.equal(name[0]);
-                        }
-                        else if (outputFile.length === 0) {
-                            expect.fail('No output files were created');
-                        }
-                    }
-                    else {
-                        /* If the file is for invalid character then validate the html file name to be,
-                        collectionname-{timestamp}.html.
-                        if collection name is in format test\\test2 then consider only test2*/
-
-                        name = (name).includes('\\') ? (name).split('\\').slice(-1)[0] : name;
-                        if (outputFile.length !== 0) {
-                            name = (outputFile[0])
-                                .match(new RegExp('^(' + _.escapeRegExp(name) +
-                                ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
-                            name === null ? expect
-                                .fail('File name was ' + outputFile[0]) : expect(outputFile[0]).to.equal(name[0]);
-                        }
-                        else if (outputFile.length === 0) {
-                            expect.fail('No output files were created');
-                        }
-                    }
-                    done();
-                });
-        });
-    });
-
-    // For each collection run newman and validate output
-    files.forEach(function (file) {
-        // Get collection file as JSON and get collection name as obj.info.name
-        let obj = JSON.parse(fs.readFileSync(invalidCollectionNameFolder + '/' + file, 'utf8'));
-
-        it('should correctly generate the html report for collection' +
-        'name (' + obj.info.name + ')', function (done) {
-            let collection = invalidCollectionNameFolder + '/' + file;
-
-            exec(`${newman} run ${collection} -r htmlextra`,
-                function (code) {
-                    expect(code, 'should have exit code of 0').to.equal(0);
-
-                    // output will be stored to newman folder , read the output files
-                    let outputFile = fs.readdirSync('newman'),
-                        name = obj.info.name;
-
-                    /* If the file is for invalid character then ,
-                    validate the html file name to be newman_htmlextra-{timestamp}.html*/
-                    if ((obj.info.name).match(pattern) === null) {
-                        name = 'newman_htmlextra';
-                        if (outputFile.length !== 0) {
-                            name = (outputFile[0])
-                                .match(new RegExp('^(' + _.escapeRegExp(name) +
-                                ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
-                            name === null ? expect
-                                .fail('File name was ' + outputFile[0]) : expect(outputFile[0]).to.equal(name[0]);
-                        }
-                        else if (outputFile.length === 0) {
-                            expect.fail('No output files were created');
-                        }
-                    }
-                    else {
-                        /* If the file is for invalid character then validate the html file name to be,
-                        collectionname-{timestamp}.html.
-                        if collection name is in format test\\test2 then consider only test2*/
-
-                        name = (name).includes('\\') ? (name).split('\\').slice(-1)[0] : name;
-                        if (outputFile.length !== 0) {
-                            name = (outputFile[0])
-                                .match(new RegExp('^(' + _.escapeRegExp(name) +
-                                ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
-                            name === null ? expect
-                                .fail('File name was ' + outputFile[0]) : expect(outputFile[0]).to.equal(name[0]);
-                        }
-                        else if (outputFile.length === 0) {
-                            expect.fail('No output files were created');
-                        }
-                    }
+                    expect(status).to.equal(outputFile[0]);
                     done();
                 });
         });
