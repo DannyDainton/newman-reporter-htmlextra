@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.15.0] - 2020-05-06
+
+### Fixed
+
+- Single folder collections will now show all the folders in multiple iteration runs. Credit to @praveendvd
+- The `browserTitle` and `title` flags will now take dynamic values when run in a loop with multiple collections
+
+-----------------------------------------------------------------------
+
 ## [1.14.1] - 2020-04-24
 
 ### Removed
