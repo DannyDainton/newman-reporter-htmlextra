@@ -7,11 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.15.1] - 2020-05-07
+
+### Added
+
+- Added a new `hideResponse` flag to allow you _hide_ a specific response body from the final report
+
+-----------------------------------------------------------------------
+
 ## [1.15.0] - 2020-05-06
 
 ### Fixed
 
-- Single folder collections will now show all the folders in multiple iteration runs. Credit to @praveendvd
+- Single folder collections will now show all the folders in multiple iteration runs. 🏆 Credit to @praveendvd 🏆
 - The `browserTitle` and `title` flags will now take dynamic values when run in a loop with multiple collections
 
 -----------------------------------------------------------------------
@@ -133,7 +141,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Fixed the sizing on the main summary panels if the number are greater than 9999
 - Iteration tab is now more visible when the iteration is selected
-- Closed some unclosed `<div>` tags in the default templates (Credit to @bassie1995)
+- Closed some unclosed `<div>` tags in the default templates 🏆 Credit to @bassie1995 🏆
 
 ### Added
 
@@ -170,8 +178,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Added an option to hide certain headers from requests and responses by name (Credit to @bassie1995)
-- Added an option to skip outputting headers and bodies in all requests and responses (Credit to @bassie1995)
+- Added an option to hide certain headers from requests and responses by name 🏆 Credit to @bassie1995 🏆
+- Added an option to skip outputting headers and bodies in all requests and responses 🏆 Credit to @bassie1995 🏆
 
 -----------------------------------------------------------------------
 
@@ -187,7 +195,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Added support to format XML responses (Credit to @ldz-w)
+- Added support to format XML responses 🏆 Credit to @ldz-w 🏆
 
 -----------------------------------------------------------------------
 
@@ -237,7 +245,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
-- Syntax error in the templates causing iterations on Safari to fail (Credit to @sam-viz)
+- Syntax error in the templates causing iterations on Safari to fail 🏆 Credit to @sam-viz 🏆
 
 -----------------------------------------------------------------------
 
@@ -245,7 +253,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Added support for `formdata` request bodies (Credit to @Prachi481992)
+- Added support for `formdata` request bodies 🏆 Credit to @Prachi481992 🏆
 - Added new tests to cover this request body type
 
 -----------------------------------------------------------------------

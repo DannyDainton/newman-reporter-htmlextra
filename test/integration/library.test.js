@@ -268,7 +268,18 @@ describe('Newman and htmlextra run from a script', function () {
             fs.stat(outFile, done);
         });
     });
-
+    it('should correctly generate the html report for a successful run and hide the response body', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-get-request.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { hideResponse: ['GET Simple request'], export: outFile } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-get-request');
+            fs.stat(outFile, done);
+        });
+    });
     it('should correctly generate the html report for a successful run and remove a multiple headers', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request-with-headers.json',
