@@ -30,6 +30,8 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 - Setting the `skipSensitiveData` will skip outputting the headers and bodies for all requests and responses.
 - More to come...
 
+---
+
 ## Interactive Report Examples
 
 To give you an idea of what the final reports will look like, I've added a couple of working examples here:
@@ -38,6 +40,8 @@ To give you an idea of what the final reports will look like, I've added a coupl
 - [Passing and Failing Iterations](https://s3.eu-west-2.amazonaws.com/newman-htmlextra-reports/Passing_And_Failing.html)
 
 These a _just_ a couple of the reports that can be produced from the reporter. You will find more options available to help configure the final output, in the sections below.
+
+---
 
 ## Install
 
@@ -54,6 +58,7 @@ For `local` install:
 ```console
 npm install -S newman-reporter-htmlextra
 ```
+---
 
 ## Usage
 
@@ -63,7 +68,7 @@ In order to enable this reporter, specify `htmlextra` in Newman's `-r` or `--rep
 newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra
 ```
 
-### Options
+### CLI Options
 
 #### With Newman CLI
 
@@ -78,6 +83,7 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 | `--reporter-htmlextra-title` | This optional flag can be used to give your report a different main `Title` in the centre of the report. If this is not set, the report will show "Newman Run Dashboard". |
 | `--reporter-htmlextra-titleSize` | An optional flag to reduce the size of the main report title. The sizes range from `1` to `6`, the higher the number, the smaller the title will be. The default size is `2`. |
 | `--reporter-htmlextra-logs` | This optional flag shows any console log statements in the collection, on the final report. This is `false` by default. |
+| `--reporter-htmlextra-hideResponse` | An optional flag which allows you to exclude certain `Response Bodies` from the final report |
 | `--reporter-htmlextra-skipHeaders` | An optional flag which allows you to exclude certain `Headers` from the final report |
 | `--reporter-htmlextra-omitHeaders` | An optional flag which allows you to exclude all `Headers` from the final report |
 | `--reporter-htmlextra-skipSensitiveData` | An optional flag that will exclude all the `Request/Response Headers` and the `Request/Response bodies`, from each request in the final report. This will only show the main request info and the Test Results. This is `false` by default. |
@@ -128,6 +134,12 @@ To exclude all the `Request/Response Headers` and the `Request/Response Body` in
 newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv -r htmlextra --reporter-htmlextra-skipSensitiveData
 ```
 
+To exclude a certain `Response Body` from the final report by passing in the name of the `Request`, the following command can be used:
+
+```console
+newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv --folder 'Authentication Methods' -r htmlextra --reporter-htmlextra-hideResponse 'Hawk Auth' 
+```
+---
 
 #### With Newman as a Library
 
@@ -276,6 +288,26 @@ newman.run({
     console.log('collection run complete!');
 });
 ```
+Add the `hideResponse` property to the `htmlextra` object, to pass in an array of `Request` names. It will then not include the `Response Body` for those requests.
+
+```javascript
+const newman = require('newman');
+
+newman.run({
+    collection: require('./examples/Restful_Booker_Collection.json'), // can also provide a URL or path to a local JSON file.
+    environment: require('./examples/Restful_Booker_Environment.json'),
+    reporters: 'htmlextra',
+    reporter: {
+        htmlextra: {
+            export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
+            hideResponse: [ 'Ping the API'], // optional, tells the reporter to not output the response body of the request in the report.
+        }
+    }
+}, function (err) {
+    if (err) { throw err; }
+    console.log('collection run complete!');
+});
+```
 
 Add the `skipSensitiveData` property to the `htmlextra` object, to exclude headers and bodies in all requests and responses.
 
@@ -297,8 +329,9 @@ newman.run({
     console.log('collection run complete!');
 });
 ```
+---
 
-## Reports
+## Report Examples
 
 ### Light Theme
 
@@ -324,11 +357,28 @@ The `console.log()` statements used in the Collections are shown in the main req
 
 ![Console Log](./examples/Console_Log_View.PNG)
 
+---
+
 ## Compatibility
 
 | **newman-reporter-htmlextra** | **newman** | **node** |
 |:------------------------:|:----------:|:--------:|
 |         >= v1.1.0          | >= v4.2.3  | >= v10.x  |
+
+---
+
+## Project Contributors
+
+I would be lying if I said that I've created this reporter all on my own, I need to say a massive **_Thank You!_** to the following folks for helping make `htmlextra` even better:
+
+- [@codenirvana](https://github.com/codenirvana)
+- [@ldz-w](https://github.com/ldz-w)
+- [@sam-viz](https://github.com/sam-viz)
+- [@bassie1995](https://github.com/bassie1995)
+- [@praveendvd](https://github.com/praveendvd)
+- [@Prachi481992](https://github.com/Prachi481992)
+
+---
 
 ## Community Support
 
@@ -338,9 +388,13 @@ If you are interested in talking to the Postman team and fellow Newman users, yo
 
 Sign in using your Postman account to participate in the discussions and don't forget to take advantage of the [search bar](https://community.getpostman.com/search?q=newman) - the answer to your question might already be waiting for you! Don’t want to log in? Then lurk on the side-lines and absorb all the knowledge.
 
+---
+
 ## License
 
 This software is licensed under Apache-2.0. Copyright Postdot Technologies, Inc. See the [LICENSE.md](LICENSE.md) file for more information.
+
+---
 
 ## Special mention
 

@@ -898,6 +898,7 @@ input:checked + .slider:before {
                 {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
+                {{#isNotIn item.name @root.hideResponse}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
                     <div class="card-deck">
@@ -919,6 +920,7 @@ input:checked + .slider:before {
                     </div>
                     </div>
                 </div>
+                {{/isNotIn}}
                 {{/unless}}
                 {{#if consoleLogs.length}}
                 <div class="row">

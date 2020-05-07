@@ -704,6 +704,7 @@ body, html {
                 {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
+                {{#isNotIn item.name @root.hideResponse}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
                     <div class="card-deck">
@@ -725,6 +726,7 @@ body, html {
                     </div>
                     </div>
                 </div>
+                {{/isNotIn}} 
                 {{/unless}}
                 {{#if consoleLogs.length}}
                 <div class="row">
