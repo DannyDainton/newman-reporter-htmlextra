@@ -1,27 +1,90 @@
 /* eslint-disable consistent-return */
-const fs = require('fs');
+const fs = require('fs'),
+    _ = require('lodash'),
+
+    //  File name validation regex from owasp https://owasp.org/www-community/OWASP_Validation_Regex_Repository
+    pattern = new RegExp('^(([a-zA-Z]:|\\\\)\\\\)?(((\\.)|' +
+     '(\\.\\.)|([^\\\\/:*?"|<>. ](([^\\\\/:*?"|<>. ])|' +
+     '([^\\\\/:*?"|<>]*[^\\\\/:*?"|<>. ]))?))' +
+     '\\\\)*[^\\\\/:*?"|<>. ](([^\\\\/:*?"|<>. ])' +
+     '|([^\\\\/:*?"|<>]*[^\\\\/:*?"|<>. ]))?$');
 
 describe('Newman and htmlextra run from the CLI', function () {
     const outFile = 'out/newman-report.html',
-        newman = 'node ./.temp/node_modules/newman/bin/newman.js';
+        newman = 'node ./.temp/node_modules/newman/bin/newman.js',
+        invalidCollectionNameFolder = 'test/requests/collection_with_name_containing_invalid_characters';
+    let files = fs.readdirSync(invalidCollectionNameFolder);
 
     beforeEach(function (done) {
         fs.stat('out', function (err) {
             if (err) {
                 return fs.mkdir('out', done);
             }
-
             done();
         });
     });
 
     afterEach(function (done) {
+        let files = fs.readdirSync('newman');
+
+        files.forEach(function (file) {
+            fs.unlinkSync('newman/' + file);
+        });
+
         fs.stat(outFile, function (err) {
             if (err) {
                 return done();
             }
-
             fs.unlink(outFile, done);
+        });
+    });
+
+    // Get all collection files from the invalidCollectionNameFolder
+    files = files.filter(function (file) {
+        return (/^((?!(package(-lock)?))|.+)\.json/).test(file);
+    });
+
+    // For each collection send newman.run and validate output
+    files.forEach(function (file) {
+        let collectionFile = JSON.parse(fs.readFileSync(invalidCollectionNameFolder + '/' + file, 'utf8')),
+            regCreator = function (name) {
+                return (new RegExp('(' + _.escapeRegExp(name) +
+                            ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
+            },
+            checkFileExistance = function (input, outputFile) {
+                let status, output,
+                    timeStamp = outputFile[0].match(/-\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-\d{3}-\d.html$/g);
+
+                input = (input).includes('\\') ? (input).split('\\').slice(-1)[0] : input;
+                if (outputFile.length !== 0) {
+                    output = (outputFile[0]).match(regCreator(input));
+                    status = output === null ? `Expected ${input}${timeStamp[0]}` :
+                        output[0];
+                }
+                else if (outputFile.length === 0) {
+                    status = 'No output files were created';
+                }
+
+                return status;
+            };
+
+        it('should correctly generate the html report for collection' +
+        'name (' + collectionFile.info.name + ')', function (done) {
+            // eslint-disable-next-line max-len
+            let collection = invalidCollectionNameFolder + '/' + file;
+
+            exec(`${newman} run ${collection} -r htmlextra  --reporter-htmlextra-darkTheme`,
+                function (code) {
+                    expect(code, 'should have exit code of 0').to.equal(0);
+                    let outputFile = fs.readdirSync('newman'),
+                        name = collectionFile.info.name,
+                        status = (name).match(pattern) === null ?
+                            checkFileExistance('newman_htmlextra', outputFile) :
+                            checkFileExistance(name, outputFile);
+
+                    expect(outputFile[0]).to.include(status);
+                    done();
+                });
         });
     });
 
@@ -127,14 +190,6 @@ describe('Newman and htmlextra run from the CLI', function () {
     it('should correctly generate the html report for a successful run and remove a single header', function (done) {
         // eslint-disable-next-line max-len
         exec(`${newman} run test/requests/simple-get-request-with-headers.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-skipHeaders testHeader`,
-            function (code) {
-                expect(code, 'should have exit code of 0').to.equal(0);
-                fs.stat(outFile, done);
-            });
-    });
-    it('should correctly generate the html report for a successful run and hide the response body', function (done) {
-        // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-hideResponse 'GET Simple request'`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
