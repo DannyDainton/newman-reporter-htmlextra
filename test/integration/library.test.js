@@ -51,12 +51,13 @@ describe('Newman and htmlextra run from a script', function () {
                             ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
             },
             checkFileExistance = function (input, outputFile) {
-                let status;
+                let status, output,
+                    timeStamp = outputFile[0].match(/-\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2}-\d{3}-\d.html$/g);
 
-                input = (input).includes('\\') ? (input).split('\\').slice(-1)[0] : input;
+                output = (input).includes('\\') ? (input).split('\\').slice(-1)[0] : input;
                 if (outputFile.length !== 0) {
-                    input = (outputFile[0]).match(regCreator(input));
-                    status = input === null ? 'File name was not as expected, got ' + outputFile[0] :
+                    input = (outputFile[0]).match(regCreator(output));
+                    status = input === null ? `Expected ${output}${timeStamp[0]}` :
                         input[0];
                 }
                 else if (outputFile.length === 0) {
@@ -81,7 +82,7 @@ describe('Newman and htmlextra run from a script', function () {
                         checkFileExistance('newman_htmlextra', outputFile) :
                         checkFileExistance(name, outputFile);
 
-                expect(status).to.equal(outputFile[0]);
+                expect(status).to.include(outputFile[0]);
                 expect(summary.collection.name).to.equal(name);
                 expect(summary.run.stats.iterations.total).to.equal(1);
                 done();
