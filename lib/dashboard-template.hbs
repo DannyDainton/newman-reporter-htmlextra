@@ -633,6 +633,7 @@ input:checked + .slider:before {
             <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
             
             <div class="btn-group float-right" role="group" aria-label="Button Group">
+                <button id="showOnlyFailures" class="btn btn-outline-success btn-sm float-right">Show Only Failures</button>
                 <button id="openAll" class="btn btn-outline-success btn-sm float-right">Expand Folders</button>
                 <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right">Expand Requests</button>
                 <button id="closeAll" class="btn btn-outline-success btn-sm float-right">Collapse Folders</button>
@@ -1225,10 +1226,10 @@ function topFunction() {
 
 window.onload = function () {
 
-  // hides all blocks of response
+  // set display for all blocks of response
   var allItems = document.querySelectorAll('[class*=iteration-]');
   allItems.forEach(function(elem){
-    elem.style.display = 'none';
+    elem.style.display = 'block';
   });
 
   {{#with summary}} {{#with stats}}
@@ -1246,8 +1247,8 @@ window.onload = function () {
     li.classList.add("itPassed");
 
     li.addEventListener('click', function() {
-
-      let allItems = document.querySelectorAll('[class*=iteration-]');
+      //set display to none for all except row
+      let allItems = document.querySelectorAll('[class*=iteration-]:not(.row)');
       allItems.forEach(function(elem) {
         elem.style.display = 'none';
       })
@@ -1259,7 +1260,8 @@ window.onload = function () {
     
       this.style.borderBottom = 'solid 3px #032a33';
 
-      let items = document.querySelectorAll("." + this.id);
+      //This seems to be always false as style is set none at start of click, could remove this code
+      let items = document.querySelectorAll("." + this.id + ':not(.row)');
       items.forEach(function(elem) {
         elem.style.display = elem.style.display == 'block' ? 'none' : 'block';
       })
@@ -1291,7 +1293,6 @@ $(document).ready(function(){
 });
 </script>
 
-
 <script>
 $(document).ready(function(){
   $("#filterInput").on("input paste", function() {
@@ -1299,6 +1300,19 @@ $(document).ready(function(){
     $("#iterationList li").filter(function() {
       $(this).toggle($(this).text().indexOf(value) > -1)
     });
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#showOnlyFailures").on("click", function () {  
+	$("#iterationList li.itPassed").each(function () {
+      $(this).toggle();
+    });
+	  $("div.bg-success [id*=requests]").parents('[class^="row iteration-"]').each(function () {
+      $(this).toggle();
+    });     
   });
 });
 </script>
