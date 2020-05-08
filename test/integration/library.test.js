@@ -47,7 +47,7 @@ describe('Newman and htmlextra run from a script', function () {
     files.forEach(function (file) {
         let collectionFile = JSON.parse(fs.readFileSync(invalidCollectionNameFolder + '/' + file, 'utf8')),
             regCreator = function (name) {
-                return (new RegExp('^(' + _.escapeRegExp(name) +
+                return (new RegExp('(' + _.escapeRegExp(name) +
                             ')-\\d{4}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{2}-\\d{3}-\\d.html$'));
             },
             checkFileExistance = function (input, outputFile) {
@@ -56,7 +56,7 @@ describe('Newman and htmlextra run from a script', function () {
                 input = (input).includes('\\') ? (input).split('\\').slice(-1)[0] : input;
                 if (outputFile.length !== 0) {
                     input = (outputFile[0]).match(regCreator(input));
-                    status = input === null ? 'File name was not as expected, got' + outputFile[0] :
+                    status = input === null ? 'File name was not as expected, got ' + outputFile[0] :
                         input[0];
                 }
                 else if (outputFile.length === 0) {
