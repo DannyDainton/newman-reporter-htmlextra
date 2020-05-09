@@ -633,10 +633,9 @@ input:checked + .slider:before {
             <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
             
             <div class="btn-group float-right" role="group" aria-label="Button Group">
+                <button id="showFailedIterations" class="btn btn-outline-success btn-sm float-right">Show Failed Iterations</button>
                 <button id="openAll" class="btn btn-outline-success btn-sm float-right">Expand Folders</button>
                 <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right">Expand Requests</button>
-                <button id="closeAll" class="btn btn-outline-success btn-sm float-right">Collapse Folders</button>
-                <button id="closeAllRequests" class="btn btn-outline-success btn-sm float-right">Collapse Requests</button>
             </div>
 
     <div class="text-uppercase" id="execution-menu">
@@ -1051,10 +1050,23 @@ $(document).ready(function() {
 
 <script>
 $('#openAll').on('click', function(e) {
-{{#each aggregations}}
-    $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('collapsed')
-    $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').addClass('show')
-{{/each}}
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+        {{#each aggregations}}
+            $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('collapsed')
+            $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').addClass('show')
+        {{/each}}
+        break;
+    case 2:
+        {{#each aggregations}}
+            $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').addClass('collapsed')
+            $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('show')
+        {{/each}}
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
 })
 </script>
 
@@ -1069,14 +1081,31 @@ $('#closeAll').on('click', function(e) {
 
 <script>
 $('#openAllRequests').on('click', function(e) {
-{{#each aggregations}}
-{{#each executions}}
-    $('#requests-{{cursor.ref}}').removeClass('collapsed')
-    $('#collapse-{{cursor.ref}}').removeClass('collapsed')
-    $('#requests-{{cursor.ref}}').addClass('show')
-    $('#collapse-{{cursor.ref}}').addClass('show')
-{{/each}}
-{{/each}}
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#requests-{{cursor.ref}}').removeClass('collapsed')
+            $('#collapse-{{cursor.ref}}').removeClass('collapsed')
+            $('#requests-{{cursor.ref}}').addClass('show')
+            $('#collapse-{{cursor.ref}}').addClass('show')
+        {{/each}}
+        {{/each}}
+        break;
+    case 2:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#requests-{{cursor.ref}}').addClass('collapsed')
+            $('#collapse-{{cursor.ref}}').addClass('collapsed')
+            $('#requests-{{cursor.ref}}').removeClass('show')
+            $('#collapse-{{cursor.ref}}').removeClass('show')
+        {{/each}}
+        {{/each}}
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
 })
 </script>
 
@@ -1200,17 +1229,15 @@ function scrollFunction() {
     document.getElementById("topOfFailuresScreen").style.display = "block";
     document.getElementById("topOfSkippedScreen").style.display = "block";
     document.getElementById("openAll").style.display = "none";
-    document.getElementById("closeAll").style.display = "none";
     document.getElementById("openAllRequests").style.display = "none";
-    document.getElementById("closeAllRequests").style.display = "none";
+    document.getElementById("showFailedIterations").style.display = "none";
   } else {
     document.getElementById("topOfRequestsScreen").style.display = "none";
     document.getElementById("topOfFailuresScreen").style.display = "none";
     document.getElementById("topOfSkippedScreen").style.display = "none";
     document.getElementById("openAll").style.display = "block";
-    document.getElementById("closeAll").style.display = "block";
     document.getElementById("openAllRequests").style.display = "block";
-    document.getElementById("closeAllRequests").style.display = "block";
+    document.getElementById("showFailedIterations").style.display = "block";
   }
 }
 
@@ -1225,7 +1252,7 @@ function topFunction() {
 
 window.onload = function () {
 
-  // hides all blocks of response
+  // set display for all blocks of response
   var allItems = document.querySelectorAll('[class*=iteration-]');
   allItems.forEach(function(elem){
     elem.style.display = 'none';
@@ -1246,7 +1273,7 @@ window.onload = function () {
     li.classList.add("itPassed");
 
     li.addEventListener('click', function() {
-
+      //set display to none for all except row
       let allItems = document.querySelectorAll('[class*=iteration-]');
       allItems.forEach(function(elem) {
         elem.style.display = 'none';
@@ -1291,15 +1318,38 @@ $(document).ready(function(){
 });
 </script>
 
-
 <script>
 $(document).ready(function(){
   $("#filterInput").on("input paste", function() {
     var value = $(this).val();
     $("#iterationList li").filter(function() {
+	  $("#showFailedIterations").data("clickCount") ? $("#showFailedIterations").click():null;
       $(this).toggle($(this).text().indexOf(value) > -1)
     });
   });
+});
+</script>
+
+<script>
+$(document).ready(function(){  
+  if($("#iterationList li.itFailed").length){
+	$("#showFailedIterations").data("clickCount", 0);
+    $("#showFailedIterations").on("click", function () {
+        let clickCount = $(this).data("clickCount")
+		$("#filterInput").val()!="" && clickCount==0 ? 
+		$("#filterInput").val('').trigger('input'): null;
+								
+        let selectedIteration = $('#iterationList li').filter(function () { 
+            return $(this).css('border-bottom').indexOf("solid") > -1 && $(this).hasClass('itFailed');
+        });
+        selectedIteration.length || clickCount ? null : $("#iterationList li.itFailed")[0].click()
+        $("#iterationList li.itPassed").each(function () {
+          $(this).toggle();
+         });
+         clickCount = clickCount > 0 ? 0 : ++clickCount;
+        $(this).data("clickCount", clickCount)     
+    });
+  }
 });
 </script>
 
