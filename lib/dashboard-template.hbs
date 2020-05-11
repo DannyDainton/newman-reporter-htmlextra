@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow-y: scroll;">
 <head>
   <meta charset="UTF-8">
   <title>{{browserTitle}}</title>
@@ -633,10 +633,11 @@ input:checked + .slider:before {
             <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
             
             <div class="btn-group float-right" role="group" aria-label="Button Group">
-                <button id="openAll" class="btn btn-outline-success btn-sm float-right">Expand Folders</button>
-                <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right">Expand Requests</button>
-                <button id="closeAll" class="btn btn-outline-success btn-sm float-right">Collapse Folders</button>
-                <button id="closeAllRequests" class="btn btn-outline-success btn-sm float-right">Collapse Requests</button>
+                {{#if summary.failures.length}}
+                <button id="showOnlyFailures" class="btn btn-outline-success btn-sm float-right">Show Only Failures</button>
+                {{/if}}
+                <button id="openAll" class="btn btn-outline-success btn-sm float-right">&nbsp;Expand Folders&nbsp;</button>
+                <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right">&nbsp;Expand Requests&nbsp;</button>
             </div>
 
     <div class="text-uppercase" id="execution-menu">
@@ -1051,45 +1052,57 @@ $(document).ready(function() {
 
 <script>
 $('#openAll').on('click', function(e) {
-{{#each aggregations}}
-    $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('collapsed')
-    $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').addClass('show')
-{{/each}}
-})
-</script>
-
-<script>
-$('#closeAll').on('click', function(e) {
-{{#each aggregations}}
-    $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').addClass('collapsed')
-    $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('show')
-{{/each}}
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+        {{#each aggregations}}
+            $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('collapsed')
+            $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').addClass('show')
+        {{/each}}
+        $('#openAll').html("Collapse Folders");
+        break;
+    case 2:
+        {{#each aggregations}}
+            $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').addClass('collapsed')
+            $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('show')
+        {{/each}}
+        $('#openAll').html("&nbsp;Expand Folders&nbsp;");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
 })
 </script>
 
 <script>
 $('#openAllRequests').on('click', function(e) {
-{{#each aggregations}}
-{{#each executions}}
-    $('#requests-{{cursor.ref}}').removeClass('collapsed')
-    $('#collapse-{{cursor.ref}}').removeClass('collapsed')
-    $('#requests-{{cursor.ref}}').addClass('show')
-    $('#collapse-{{cursor.ref}}').addClass('show')
-{{/each}}
-{{/each}}
-})
-</script>
-
-<script>
-$('#closeAllRequests').on('click', function(e) {
-{{#each aggregations}}
-{{#each executions}}
-    $('#requests-{{cursor.ref}}').addClass('collapsed')
-    $('#collapse-{{cursor.ref}}').addClass('collapsed')
-    $('#requests-{{cursor.ref}}').removeClass('show')
-    $('#collapse-{{cursor.ref}}').removeClass('show')
-{{/each}}
-{{/each}}
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#requests-{{cursor.ref}}').removeClass('collapsed')
+            $('#collapse-{{cursor.ref}}').removeClass('collapsed')
+            $('#requests-{{cursor.ref}}').addClass('show')
+            $('#collapse-{{cursor.ref}}').addClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllRequests').html("Collapse Requests");
+        break;
+    case 2:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#requests-{{cursor.ref}}').addClass('collapsed')
+            $('#collapse-{{cursor.ref}}').addClass('collapsed')
+            $('#requests-{{cursor.ref}}').removeClass('show')
+            $('#collapse-{{cursor.ref}}').removeClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllRequests').html("&nbsp;Expand Requests&nbsp;");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
 })
 </script>
 
@@ -1200,17 +1213,15 @@ function scrollFunction() {
     document.getElementById("topOfFailuresScreen").style.display = "block";
     document.getElementById("topOfSkippedScreen").style.display = "block";
     document.getElementById("openAll").style.display = "none";
-    document.getElementById("closeAll").style.display = "none";
     document.getElementById("openAllRequests").style.display = "none";
-    document.getElementById("closeAllRequests").style.display = "none";
+    document.getElementById("showOnlyFailures").style.display = "none";
   } else {
     document.getElementById("topOfRequestsScreen").style.display = "none";
     document.getElementById("topOfFailuresScreen").style.display = "none";
     document.getElementById("topOfSkippedScreen").style.display = "none";
     document.getElementById("openAll").style.display = "block";
-    document.getElementById("closeAll").style.display = "block";
     document.getElementById("openAllRequests").style.display = "block";
-    document.getElementById("closeAllRequests").style.display = "block";
+    document.getElementById("showOnlyFailures").style.display = "block";
   }
 }
 
@@ -1225,10 +1236,10 @@ function topFunction() {
 
 window.onload = function () {
 
-  // hides all blocks of response
+  // set display for all blocks of response
   var allItems = document.querySelectorAll('[class*=iteration-]');
   allItems.forEach(function(elem){
-    elem.style.display = 'none';
+    elem.style.display = 'block';
   });
 
   {{#with summary}} {{#with stats}}
@@ -1246,8 +1257,8 @@ window.onload = function () {
     li.classList.add("itPassed");
 
     li.addEventListener('click', function() {
-
-      let allItems = document.querySelectorAll('[class*=iteration-]');
+      //set display to none for all except row
+      let allItems = document.querySelectorAll('[class*=iteration-]:not(.row)');
       allItems.forEach(function(elem) {
         elem.style.display = 'none';
       })
@@ -1259,7 +1270,7 @@ window.onload = function () {
     
       this.style.borderBottom = 'solid 3px #032a33';
 
-      let items = document.querySelectorAll("." + this.id);
+      let items = document.querySelectorAll("." + this.id + ':not(.row)');
       items.forEach(function(elem) {
         elem.style.display = elem.style.display == 'block' ? 'none' : 'block';
       })
@@ -1291,15 +1302,42 @@ $(document).ready(function(){
 });
 </script>
 
-
 <script>
 $(document).ready(function(){
   $("#filterInput").on("input paste", function() {
     var value = $(this).val();
     $("#iterationList li").filter(function() {
+	  $("#showOnlyFailures").data("clickCount") ? $("#showOnlyFailures").click():null;
       $(this).toggle($(this).text().indexOf(value) > -1)
     });
   });
+});
+</script>
+
+<script>
+$(document).ready(function(){  
+  if($("#iterationList li.itFailed").length){
+	$("#showOnlyFailures").data("clickCount", 0);
+    $("#showOnlyFailures").on("click", function () {
+        let clickCount = $(this).data("clickCount")
+		$("#filterInput").val()!="" && clickCount==0 ? 
+		$("#filterInput").val('').trigger('input'): null;
+								
+        let selectedIteration = $('#iterationList li').filter(function () { 
+            return $(this).css('border-bottom').indexOf("solid") > -1 && $(this).hasClass('itFailed');
+        });
+        selectedIteration.length || clickCount ? null : $("#iterationList li.itFailed")[0].click()
+        $("#iterationList li.itPassed").each(function () {
+          $(this).toggle();
+         });
+        $("div.bg-success [id*=requests]").parents('[class^="row iteration-"]').each(function () {
+          $(this).toggle();
+         });
+        clickCount = clickCount ? 0 : ++clickCount;
+        clickCount ? $("#showOnlyFailures").html("Show All Iterations") : $("#showOnlyFailures").html("Show Only Failures");
+        $(this).data("clickCount", clickCount)     
+    });
+  }
 });
 </script>
 
