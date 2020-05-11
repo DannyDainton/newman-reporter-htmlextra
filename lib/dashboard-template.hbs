@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>{{browserTitle}}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet prefetch" href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github-gist.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
 
@@ -49,7 +49,7 @@
 
 body {
   padding-top:30px;
-  background-color: var(--background-color);
+  background-color: var(--background-color)!important;
   color: var(--text-color);
 }
 
@@ -65,12 +65,12 @@ body {
   overflow-y: auto;
 }
 
-.card-header {
-    background-color: var(--card-bg)!important;
+body.theme-dark .card-header {
+    background-color: #444;
 }
 
-.card-body {
-    background-color: var(--card-bg)!important;
+body.theme-light .card-header {
+    background-color: #f7f7f7;
 }
 
 .card-footer {
@@ -160,12 +160,20 @@ body.theme-dark .text-dark {
     color: #d1dae4!important;
 }
 
-.badge-light {
+body.theme-dark .badge-light {
     color: #212529;
-    background-color: var(--badge-bg);
+    background-color: #cdd3db;
 }
 
-.bg-danger {
+body.theme-light .badge-light {
+    color: #212529;
+    background-color: #f8f9fa;
+}
+body.theme-light .bg-danger {
+    background-color: var(--failure)!important;
+}
+
+body.theme-dark .bg-danger {
     background-color: var(--failure)!important;
 }
 
@@ -240,6 +248,22 @@ body, html {
   overflow:hidden;
 }
 
+body.theme-dark .card-body {
+    background-color: #444;
+}
+
+body.theme-light .card-body {
+    background-color: #f7f7f7;
+}
+
+body.theme-dark .card-body .bg-danger {
+    background-color: var(--failure)!important;
+}
+
+body.theme-light .card-body .bg-danger {
+    background-color: var(--failure)!important;
+}
+
 .card-body .rotate {
   z-index: 8;
   float: right;
@@ -247,7 +271,7 @@ body, html {
 }
 
 .card-body .rotate i {
-  color: rgba(20, 20, 20, 0.15);
+  color: #14141426;
   position: absolute;
   left: 0;
   left: auto;
@@ -260,6 +284,7 @@ body, html {
   -ms-transform: rotate(-44deg);
   transform: rotate(-44deg);
 }
+
 .dyn-height {
   max-height:350px;
   overflow-y:auto;
@@ -634,10 +659,10 @@ input:checked + .slider:before {
             
             <div class="btn-group float-right" role="group" aria-label="Button Group">
                 {{#if summary.failures.length}}
-                <button id="showOnlyFailures" class="btn btn-outline-success btn-sm float-right">Show Only Failures</button>
+                <button id="showOnlyFailures" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width:160px;">Show Failed Iterations</button>
                 {{/if}}
-                <button id="openAll" class="btn btn-outline-success btn-sm float-right">&nbsp;Expand Folders&nbsp;</button>
-                <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right">&nbsp;Expand Requests&nbsp;</button>
+                <button id="openAll" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 140px;">Expand Folders</button>
+                <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 140px;">Expand Requests</button>
             </div>
 
     <div class="text-uppercase" id="execution-menu">
@@ -1019,7 +1044,7 @@ input:checked + .slider:before {
 {{/each}}
 {{/inline}}
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
@@ -1028,6 +1053,9 @@ input:checked + .slider:before {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {{/eq}}
+
+<!-- Data Table Configuration -->
+
 <script>
 {{#each aggregations}}
 {{#each executions}}
@@ -1042,6 +1070,8 @@ $(document).ready( function () {
 {{/each}}
 </script>
 
+<!-- Tooltip Configuration -->
+
 <script>
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip({
@@ -1049,6 +1079,8 @@ $(document).ready(function() {
     })
 })
 </script>
+
+<!-- Show/Hide The Folders -->
 
 <script>
 $('#openAll').on('click', function(e) {
@@ -1066,13 +1098,15 @@ switch (clickCount){
             $('#folder-{{parent.id}}-iteration-{{parent.iteration}}').addClass('collapsed')
             $('#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}').removeClass('show')
         {{/each}}
-        $('#openAll').html("&nbsp;Expand Folders&nbsp;");
+        $('#openAll').html("Expand Folders");
         break;
 }
 clickCount = clickCount > 1 ? 1 : ++clickCount;
 $(this).data("clickCount", clickCount)
 })
 </script>
+
+<!-- Show/Hide The Requests -->
 
 <script>
 $('#openAllRequests').on('click', function(e) {
@@ -1098,13 +1132,15 @@ switch (clickCount){
             $('#collapse-{{cursor.ref}}').removeClass('show')
         {{/each}}
         {{/each}}
-        $('#openAllRequests').html("&nbsp;Expand Requests&nbsp;");
+        $('#openAllRequests').html("Expand Requests");
         break;
 }
 clickCount = clickCount > 1 ? 1 : ++clickCount;
 $(this).data("clickCount", clickCount)
 })
 </script>
+
+<!-- Pretty Print the Response Body-->
 
 <script>
 function isJSON(data)
@@ -1164,6 +1200,7 @@ $(".prettyPrint").each(function () {
 
 
 <!-- Copy Response Body To Clipboard -->
+
 <script>
     var clipboard = new ClipboardJS('.copyButton');
 
@@ -1189,6 +1226,7 @@ $(".prettyPrint").each(function () {
 </script>
 
 <!-- Render the Description Markdown -->
+
 <script>
     const remarkable = new Remarkable();
 
@@ -1204,6 +1242,8 @@ $(".prettyPrint").each(function () {
     }
 </script>
 
+<!-- Show/Hide The Toggles When Scrolling The Page -->
+
 <script>
 window.onscroll = function() {scrollFunction()};
 
@@ -1214,14 +1254,18 @@ function scrollFunction() {
     document.getElementById("topOfSkippedScreen").style.display = "block";
     document.getElementById("openAll").style.display = "none";
     document.getElementById("openAllRequests").style.display = "none";
+    {{#if summary.failures.length}}
     document.getElementById("showOnlyFailures").style.display = "none";
+    {{/if}}
   } else {
     document.getElementById("topOfRequestsScreen").style.display = "none";
     document.getElementById("topOfFailuresScreen").style.display = "none";
     document.getElementById("topOfSkippedScreen").style.display = "none";
     document.getElementById("openAll").style.display = "block";
     document.getElementById("openAllRequests").style.display = "block";
+    {{#if summary.failures.length}}
     document.getElementById("showOnlyFailures").style.display = "block";
+    {{/if}}
   }
 }
 
@@ -1230,6 +1274,8 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+
+<!-- Creates The Iteration Tabs -->
 
 <script type="text/javascript">
     "use strict";
@@ -1292,6 +1338,8 @@ window.onload = function () {
 }
 </script>
 
+<!-- Create the Selected Iteration Label -->
+
 <script>
 $(document).ready(function(){
     $(function() {
@@ -1301,6 +1349,8 @@ $(document).ready(function(){
     });
 });
 </script>
+
+<!-- Filter Action for the Iterations -->
 
 <script>
 $(document).ready(function(){
@@ -1313,6 +1363,8 @@ $(document).ready(function(){
   });
 });
 </script>
+
+<!-- Showing the Failed Interations -->
 
 <script>
 $(document).ready(function(){  
@@ -1334,12 +1386,14 @@ $(document).ready(function(){
           $(this).toggle();
          });
         clickCount = clickCount ? 0 : ++clickCount;
-        clickCount ? $("#showOnlyFailures").html("Show All Iterations") : $("#showOnlyFailures").html("Show Only Failures");
+        clickCount ? $("#showOnlyFailures").html("Show All Iterations") : $("#showOnlyFailures").html("Show Failed Iterations");
         $(this).data("clickCount", clickCount)     
     });
   }
 });
 </script>
+
+<!-- Set The Theme Of The Report -->
 
 <script>
         function setTheme(themeName) {

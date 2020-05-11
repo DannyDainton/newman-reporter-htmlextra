@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.15.2] - 2020-05-11
+
+### Added
+
+- Added a toggle on the report to switch between showing all the iteration or just showing the iterations that failed 🏆 Credit to @praveendvd 🏆
+- Improved the button actions for showing/hiding folders and requests 🏆 Credit to @praveendvd 🏆
+- Added Integration tests for the valid and invalid filenames 🏆 Credit to @praveendvd 🏆
+
+### Fixed
+
+- Fixed an issue that caused the report to not be created if the filename had invalid characters 🏆 Credit to @praveendvd 🏆
+- Fixed a styling issue that caused the report to flicker when refreshed
+
+-----------------------------------------------------------------------
+
 ## [1.15.1] - 2020-05-07
 
 ### Added
