@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>{{browserTitle}}</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet prefetch" href='https://use.fontawesome.com/releases/v5.0.10/css/all.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github-gist.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
 
@@ -50,7 +50,7 @@
 
 body {
   padding-top:30px;
-  background-color: var(--background-color);
+  background-color: var(--background-color)!important;
   color: var(--text-color);
 }
 
@@ -66,12 +66,12 @@ body {
   overflow-y: auto;
 }
 
-.card-header {
-    background-color: var(--card-bg)!important;
+body.theme-dark .card-header {
+    background-color: #444;
 }
 
-.card-body {
-    background-color: var(--card-bg)!important;
+body.theme-light .card-header {
+    background-color: #f7f7f7;
 }
 
 .card-footer {
@@ -82,7 +82,7 @@ body {
 .card-deck {
     background-color: var(--bg-card-deck)!important;
 }
-.form-control, .form-control:focus {
+.form-control {
     background: var(--form-input);
 }
 
@@ -155,18 +155,27 @@ body.theme-dark .hljs {
 
 body.theme-dark .alert-dark {
     background-color: #636467!important;
+    color: #ccd2d8;
 }
 
 body.theme-dark .text-dark {
     color: #d1dae4!important;
 }
 
-.badge-light {
+body.theme-dark .badge-light {
     color: #212529;
-    background-color: var(--badge-bg);
+    background-color: #cdd3db;
 }
 
-.bg-danger {
+body.theme-light .badge-light {
+    color: #212529;
+    background-color: #f8f9fa;
+}
+body.theme-light .bg-danger {
+    background-color: var(--failure)!important;
+}
+
+body.theme-dark .bg-danger {
     background-color: var(--failure)!important;
 }
 
@@ -241,6 +250,22 @@ body, html {
   overflow:hidden;
 }
 
+body.theme-dark .card-body {
+    background-color: #444;
+}
+
+body.theme-light .card-body {
+    background-color: #f7f7f7;
+}
+
+body.theme-dark .card-body .bg-danger {
+    background-color: var(--failure)!important;
+}
+
+body.theme-light .card-body .bg-danger {
+    background-color: var(--failure)!important;
+}
+
 .card-body .rotate {
   z-index: 8;
   float: right;
@@ -248,7 +273,7 @@ body, html {
 }
 
 .card-body .rotate i {
-  color: rgba(20, 20, 20, 0.15);
+  color: #14141426;
   position: absolute;
   left: 0;
   left: auto;
@@ -261,6 +286,7 @@ body, html {
   -ms-transform: rotate(-44deg);
   transform: rotate(-44deg);
 }
+
 .dyn-height {
   max-height:350px;
   overflow-y:auto;
@@ -419,7 +445,7 @@ input:checked + .slider:before {
   <div class="col-md-9 col-lg-12 main">
    <h1 class="display-{{titleSize}} text-center">{{title}}</h1>
 {{#with summary}}
-   <h4 class="text-center">{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}</h4>
+   <h5 class="text-center">{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}</h5>
    <div class="row">
     <div class="col-lg-3 col-md-6">
      <div class="card text-white card-success">
@@ -632,7 +658,6 @@ input:checked + .slider:before {
 
             <div class="btn-group float-right" role="group" aria-label="Button Group">
                 <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right">Expand Requests</button>
-                <button id="closeAllRequests" class="btn btn-outline-success btn-sm float-right">Collapse Requests</button>
             </div>
 
     <div class="text-uppercase" id="execution-menu">
@@ -1009,7 +1034,7 @@ input:checked + .slider:before {
 {{/each}}
 {{/inline}}
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
@@ -1165,6 +1190,40 @@ $(".prettyPrint").each(function () {
     }
 </script>
 
+<!-- Show/Hide The Requests -->
+
+<script>
+$('#openAllRequests').on('click', function(e) {
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#requests-{{cursor.ref}}').removeClass('collapsed')
+            $('#collapse-{{cursor.ref}}').removeClass('collapsed')
+            $('#requests-{{cursor.ref}}').addClass('show')
+            $('#collapse-{{cursor.ref}}').addClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllRequests').html("Collapse Requests");
+        break;
+    case 2:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#requests-{{cursor.ref}}').addClass('collapsed')
+            $('#collapse-{{cursor.ref}}').addClass('collapsed')
+            $('#requests-{{cursor.ref}}').removeClass('show')
+            $('#collapse-{{cursor.ref}}').removeClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllRequests').html("Expand Requests");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
+})
+</script>
+
 <script>
 window.onscroll = function() {scrollFunction()};
 
@@ -1174,13 +1233,11 @@ function scrollFunction() {
     document.getElementById("topOfFailuresScreen").style.display = "block";
     document.getElementById("topOfSkippedScreen").style.display = "block";
     document.getElementById("openAllRequests").style.display = "none";
-    document.getElementById("closeAllRequests").style.display = "none";
   } else {
     document.getElementById("topOfRequestsScreen").style.display = "none";
     document.getElementById("topOfFailuresScreen").style.display = "none";
     document.getElementById("topOfSkippedScreen").style.display = "none";
     document.getElementById("openAllRequests").style.display = "block";
-    document.getElementById("closeAllRequests").style.display = "block";
   }
 }
 
