@@ -690,7 +690,15 @@ body, html {
                             <h5 class="card-title text-uppercase text-white text-center bg-info">Response Body</h5>
                             {{#if response.body}}
                                 <div class="dyn-height">
-                                        <pre><code id="copyText-{{item.id}}" class="prettyPrint">{{response.body}}</code></pre>
+                                        <pre>
+                                            <code id="copyText-{{item.id}}" class="prettyPrint">
+                                                {{#if @root.maskResponseKey.length}}
+                                                    {{maskKeyInResponse response.body}}
+                                                {{else}}
+                                                    {{response.body}}
+                                                {{/if}}
+                                            </code>
+                                        </pre>
                                 </div>
                                 <div class="card-footer">
                                     <button class="btn btn-secondary copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyText-{{item.id}}">Copy to Clipboard</button>

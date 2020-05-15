@@ -141,6 +141,14 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 ```
 ---
 
+To mask a certain `Key` from the final report response body by passing in the name of the `Key`, the following command can be used: 
+
+```console
+newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65-JsLv --folder 'Authentication Methods' -r htmlextra --reporter-htmlextra-maskResponseKey 'access_token' 
+```
+---
+
+
 #### With Newman as a Library
 
 All the CLI functionality is available for programmatic use as well within a `nodejs` script.
@@ -301,6 +309,27 @@ newman.run({
         htmlextra: {
             export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
             hideResponse: [ 'Ping the API'], // optional, tells the reporter to not output the response body of the request in the report.
+        }
+    }
+}, function (err) {
+    if (err) { throw err; }
+    console.log('collection run complete!');
+});
+```
+
+Add the `maskResponseKey` property to the `htmlextra` object, to pass in an array of `Key` names of the response. It will then mask the value of the key with `********` in the response body.
+
+```javascript
+const newman = require('newman');
+
+newman.run({
+    collection: require('./examples/Restful_Booker_Collection.json'), // can also provide a URL or path to a local JSON file.
+    environment: require('./examples/Restful_Booker_Environment.json'),
+    reporters: 'htmlextra',
+    reporter: {
+        htmlextra: {
+            export: './<html file path>', // If not specified, the file will be written to `newman/` in the current working directory.
+            maskResponseKey: [ 'Key value in the response'], // optional, tells the reporter to mask the value of key with `******` in response body of the request in the report.
         }
     }
 }, function (err) {

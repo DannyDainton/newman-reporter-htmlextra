@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.15.3] - 2020-05-12
+
+### Added
+
+- Added a new `skipSensitiveResponse` flag to allow you to _mask_ a specific key with value `******` from response body from the final report
+
+-----------------------------------------------------------------------
+
 ## [1.15.2] - 2020-05-11
 
 ### Added

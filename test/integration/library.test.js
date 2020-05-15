@@ -358,4 +358,18 @@ describe('Newman and htmlextra run from a script', function () {
             fs.stat(outFile, done);
         });
     });
+
+    it('should correctly generate the html report for a successful run and mask the key value', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-get-request.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { maskResponseKey: ['userId'], export: outFile } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-get-request');
+            expect(summary.run.stats.iterations.total).to.equal(2);
+            fs.stat(outFile, done);
+        });
+    });
 });
