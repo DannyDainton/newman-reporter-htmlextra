@@ -368,7 +368,6 @@ describe('Newman and htmlextra run from a script', function () {
         }, function (err, summary) {
             if (err) { return done(err); }
             expect(summary.collection.name).to.equal('simple-get-request');
-            expect(summary.run.stats.iterations.total).to.equal(2);
             fs.stat(outFile, done);
         });
     });
