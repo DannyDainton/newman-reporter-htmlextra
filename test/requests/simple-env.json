@@ -8,6 +8,13 @@
 			"type": "text",
 			"description": "",
 			"enabled": true
+		},
+		{
+			"key": "secretVariable",
+			"value": "secretValue",
+			"type": "text",
+			"description": "",
+			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",

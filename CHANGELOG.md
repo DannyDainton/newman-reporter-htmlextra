@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.15.3] - 2020-05-20
+
+### Added
+
+- Added a `showEnvironmentData` flag to allow user to see all the environment varaibles used in the Newman run. These could be from within a file or on the CLI
+- Added a `skipEnvironmentVars` flag to allow you _hide_ specific environment variables from the final report. This would work when the `showEnvironmentData` is set
+
+### Updated
+
+- Updated the default templates to use the new environment flags
+- Updated the tests to cover the environment flag features
+
+### Fixed
+
+- The Collection markdown description was using the wrong HTML tags and rendering incorrectly
+
+-----------------------------------------------------------------------
+
 ## [1.15.2] - 2020-05-11
 
 ### Added
