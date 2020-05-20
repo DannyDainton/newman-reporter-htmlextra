@@ -240,6 +240,10 @@ body.theme-dark .table .thead-light th {
   color: var(--hov-text)!important;
 }
 
+body.theme-dark .env-heading {
+    color: #ccd2d9!important;
+}
+
 body, html {
   height:100%;
 }
@@ -504,6 +508,44 @@ input:checked + .slider:before {
             </div>
         </div>
         </div>
+        {{#if @root.showEnvironmentData}}
+        {{#if environment.values.members.length}}
+         <div class="row">
+            <div class="col-sm-12 mb-3">
+                <div class="card-deck">
+                <div class="card border-info" style="width: 50rem;">
+                    <h5 class="card-header bg-info text-center text-uppercase" style="height: 45px;">
+                        <a data-toggle="collapse" href="#environment-values" aria-expanded="true" aria-controls="collapse-example" id="environment-heading" class="env-heading collapsed d-block" style="color: white;">
+                            <i class="float-lg-right fa fa-chevron-down"></i>
+                                Environment Values
+                            </a>
+                    </h5>
+                    <div id="environment-values" class="collapse" aria-labelledby="environment-heading">
+                    <div class="card-body">
+                        
+                        <div class="table-responsive dyn-height">
+                            <table class="table table-bordered">
+                            <thead class="thead-light text-center"><tr><th>Variable Name</th><th>Variable Value</th></tr></thead>
+                                <tbody>
+                                    {{#each environment.values.members}}
+                                    {{#isNotIn key @root.skipEnvironmentVars}}
+                                    <tr>
+                                        <td class="text-nowrap">{{key}}</td>
+                                        <td>{{value}}</td>
+                                    </tr>
+                                    {{/isNotIn}}
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{/if}}
         {{#if collection.description}}
         <div class="row">
         <div class="col-sm-12 mb-3">
@@ -511,7 +553,7 @@ input:checked + .slider:before {
                 <div class="card-body">
                 <h5 class="card-title text-uppercase text-white text-center bg-info">Collection Description</h5>
                 <div class="dyn-height">
-                    <pre id="description">{{collection.description}}</pre>
+                    <code id="description">{{collection.description}}</code>
                 </div>
                 </div>
             </div>

@@ -219,6 +219,44 @@ describe('Newman and htmlextra run from a script', function () {
         });
     });
 
+    it('should correctly produce the html report for a collection with an environment values shown', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-request-with-env.json',
+            environment: 'test/requests/simple-env.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { export: outFile, showEnvironmentData: true } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(err).to.be.null;
+            expect(summary.collection.name).to.equal('simple-request-with-env');
+            expect(summary.environment.name).to.equal('simple-env');
+            expect(summary.run.stats.assertions.total, 'should have 1 assertion').to.equal(1);
+            expect(summary.run.stats.assertions.failed, 'should have 0 failed assertions').to.equal(0);
+            fs.stat(outFile, done);
+        });
+    });
+
+    // eslint-disable-next-line max-len
+    it('should correctly produce the html report for a collection with an environment values and hide the specified variable', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-request-with-env.json',
+            environment: 'test/requests/simple-env.json',
+            reporters: ['htmlextra'],
+            // eslint-disable-next-line max-len
+            reporter: { htmlextra: { export: outFile, showEnvironmentData: true, skipEnvironmentVars: ['secretVariable'] } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(err).to.be.null;
+            expect(summary.collection.name).to.equal('simple-request-with-env');
+            expect(summary.environment.name).to.equal('simple-env');
+            expect(summary.run.stats.assertions.total, 'should have 1 assertion').to.equal(1);
+            expect(summary.run.stats.assertions.failed, 'should have 0 failed assertions').to.equal(0);
+            fs.stat(outFile, done);
+        });
+    });
+
     it('should correctly generate the html report for a failed run', function (done) {
         newman.run({
             collection: 'test/requests/simple-failing-request.json',
@@ -333,7 +371,7 @@ describe('Newman and htmlextra run from a script', function () {
         });
     });
 
-    it('should correctly generate the html report for a successful run and remove a multiple headers', function (done) {
+    it('should correctly generate the html report for a successful run and remove multiple headers', function (done) {
         newman.run({
             collection: 'test/requests/simple-get-request-with-headers.json',
             reporters: ['htmlextra'],

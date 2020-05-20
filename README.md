@@ -84,8 +84,10 @@ newman run https://www.getpostman.com/collections/631643-f695cab7-6878-eb55-7943
 | `--reporter-htmlextra-titleSize` | An optional flag to reduce the size of the main report title. The sizes range from `1` to `6`, the higher the number, the smaller the title will be. The default size is `2`. |
 | `--reporter-htmlextra-logs` | This optional flag shows any console log statements in the collection, on the final report. This is `false` by default. |
 | `--reporter-htmlextra-hideResponse` | An optional flag which allows you to exclude certain `Response Bodies` from the final report |
-| `--reporter-htmlextra-skipHeaders` | An optional flag which allows you to exclude certain `Headers` from the final report |
+| `--reporter-htmlextra-showEnvironmentData` | An optional flag which allows you to show all the `Environment` variables used during the run, in the final report |
+| `--reporter-htmlextra-skipEnvironmentVars` | An optional flag which allows you to exclude certain `Environment` variables from the final report |
 | `--reporter-htmlextra-omitHeaders` | An optional flag which allows you to exclude all `Headers` from the final report |
+| `--reporter-htmlextra-skipHeaders` | An optional flag which allows you to exclude certain `Headers` from the final report |
 | `--reporter-htmlextra-skipSensitiveData` | An optional flag that will exclude all the `Request/Response Headers` and the `Request/Response bodies`, from each request in the final report. This will only show the main request info and the Test Results. This is `false` by default. |
 | `--reporter-htmlextra-noSyntaxHighlighting` | An optional flag which allows you disable the code syntax highlighting. This _could_ enhance the performance of opening larger reports. |
 
