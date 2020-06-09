@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.15.4] - 2020-06-09
+
+### Added
+
+- Added a `showMarkdownLinks` flag which allows you render Markdown links from the test names and `pm.expect()` statements, in the final report
+
+-----------------------------------------------------------------------
+
 ## [1.15.3] - 2020-05-20
 
 ### Added

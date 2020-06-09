@@ -411,6 +411,10 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+table.dataTable td, table.dataTable tr {
+    vertical-align: middle;
+} 
+
 </style>
 </head>
 <body class="">
@@ -553,7 +557,7 @@ input:checked + .slider:before {
                 <div class="card-body">
                 <h5 class="card-title text-uppercase text-white text-center bg-info">Collection Description</h5>
                 <div class="dyn-height">
-                    <code id="description">{{collection.description}}</code>
+                    <code class="renderMarkdown">{{collection.description}}</code>
                 </div>
                 </div>
             </div>
@@ -644,11 +648,11 @@ input:checked + .slider:before {
                             </div>
                             <div id="fails-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="fails-{{cursor.ref}}">
                             <div class="card-body">
-                                <h5><strong>Failed Test:</strong> {{error.test}}</h5>
+                                <h5 {{#if @root.showMarkdownLinks}}class="renderMarkdown"{{/if}}><strong>Failed Test:</strong> {{error.test}}</h5>
                             <hr>
                             <h5 class="card-title text-uppercase text-white text-center bg-danger">Assertion Error Message</h5>
                             <div>
-                                <pre><code>{{error.message}}</code></pre>
+                                <pre><code {{#if @root.showMarkdownLinks}}class="renderMarkdown"{{/if}}>{{error.message}}</code></pre>
                             </div>
                             </div>
                             </div>
@@ -768,7 +772,7 @@ input:checked + .slider:before {
                             <div class="card-body">
                             <h5 class="card-title text-uppercase text-white text-center bg-info">Request Description</h5>
                                 <div class="dyn-height">
-                                    <code id="description">{{description.content}}</code>
+                                    <code class="renderMarkdown">{{description.content}}</code>
                                 </div>
                             </div>
                         </div>
@@ -1027,8 +1031,8 @@ input:checked + .slider:before {
                                 <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
                                     <tbody>
                                         {{#each assertions}}
-                                        <tr>
-                                            <td>{{this.name}}</td>
+                                        <tr {{#if @root.showMarkdownLinks}}{{/if}}>
+                                            <td {{#if @root.showMarkdownLinks}}class="renderMarkdown"{{/if}}>{{this.name}}</td>
                                             <td class="text-center {{#if this.passed}}bg-success{{/if}}">{{this.passed}}</td>
                                             <td class="text-center {{#if this.failed}}bg-danger{{/if}}">{{this.failed}}</td>
                                             <td class="text-center {{#if this.skipped}}bg-warning{{/if}}">{{this.skipped}}</td>
@@ -1058,8 +1062,8 @@ input:checked + .slider:before {
                                                     {{#each assertions}}
                                                     {{#isTheSame testFailure.test this.name}}
                                                     <tr>
-                                                        <td class="w-45 text-nowrap">{{testFailure.test}}</td>
-                                                        <td class="w-55"><pre><code>{{testFailure.message}}</code></pre></td>
+                                                        <td class="w-45 text-nowrap {{#if @root.showMarkdownLinks}}renderMarkdown{{/if}}">{{testFailure.test}}</td>
+                                                        <td class="w-55"><pre><code {{#if @root.showMarkdownLinks}}class="renderMarkdown"{{/if}}>{{testFailure.message}}</code></pre></td>
                                                     </tr>
                                                     {{/isTheSame}}
                                                     {{/each}}
@@ -1105,7 +1109,10 @@ $(document).ready( function () {
     $('#myTable-{{item.id}}').DataTable({
         "retrieve": true,
         "paging": {{paging}},
-        "info": false
+        "info": false,
+        "fixedColumns":   {
+            "heightMatch": 'none'
+        }
     });
 });
 {{/each}}
@@ -1267,12 +1274,12 @@ $(".prettyPrint").each(function () {
 
 </script>
 
-<!-- Render the Description Markdown -->
+<!-- Render the Description Markdown and link in the test failures -->
 
 <script>
     const remarkable = new Remarkable();
 
-    const descriptions = document.querySelectorAll("#description");
+    const descriptions = document.querySelectorAll(".renderMarkdown");
     descriptions.forEach(description => {
         description.innerHTML = renderHtmlFromMarkdown(description.textContent);
     });
