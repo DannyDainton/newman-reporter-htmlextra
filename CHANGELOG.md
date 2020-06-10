@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.16.0] - 2020-06-10
+
+### Removed
+
+- Removed the Dark Theme flag as the default report now gives you the ability to pick either theme with the flag
+
+-----------------------------------------------------------------------
+
 ## [1.15.4] - 2020-06-09
 
 ### Added

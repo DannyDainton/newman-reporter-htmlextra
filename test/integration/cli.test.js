@@ -74,7 +74,7 @@ describe('Newman and htmlextra run from the CLI', function () {
             // eslint-disable-next-line max-len
             let collection = invalidCollectionNameFolder + '/' + file;
 
-            exec(`${newman} run ${collection} -r htmlextra  --reporter-htmlextra-darkTheme`,
+            exec(`${newman} run ${collection} -r htmlextra`,
                 function (code) {
                     expect(code, 'should have exit code of 0').to.equal(0);
                     let outputFile = fs.readdirSync('newman'),
@@ -116,15 +116,6 @@ describe('Newman and htmlextra run from the CLI', function () {
             });
     });
 
-    it('should correctly generate the dark theme html report for a successful run', function (done) {
-        // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-darkTheme`,
-            function (code) {
-                expect(code, 'should have exit code of 0').to.equal(0);
-                fs.stat(outFile, done);
-            });
-    });
-
     it('should correctly generate the html report with a new title for a successful run', function (done) {
         // eslint-disable-next-line max-len
         exec(`${newman} run test/requests/simple-get-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-title "My new report title"`,
@@ -155,15 +146,6 @@ describe('Newman and htmlextra run from the CLI', function () {
     it('should correctly generate the html report showing only the requests with failed tests', function (done) {
         // eslint-disable-next-line max-len
         exec(`${newman} run test/requests/simple-failing-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showOnlyFails`,
-            function (code) {
-                expect(code, 'should have exit code of 1').to.equal(1);
-                fs.stat(outFile, done);
-            });
-    });
-
-    it('should correctly generate the dark html report showing only the requests with failed tests', function (done) {
-        // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-failing-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showOnlyFails --reporter-htmlextra-darkTheme`,
             function (code) {
                 expect(code, 'should have exit code of 1').to.equal(1);
                 fs.stat(outFile, done);
