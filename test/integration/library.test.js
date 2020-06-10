@@ -104,20 +104,6 @@ describe('Newman and htmlextra run from a script', function () {
         });
     });
 
-    it('should correctly generate the dark theme html report for a successful run', function (done) {
-        newman.run({
-            collection: 'test/requests/simple-get-request.json',
-            reporters: ['htmlextra'],
-            reporter: { htmlextra: { export: outFile, darkTheme: true } }
-        // eslint-disable-next-line consistent-return
-        }, function (err, summary) {
-            if (err) { return done(err); }
-            expect(summary.collection.name).to.equal('simple-get-request');
-            expect(summary.run.stats.iterations.total).to.equal(1);
-            fs.stat(outFile, done);
-        });
-    });
-
     it('should correctly generate html report for a formdata POST request', function (done) {
         newman.run({
             collection: 'test/requests/simple-post-request-with-formdata.json',
@@ -291,7 +277,7 @@ describe('Newman and htmlextra run from a script', function () {
         newman.run({
             collection: 'test/requests/simple-failing-request.json',
             reporters: ['htmlextra'],
-            reporter: { htmlextra: { export: outFile, showOnlyFails: true, darkTheme: true } }
+            reporter: { htmlextra: { export: outFile, showOnlyFails: true } }
         // eslint-disable-next-line consistent-return
         }, function (err, summary) {
             if (err) { return done(err); }
