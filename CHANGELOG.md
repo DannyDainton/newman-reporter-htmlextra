@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Included the `Expand All/Collaspe All`  actions on the Failed and Skipped tabs
+- Included the `Expand All/Collapse All`  actions on the Failed and Skipped tabs
 
 -----------------------------------------------------------------------
 
