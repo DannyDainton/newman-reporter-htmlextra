@@ -5,29 +5,54 @@
 [![NPM Weekly Downloads](https://img.shields.io/npm/dw/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 [![NPM Downloads](https://img.shields.io/npm/dt/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra) 
 
-A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional `handlebars helpers` to enable users to create better custom templates. This reporter comes with a default dashboard style template and also a `Dark Theme` version.
+A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional `handlebars helpers` to enable users to create better custom templates. This reporter comes with a default dashboard style template which also includes a `Dark Theme` switcher.
+
+---
+
+## Report Examples
+
+### Light Theme
+
+![Dashboard Template](./examples/Dashboard_Template.PNG)
+
+![Request View Iterations](./examples/Request_View_Iterations.PNG)
+
+![Request View](./examples/Request_View.PNG)
+
+### Dark Theme
+
+![Dark Theme Dashboard Template](./examples/Dark_Theme_Dashboard_Template.PNG)
+
+![Dark Theme Request View](./examples/Dark_Theme_Request_View.PNG)
+
+### Console Logs
+
+The `console.log()` statements used in the Collections are shown in the main request view, these were previously separated out into its own section but these have been now brought together and part of the request that they relate too.
+
+![Console Log](./examples/Console_Log_View.PNG)
 
 ---
 
 ## Some of the Extras
 
-- Full separated iterations runs and not aggregated stats - Default template shows iteration number in heading
-- Includes the full [handlebars-helpers](https://www.npmjs.com/package/handlebars-helpers) module for building better templates
+- Full separated iterations runs and not aggregated stats - Default template shows iteration number in heading.
+- Includes the full [handlebars-helpers](https://www.npmjs.com/package/handlebars-helpers) module for building better templates.
 - New `percent` helper to help exposing data like `Test Pass Percentage` - e.g `{{percent cumulativeTests.passed cumulativeTests.failed}}`
-- Copy and Paste any of the Response Bodies
-- Includes an `inc` helper to work with things like the handlebars zero index - e.g `Iteration:{{inc cursor.iteration}} - {{item.name}}`
-- Added the [helper-moment](https://github.com/helpers/helper-moment) module so you have more control over the display dates - e.g `{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}`
-- Exposed the `Skipped Tests` so you can tell which ones are skipped, in the main summary view. You can also see which tests are skipped within the single request view
-- Folder level descriptions with rendered Markdown syntax
-- Response Headers displayed for each of the requests
-- Iterations separated by tabs in the `Requests` view
+- Copy and Paste any of the Response Bodies.
+- Includes an `inc` helper to work with things like the handlebars zero index - e.g `Iteration:{{inc cursor.iteration}} - {{item.name}}`.
+- Added the [helper-moment](https://github.com/helpers/helper-moment) module so you have more control over the display dates - e.g `{{moment date format="dddd, DD MMMM YYYY HH:mm:ss"}}`.
+- Exposed the `Skipped Tests` so you can tell which ones are skipped, in the main summary view. You can also see which tests are skipped within the single request view.
+- Folder level descriptions with rendered Markdown syntax.
+- Request and Response Headers displayed for each of the requests.
+- Iterations separated by tabs in the `Total Requests` view.
 - The `console.log` statements from the Collections can be seen using the `--reporter-htmlextra-logs` CLI flag - These will be part of each of the requests that have them.
-- A `Dark Theme` dashboard template - This is an option from the CLI using the `--reporter-htmlextra-darkTheme` flag or in a script by setting the `darkTheme` property to `true`.
 - A `helper` to give more control over the main `title` shown on the report. Use the `--reporter-htmlextra-title` flag to add your own unique headline.
 - The default filename, if you do not supply the `export` location, is now includes the collection name in the filename rather that the reporter name.
 - Use the `onlyShowFails` option to reduce the report down to just showing the requests that had test failures.
 - The `skipHeaders` option lets you optionally specify an array of header names that should be skipped in the report.
 - Setting the `skipSensitiveData` will skip outputting the headers and bodies for all requests and responses.
+- Ability to display the Environment Variables used in the Collection run using the `showEnvironmentData` flag.
+- When using `showEnvironmentData`, users can also hide a set of varaibles using the `skipEnvironmentVars` flag.
 - More to come...
 
 ---
@@ -304,34 +329,6 @@ newman.run({
     console.log('collection run complete!');
 });
 ```
----
-
-## Report Examples
-
-### Light Theme
-
-![Dashboard Template](./examples/Dashboard_Template.PNG)
-
-![Request View Iterations](./examples/Request_View_Iterations.PNG)
-
-![Request View](./examples/Request_View.PNG)
-
-### Dark Theme
-
-![Dark Theme Dashboard Template](./examples/Dark_Theme_Dashboard_Template.PNG)
-
-![Dark Theme Request View](./examples/Dark_Theme_Request_View.PNG)
-
-### Show Only Failures
-
-If you have multiple requests in your collections the report can become quite verbose, I've added a flag option to just create the report with only the requests that have `Failed` tests. This is very similar to the default report but the folders will already be expanded, if their are any failed tests.
-
-### Console Logs
-
-The `console.log()` statements used in the Collections are shown in the main request view, these were previously separated out into its own section but these have been now brought together and part of the request that they relate too.
-
-![Console Log](./examples/Console_Log_View.PNG)
-
 ---
 
 ## Compatibility
