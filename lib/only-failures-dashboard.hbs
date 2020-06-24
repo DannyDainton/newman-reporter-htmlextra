@@ -130,6 +130,7 @@ body.theme-dark .hljs {
 
 .alert-warning {
     background-color: var(--warning)!important;
+    border-color: var(--warning)!important;
 }
 
 .alert-info {
@@ -634,6 +635,12 @@ table.dataTable td, table.dataTable tr {
             <div class="tab-pane fade" id="pills-failed" role="tabcard" aria-labelledby="pills-failed-tab">
                 <button id="topOfFailuresScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
                 {{#if summary.failures.length}}
+                    <div class="btn-group float-right" role="group" aria-label="Button Group">
+                        <button id="openAllFailed" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 185px;">Expand All Failed Tests</button>
+                    </div>
+                    <br>
+                    <br>
+                    
                     {{#with summary}}
                     <div class="alert alert-danger text-uppercase text-center">
                         <h4>Showing {{failures.length}} {{#gt failures.length 1}}Failures{{else}}Failure{{/gt}}</h4>
@@ -672,6 +679,12 @@ table.dataTable td, table.dataTable tr {
             <div class="tab-pane fade" id="pills-skipped" role="tabcard" aria-labelledby="pills-skipped-tab">
                 <button id="topOfSkippedScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
                 {{#if summary.skippedTests.length}}
+                    <div class="btn-group float-right" role="group" aria-label="Button Group">
+                        <button id="openAllSkipped" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 185px;">Expand All Skipped Tests</button>
+                    </div>
+                    <br>
+                    <br>
+
                     {{#with summary}}
                     <div class="alert alert-warning text-uppercase text-center">
                         <h4>Showing {{skippedTests.length}} Skipped {{#gt skippedTests.length 1}}Tests{{else}}Test{{/gt}}</h4>
@@ -681,12 +694,15 @@ table.dataTable td, table.dataTable tr {
                     <div class="col-sm-12 mb-3">
                     <div class="card-deck">
                         <div class="card border-warning">
-                            <div class="card-header bg-warning text-white text-center text-uppercase">
-                                <h5 class="card-title">{{assertion}}</h5>
+                            <div class="card-header bg-warning text-white">
+                                <a data-toggle="collapse" href="#" data-target="#skipped-collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="skipped-{{cursor.ref}}" class="collapsed text-white z-block">
+                                    Iteration {{inc cursor.iteration}} - {{assertion}} <i class="float-lg-right fa fa-chevron-down" style="padding-top:5px;"></i>
+                                </a>
                             </div>
+                            <div id="skipped-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="skipped-{{cursor.ref}}">
                             <div class="card-body">
-                                <h5><strong>Iteration:</strong> {{inc cursor.iteration}}</h5>
                                 <h5><strong>Request Name:</strong> {{item.name}}</h5>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -703,7 +719,7 @@ table.dataTable td, table.dataTable tr {
             <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
 
             <div class="btn-group float-right" role="group" aria-label="Button Group">
-                <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right">Expand Requests</button>
+                <button id="openAllRequests" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 140px;">Expand Requests</button>
             </div>
 
     <div class="text-uppercase" id="execution-menu">
@@ -1090,6 +1106,8 @@ table.dataTable td, table.dataTable tr {
 <script>hljs.initHighlightingOnLoad();</script>
 {{/eq}}
 
+<!-- Data Table Configuration -->
+
 <script>
 {{#each aggregations}}
 {{#each executions}}
@@ -1104,6 +1122,8 @@ $(document).ready( function () {
 {{/each}}
 </script>
 
+<!-- Tooltip Configuration -->
+
 <script>
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip({
@@ -1112,31 +1132,7 @@ $(document).ready(function() {
 })
 </script>
 
-<script>
-$('#openAllRequests').on('click', function(e) {
-{{#each aggregations}}
-{{#each executions}}
-    $('#requests-{{cursor.ref}}').removeClass('collapsed')
-    $('#collapse-{{cursor.ref}}').removeClass('collapsed')
-    $('#requests-{{cursor.ref}}').addClass('show')
-    $('#collapse-{{cursor.ref}}').addClass('show')
-{{/each}}
-{{/each}}
-})
-</script>
-
-<script>
-$('#closeAllRequests').on('click', function(e) {
-{{#each aggregations}}
-{{#each executions}}
-    $('#requests-{{cursor.ref}}').addClass('collapsed')
-    $('#collapse-{{cursor.ref}}').addClass('collapsed')
-    $('#requests-{{cursor.ref}}').removeClass('show')
-    $('#collapse-{{cursor.ref}}').removeClass('show')
-{{/each}}
-{{/each}}
-})
-</script>
+<!-- Pretty Print the Response Body-->
 
 <script>
 function isJSON(data)
@@ -1196,6 +1192,7 @@ $(".prettyPrint").each(function () {
 
 
 <!-- Copy Response Body To Clipboard -->
+
 <script>
     var clipboard = new ClipboardJS('.copyButton');
     
@@ -1220,7 +1217,8 @@ $(".prettyPrint").each(function () {
 
 </script>
 
-<!-- Render the Description Markdown -->
+<!-- Render the Description Markdown and link in the test failures -->
+
 <script>
     const remarkable = new Remarkable();
     
@@ -1270,6 +1268,76 @@ $(this).data("clickCount", clickCount)
 })
 </script>
 
+<!-- Show/Hide The Skipped Tests -->
+
+<script>
+$('#openAllSkipped').on('click', function(e) {
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#skipped-{{cursor.ref}}').removeClass('collapsed')
+            $('#skipped-collapse-{{cursor.ref}}').removeClass('collapsed')
+            $('#skipped-{{cursor.ref}}').addClass('show')
+            $('#skipped-collapse-{{cursor.ref}}').addClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllSkipped').html("Collapse All Skipped Tests");
+        break;
+    case 2:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#skipped-{{cursor.ref}}').addClass('collapsed')
+            $('#skipped-collapse-{{cursor.ref}}').addClass('collapsed')
+            $('#skipped-{{cursor.ref}}').removeClass('show')
+            $('#skipped-collapse-{{cursor.ref}}').removeClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllSkipped').html("Expand All Skipped Tests");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
+})
+</script>
+
+<!-- Show/Hide The Failures -->
+
+<script>
+$('#openAllFailed').on('click', function(e) {
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#fails-{{cursor.ref}}').removeClass('collapsed')
+            $('#fails-collapse-{{cursor.ref}}').removeClass('collapsed')
+            $('#fails-{{cursor.ref}}').addClass('show')
+            $('#fails-collapse-{{cursor.ref}}').addClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllFailed').html("Collapse All Failed Tests");
+        break;
+    case 2:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#fails-{{cursor.ref}}').addClass('collapsed')
+            $('#fails-collapse-{{cursor.ref}}').addClass('collapsed')
+            $('#fails-{{cursor.ref}}').removeClass('show')
+            $('#fails-collapse-{{cursor.ref}}').removeClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllFailed').html("Expand All Failed Tests");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
+})
+</script>
+
+<!-- Show/Hide The Toggles When Scrolling The Page -->
+
 <script>
 window.onscroll = function() {scrollFunction()};
 
@@ -1279,11 +1347,26 @@ function scrollFunction() {
     document.getElementById("topOfFailuresScreen").style.display = "block";
     document.getElementById("topOfSkippedScreen").style.display = "block";
     document.getElementById("openAllRequests").style.display = "none";
+
+    {{#if summary.skippedTests.length}}
+    document.getElementById("openAllSkipped").style.display = "none";
+    {{/if}}
+    
+    {{#if summary.failures.length}}
+    document.getElementById("openAllFailed").style.display = "none";
+    {{/if}}
   } else {
     document.getElementById("topOfRequestsScreen").style.display = "none";
     document.getElementById("topOfFailuresScreen").style.display = "none";
     document.getElementById("topOfSkippedScreen").style.display = "none";
     document.getElementById("openAllRequests").style.display = "block";
+
+    {{#if summary.skippedTests.length}}
+    document.getElementById("openAllSkipped").style.display = "block";
+    {{/if}}
+    {{#if summary.failures.length}}
+    document.getElementById("openAllFailed").style.display = "block";
+    {{/if}}
   }
 }
 
@@ -1292,6 +1375,8 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+
+<!-- Creates The Iteration Tabs -->
 
 <script type="text/javascript">
     "use strict";
@@ -1355,6 +1440,8 @@ window.onload = function () {
 }
 </script>
 
+<!-- Create the Selected Iteration Label -->
+
 <script>
 $(document).ready(function(){
     $(function() {
@@ -1365,6 +1452,7 @@ $(document).ready(function(){
 });
 </script>
 
+<!-- Filter Action for the Iterations -->
 
 <script>
 $(document).ready(function(){
@@ -1376,6 +1464,8 @@ $(document).ready(function(){
   });
 });
 </script>
+
+<!-- Set The Theme Of The Report -->
 
 <script>
 function setTheme(themeName) {
