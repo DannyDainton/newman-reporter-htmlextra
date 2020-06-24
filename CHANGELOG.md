@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.16.1] - 2020-06-24
+
+### Changed
+
+- Reformatted parts of the README
+
+### Added
+
+- Included the `Expand All/Collaspe All`  actions on the Failed and Skipped tabs
+
+-----------------------------------------------------------------------
+
 ## [1.16.0] - 2020-06-10
 
 ### Removed
