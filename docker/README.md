@@ -20,11 +20,24 @@ To give you an idea of what the final report will look like, I've added a workin
 
 ## Basic Usage
 
-Using this command will pull down the image and run the Postman Collection with Newman. Once the run has completed it will create a new report file in the `/reports` dir.
+Using this command, it will pull down the image and run the Postman Collection with Newman. Once the run has completed it will create a new report file in the `/newman` dir.
 
 ```console
-docker run -it -v $(pwd)/reports:/etc/newman dannydainton/htmlextra run <Collection File or URL> --reporters="htmlextra" --reporter-htmlextra-export="newman-report.html"
+docker run -t -v $(pwd):/etc/newman dannydainton/htmlextra run collection.json -r htmlextra
 ```
+
+Using an environment file during the Newman run:
+
+```console
+docker run -t -v $(pwd):/etc/newman dannydainton/htmlextra run collection.json -e environment.json -r htmlextra
+```
+
+Using either the Shared Collection link from the Postman App or using the Postman API Link to the files:
+
+```console
+docker run -t -v $(pwd):/etc/newman dannydainton/htmlextra run <URL to Collection> -e <URL to Environment> -r htmlextra
+```
+
 ---
 
 ## CLI Options

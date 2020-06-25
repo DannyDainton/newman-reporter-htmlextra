@@ -112,6 +112,34 @@ newman.run({
 ```
 ---
 
+#### Running The Reporter With Docker
+
+A docker image `dannydainton/htmlextra` has been created for the reporter and can be found on [Docker Hub](https://hub.docker.com/repository/docker/dannydainton/htmlextra)
+
+## Basic Usage
+
+Using this command, it will pull down the image and run the Postman Collection with Newman. Once the run has completed it will create a new report file in the `/newman` dir.
+
+```console
+docker run -t -v $(pwd):/etc/newman dannydainton/htmlextra run collection.json -r htmlextra
+```
+
+Using an environment file during the Newman run:
+
+```console
+docker run -t -v $(pwd):/etc/newman dannydainton/htmlextra run collection.json -e environment.json -r htmlextra
+```
+
+Using either the Shared Collection link from the Postman App or using the Postman API Link to the files:
+
+```console
+docker run -t -v $(pwd):/etc/newman dannydainton/htmlextra run <URL to Collection> -e <URL to Environment> -r htmlextra
+```
+
+Each of these command can be used with the different CLI flags to create the final report that you require.
+
+---
+
 ## Compatibility
 
 | **newman-reporter-htmlextra** | **newman** | **node** |
