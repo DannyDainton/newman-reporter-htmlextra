@@ -116,7 +116,7 @@ newman.run({
 
 A docker image `dannydainton/htmlextra` has been created for the reporter and can be found on [Docker Hub](https://hub.docker.com/repository/docker/dannydainton/htmlextra)
 
-## Basic Usage
+#### Basic Usage
 
 Using this command, it will pull down the image and run the Postman Collection with Newman. Once the run has completed it will create a new report file in the `/newman` dir.
 
