@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.17.1] - 2020-06-27
+
+### Added
+
+- Optional `--reporter-htmlextra-timezone` flag to specify the timezone in the report timestamp 
+
+-----------------------------------------------------------------------
+
 ## [1.17.0] - 2020-06-27
 
 ### Changed
