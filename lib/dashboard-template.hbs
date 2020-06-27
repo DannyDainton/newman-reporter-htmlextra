@@ -631,7 +631,14 @@ table.dataTable td, table.dataTable tr {
         </div>
             <div class="tab-pane fade" id="pills-failed" role="tabcard" aria-labelledby="pills-failed-tab">
                 <button id="topOfFailuresScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
+                
                 {{#if summary.failures.length}}
+                    <div class="btn-group float-right" role="group" aria-label="Button Group">
+                        <button id="openAllFailed" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 185px;">Expand All Failed Tests</button>
+                    </div>
+                    <br>
+                    <br>
+
                     {{#with summary}}
                     <div class="alert alert-danger text-uppercase text-center">
                         <h4>Showing {{failures.length}} {{#gt failures.length 1}}Failures{{else}}Failure{{/gt}}</h4>
@@ -669,7 +676,14 @@ table.dataTable td, table.dataTable tr {
 
             <div class="tab-pane fade" id="pills-skipped" role="tabcard" aria-labelledby="pills-skipped-tab">
                 <button id="topOfSkippedScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
+
                 {{#if summary.skippedTests.length}}
+                    <div class="btn-group float-right" role="group" aria-label="Button Group">
+                        <button id="openAllSkipped" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 185px;">Expand All Skipped Tests</button>
+                    </div>
+                    <br>
+                    <br>
+                
                     {{#with summary}}
                     <div class="alert alert-warning text-uppercase text-center">
                         <h4>Showing {{skippedTests.length}} Skipped {{#gt skippedTests.length 1}}Tests{{else}}Test{{/gt}}</h4>
@@ -1189,6 +1203,74 @@ $(this).data("clickCount", clickCount)
 })
 </script>
 
+<!-- Show/Hide The Skipped Tests -->
+
+<script>
+$('#openAllSkipped').on('click', function(e) {
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#skipped-{{cursor.ref}}').removeClass('collapsed')
+            $('#skipped-collapse-{{cursor.ref}}').removeClass('collapsed')
+            $('#skipped-{{cursor.ref}}').addClass('show')
+            $('#skipped-collapse-{{cursor.ref}}').addClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllSkipped').html("Collapse All Skipped Tests");
+        break;
+    case 2:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#skipped-{{cursor.ref}}').addClass('collapsed')
+            $('#skipped-collapse-{{cursor.ref}}').addClass('collapsed')
+            $('#skipped-{{cursor.ref}}').removeClass('show')
+            $('#skipped-collapse-{{cursor.ref}}').removeClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllSkipped').html("Expand All Skipped Tests");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
+})
+</script>
+
+<!-- Show/Hide The Failures -->
+
+<script>
+$('#openAllFailed').on('click', function(e) {
+let clickCount = $(this).data("clickCount") || 1
+switch (clickCount){
+    case 1:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#fails-{{cursor.ref}}').removeClass('collapsed')
+            $('#fails-collapse-{{cursor.ref}}').removeClass('collapsed')
+            $('#fails-{{cursor.ref}}').addClass('show')
+            $('#fails-collapse-{{cursor.ref}}').addClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllFailed').html("Collapse All Failed Tests");
+        break;
+    case 2:
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#fails-{{cursor.ref}}').addClass('collapsed')
+            $('#fails-collapse-{{cursor.ref}}').addClass('collapsed')
+            $('#fails-{{cursor.ref}}').removeClass('show')
+            $('#fails-collapse-{{cursor.ref}}').removeClass('show')
+        {{/each}}
+        {{/each}}
+        $('#openAllFailed').html("Expand All Failed Tests");
+        break;
+}
+clickCount = clickCount > 1 ? 1 : ++clickCount;
+$(this).data("clickCount", clickCount)
+})
+</script>
+
 <!-- Pretty Print the Response Body-->
 
 <script>
@@ -1303,8 +1385,14 @@ function scrollFunction() {
     document.getElementById("topOfSkippedScreen").style.display = "block";
     document.getElementById("openAll").style.display = "none";
     document.getElementById("openAllRequests").style.display = "none";
+    
+    {{#if summary.skippedTests.length}}
+    document.getElementById("openAllSkipped").style.display = "none";
+    {{/if}}
+    
     {{#if summary.failures.length}}
     document.getElementById("showOnlyFailures").style.display = "none";
+    document.getElementById("openAllFailed").style.display = "none";
     {{/if}}
   } else {
     document.getElementById("topOfRequestsScreen").style.display = "none";
@@ -1312,8 +1400,13 @@ function scrollFunction() {
     document.getElementById("topOfSkippedScreen").style.display = "none";
     document.getElementById("openAll").style.display = "block";
     document.getElementById("openAllRequests").style.display = "block";
+    
+    {{#if summary.skippedTests.length}}
+    document.getElementById("openAllSkipped").style.display = "block";
+    {{/if}}
     {{#if summary.failures.length}}
     document.getElementById("showOnlyFailures").style.display = "block";
+    document.getElementById("openAllFailed").style.display = "block";
     {{/if}}
   }
 }
