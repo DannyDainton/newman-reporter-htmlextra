@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 
-- Made the timestamp in the report timezone aware with `moment-imezone` 
+- Made the timestamp in the report timezone aware with `moment-timezone` 
 
 -----------------------------------------------------------------------
 
