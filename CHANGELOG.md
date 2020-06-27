@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.17.0] - 2020-06-27
+
+### Changed
+
+- Made the timestamp in the report timezone aware with `moment-imezone` 
+
+-----------------------------------------------------------------------
+
 ## [1.16.2] - 2020-06-24
 
 ### Changed
