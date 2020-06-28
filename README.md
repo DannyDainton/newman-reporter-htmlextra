@@ -12,7 +12,7 @@ A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been ex
 
 ## Report Example
 
-![Default Report](https://i.ibb.co/7zndH7b/ezgif-com-resize-1.gif)
+![Default Report](./examples/Default_Report.gif)
 
 ---
 
