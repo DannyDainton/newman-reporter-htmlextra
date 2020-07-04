@@ -512,6 +512,44 @@ table.dataTable td, table.dataTable tr {
             </div>
         </div>
         </div>
+        {{#if @root.showGlobalData}}
+        {{#if globals.values.members.length}}
+         <div class="row">
+            <div class="col-sm-12 mb-3">
+                <div class="card-deck">
+                <div class="card border-info" style="width: 50rem;">
+                    <h5 class="card-header bg-info text-center text-uppercase" style="height: 45px;">
+                        <a data-toggle="collapse" href="#gloabl-values" aria-expanded="true" aria-controls="collapse-example" id="gloabl-heading" class="env-heading collapsed d-block" style="color: white;">
+                            <i class="float-lg-right fa fa-chevron-down"></i>
+                                Global Variables
+                            </a>
+                    </h5>
+                    <div id="gloabl-values" class="collapse" aria-labelledby="gloabl-heading">
+                    <div class="card-body">
+                        
+                        <div class="table-responsive dyn-height">
+                            <table class="table table-bordered">
+                            <thead class="thead-light text-center"><tr><th>Variable Name</th><th>Variable Value</th></tr></thead>
+                                <tbody>
+                                    {{#each globals.values.members}}
+                                    {{#isNotIn key @root.skipGlobalVars}}
+                                    <tr>
+                                        <td class="text-nowrap">{{key}}</td>
+                                        <td>{{value}}</td>
+                                    </tr>
+                                    {{/isNotIn}}
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        {{/if}}
         {{#if @root.showEnvironmentData}}
         {{#if environment.values.members.length}}
          <div class="row">
@@ -521,7 +559,7 @@ table.dataTable td, table.dataTable tr {
                     <h5 class="card-header bg-info text-center text-uppercase" style="height: 45px;">
                         <a data-toggle="collapse" href="#environment-values" aria-expanded="true" aria-controls="collapse-example" id="environment-heading" class="env-heading collapsed d-block" style="color: white;">
                             <i class="float-lg-right fa fa-chevron-down"></i>
-                                Environment Values
+                                Environment Variables
                             </a>
                     </h5>
                     <div id="environment-values" class="collapse" aria-labelledby="environment-heading">

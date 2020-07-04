@@ -75,6 +75,8 @@ newman run collection.json -r htmlextra
 | `--reporter-htmlextra-hideResponse` | An optional flag which allows you to exclude certain `Response Bodies` from the final report. Enter the name of the request that you wish to hide. | `newman run collection.json -r htmlextra --reporter-htmlextra-hideResponse "Auth Request"`|
 | `--reporter-htmlextra-showEnvironmentData` | An optional flag which allows you to show all the `Environment` variables used during the run, in the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-showEnvironmentData`|
 | `--reporter-htmlextra-skipEnvironmentVars` | An optional flag which allows you to exclude certain `Environment` variables from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-skipEnvironmentVars "API_KEY"`|
+| `--reporter-htmlextra-showGlobalData` | An optional flag which allows you to show all the `Global` variables used during the run, in the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-showGlobalData`|
+| `--reporter-htmlextra-skipGlobalVars` | An optional flag which allows you to exclude certain `Global` variables from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-skipGlobalVars "API_TOKEN"`|
 | `--reporter-htmlextra-omitHeaders` | An optional flag which allows you to exclude all `Headers` from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-omitHeaders`|
 | `--reporter-htmlextra-skipHeaders` | An optional flag which allows you to exclude certain `Headers` from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-skipHeaders "Authorization"`|
 | `--reporter-htmlextra-skipSensitiveData` | An optional flag that will exclude all the `Request/Response Headers` and the `Request/Response bodies`, from each request in the final report. This will only show the main request info and the Test Results. This is `false` by default. | `newman run collection.json -r htmlextra --reporter-htmlextra-skipSensitiveData`|
@@ -124,6 +126,8 @@ newman.run({
             // hideResponse: ["Auth Request"],
             // showEnvironmentData: true,
             // skipEnvironmentVars: ["API_KEY"],
+            // showGlobalData: true,
+            // skipGlobalVars: ["API_TOKEN"],
             // skipSensitiveData: true,
             // showMarkdownLinks: true,
             // timezone: "Australia/Sydney"

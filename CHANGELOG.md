@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.17.2] - 2020-07-04
+
+### Added
+
+- Added a `showGlobalData` flag to allow user to see all the global varaibles used in the Newman run. These could be from within a file or on the CLI
+- Added a `skipGlobalVars` flag to allow you _hide_ specific global variables from the final report. This would work when the `showGlobalData` is set
+
+-----------------------------------------------------------------------
+
 ## [1.17.1] - 2020-06-27
 
 ### Added
