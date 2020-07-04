@@ -6,7 +6,9 @@
 [![NPM Downloads](https://img.shields.io/npm/dt/newman-reporter-htmlextra.svg?style=flat-square)](https://www.npmjs.com/package/newman-reporter-htmlextra)
 [![Docker Pulls](https://img.shields.io/docker/pulls/dannydainton/htmlextra?style=flat-square)](https://hub.docker.com/r/dannydainton/htmlextra)
 
-A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional `handlebars helpers` to enable users to create better custom templates. This reporter comes with a default dashboard style template which also includes a `Dark Theme` switcher. There are also a few optional flags available, you can find these all listed below.
+A [Newman](https://github.com/postmanlabs/newman) HTML reporter that has been extended to include the separation of the iteration runs so these are no longer aggregated together and also some additional `handlebars helpers` to enable users to create better custom templates. 
+
+This reporter comes with a dashboard style summary landing page and a set of different tabs which contain the detailed request information. There are also a few optional configuration flags available, to tailor the final report in a number of different ways.
 
 ---
 
@@ -26,19 +28,26 @@ To give you an idea of what the final report will look like, I've added a workin
 
 ## Install
 
-> The installation should be global if newman is installed globally, local otherwise.
+> The reporter works as a plugin with [Newman](https://github.com/postmanlabs/newman) so ensure that you have already installed that package globally, using `npm install -g newman`.
 
-For `global` install:
+To `globally` install the `htmlextra` package:
 
 ```console
 npm install -g newman-reporter-htmlextra
 ```
 
-For `local` install:
+To use `htmlextra` as a library, install the package as a dependency into a `nodejs` project's `package.json` file using:
 
 ```console
 npm install -S newman-reporter-htmlextra
 ```
+
+To install `node`, `newman` and the `htmlextra` packages together, use this command to run it using the `Docker` image:
+
+```console
+docker run -t -v $(pwd):/etc/newman dannydainton/htmlextra run collection.json -r htmlextra
+```
+
 ---
 
 ## Usage
@@ -79,14 +88,24 @@ Custom templates can be passed to the `htmlextra` reporter via the `--reporter-h
 
 #### With Newman as a Library
 
-All the CLI functionality is available for programmatic use as well within a `nodejs` script. Adding any of the options within the `htmlextra` object will enable the functionality of the given feature.
+All the CLI functionality is available for programmatic use within a `nodejs` script.
+
+Creating a very basic `nodejs` project can be done like this:
+
+- Create a new directory using `mkdir <new dir name>`
+- Move to the new directory using `cd <new dir name>`
+- Create a `package.json` file using `npm init -y`
+- Install the required node modules using `npm i -S newman newman-reporter-htmlextra`
+- Create a new `<filename>.js` file and add the script below which contains the current list of reporter options
+- Add your `collection.json` file reference to the script and run using `node <filename>.js`
+
+Adding any of the options within the `htmlextra` object will enable the functionality of the given feature.
 
 ```javascript
 const newman = require('newman');
 
 newman.run({
-    collection: '../examples/Restful_Booker_Collection.json',
-    environment: '../examples/Restful_Booker_Environment.json',
+    collection: './pathToFile/collection.json',
     reporters: ['htmlextra'],
     iterationCount: 1,
     reporter: {
