@@ -101,7 +101,9 @@ Creating a very basic `nodejs` project can be done like this:
 - Create a new `<filename>.js` file and add the script below which contains the current list of reporter options
 - Add your `collection.json` file reference to the script and run using `node <filename>.js`
 
-Adding any of the options within the `htmlextra` object will enable the functionality of the given feature.
+Once the node script has run, the report will be created in the default `./newman` directory. A new save location can be specified using the `export` flag. 
+
+To enable the functionality of a given feature, uncomment any of the options within the `htmlextra` object. 
 
 ```javascript
 const newman = require('newman');
