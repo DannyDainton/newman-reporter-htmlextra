@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.17.3] - 2020-07-12
+
+### Added
+
+- Added a new logo to the project - Expertly created by Bruce Hughes (The Legend)
+
+-----------------------------------------------------------------------
+
 ## [1.17.2] - 2020-07-04
 
 ### Added
