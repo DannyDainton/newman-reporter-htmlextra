@@ -188,6 +188,8 @@ I would be lying if I said that I've created this reporter all on my own, I need
 - [@praveendvd](https://github.com/praveendvd)
 - [@Prachi481992](https://github.com/Prachi481992)
 
+A huge amount of love and appreciation also goes to [Bruce](https://twitter.com/BruceOnlyBruce) _The Legend_, for creating the awesome project logo ♥️
+
 ---
 
 ## Community Support
