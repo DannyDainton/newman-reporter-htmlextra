@@ -84,6 +84,7 @@ newman run collection.json -r htmlextra
 | `--reporter-htmlextra-skipSensitiveData` | An optional flag that will exclude all the `Request/Response Headers` and the `Request/Response bodies`, from each request in the final report. This will only show the main request info and the Test Results. This is `false` by default. | `newman run collection.json -r htmlextra --reporter-htmlextra-skipSensitiveData`|
 | `--reporter-htmlextra-showMarkdownLinks` | An optional flag which allows you render Markdown links from the test names and `pm.expect()` statements, in the final report. This could be useful if you use an external bug tracker. | `newman run collection.json -r htmlextra --reporter-htmlextra-showMarkdownLinks`|
 | `--reporter-htmlextra-noSyntaxHighlighting` | An optional flag which allows you disable the code syntax highlighting. This _could_ enhance the performance of opening larger reports. | `newman run collection.json -r htmlextra --reporter-htmlextra-noSyntaxHighlighting`|
+| `--reporter-htmlextra-showFolderDescription` | An optional flag which allows you to show all the folder descriptions, in the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-showFolderDescription`|
 | `--reporter-htmlextra-timezone` | An optional flag which allows you to set the timezone on the final report's timestamp | `newman run collection.json -r htmlextra --reporter-htmlextra-timezone "Australia/Sydney"`|
 
 Custom templates can be passed to the `htmlextra` reporter via the `--reporter-htmlextra-template <path>` flag. The [default template](./lib/dashboard-template.hbs) is used in all other cases. 
@@ -134,6 +135,7 @@ newman.run({
             // skipGlobalVars: ["API_TOKEN"],
             // skipSensitiveData: true,
             // showMarkdownLinks: true,
+            // showFolderDescription: true,
             // timezone: "Australia/Sydney"
         }
     }
@@ -212,4 +214,4 @@ This software is licensed under Apache-2.0. Copyright Postdot Technologies, Inc.
 
 This work have been hugely inspired and copied several aspects of the great work done by [Martijn Vander Vlag](https://github.com/martijnvandervlag) to create the [newman-reporter-htmlfull](https://github.com/martijnvandervlag/newman-reporter-htmlfull) package. Check out that package too, this contains many of the same features.
 
-It was also brought together by reviewing the feature requests, from the official Postman HTML reporter.
+It was also brought together by reviewing the feature requests, from the official [Postman HTML reporter](https://github.com/postmanlabs/newman-reporter-html).

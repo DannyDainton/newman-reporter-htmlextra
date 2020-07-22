@@ -301,10 +301,10 @@ body.theme-light .card-body .bg-danger {
 .backToTop {
   display: none;
   position: fixed;
-  bottom: 20px;
-  right: 30px;
+  bottom: 10px;
+  right: 20px;
   z-index: 99;
-  font-size: 18px;
+  font-size: 15px;
   outline: none;
   cursor: pointer;
   padding: 15px;
@@ -507,6 +507,9 @@ table.dataTable td, table.dataTable tr {
                 <div class="card-body">
                 <h5 class="card-title text-uppercase text-white text-center bg-info">File Information</h5>
                 <span><i class="fas fa-file-code"></i></span><strong> Collection:</strong> {{collection.name}}<br>
+                {{/with}}
+                {{#if folders}}<span><i class="fas fa-folder"></i></span><strong> Specified Folders:</strong> {{folders}}<br>{{/if}}
+                {{#with summary}}  
                 {{#if environment.name}}<span><i class="fas fa-file-code"></i></span><strong> Environment:</strong> {{environment.name}}<br>{{/if}}
                 </div>
             </div>
@@ -800,6 +803,24 @@ table.dataTable td, table.dataTable tr {
 </html>
 
 {{#*inline "aggregations"}}
+{{#if @root.showFolderDescription}}
+{{#if parent.description.content}}
+    <div class="row">
+        <div class="col-sm-12 mb-3">
+        <div class="card-deck">
+            <div class="card border-info" style="width: 50rem;">
+                <div class="card-body">
+                <h5 class="card-title text-uppercase text-white text-center bg-info">Folder Description</h5>
+                    <div class="dyn-height">
+                        <code class="renderMarkdown">{{parent.description.content}}</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+{{/if}}
+{{/if}}
 {{#each executions}}
     <div id="folder-{{cursor.ref}}" class="card-deck iteration-{{cursor.iteration}}">
     <div class="row iteration-{{cursor.iteration}}">

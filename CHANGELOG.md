@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.17.4] - 2020-07-22
+
+### Added
+
+- Added the Folder level descriptions
+- Included the names of the Folders used with the `folder` Newman flag in the Summary 
+
+-----------------------------------------------------------------------
+
 ## [1.17.3] - 2020-07-12
 
 ### Added
