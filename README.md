@@ -194,24 +194,14 @@ A huge amount of love and appreciation also goes to [Bruce](https://twitter.com/
 
 ---
 
-## Community Support
-
-![Community Image](https://avatars1.githubusercontent.com/u/3220138?v=3&s=120)
-
-If you are interested in talking to the Postman team and fellow Newman users, you can find us on our [Postman Community Forum](https://community.getpostman.com). Feel free to drop by and say hello. You'll find us posting about upcoming features and beta releases, answering technical support questions, and contemplating world peace.
-
-Sign in using your Postman account to participate in the discussions and don't forget to take advantage of the [search bar](https://community.getpostman.com/search?q=newman) - the answer to your question might already be waiting for you! Don’t want to log in? Then lurk on the side-lines and absorb all the knowledge.
-
----
-
 ## License
 
-This software is licensed under Apache-2.0. Copyright Postdot Technologies, Inc. See the [LICENSE.md](LICENSE.md) file for more information.
+This software is licensed under Apache-2.0. See the [LICENSE.md](LICENSE.md) file for more information.
 
 ---
 
 ## Special mention
 
-This work have been hugely inspired and copied several aspects of the great work done by [Martijn Vander Vlag](https://github.com/martijnvandervlag) to create the [newman-reporter-htmlfull](https://github.com/martijnvandervlag/newman-reporter-htmlfull) package. Check out that package too, this contains many of the same features.
+This work have been hugely inspired and copied several aspects of the great work done by [Martijn Vander Vlag](https://github.com/martijnvandervlag) to create the [newman-reporter-htmlfull](https://github.com/martijnvandervlag/newman-reporter-htmlfull) package. Check out that package too, this contains many of the same aggregation features.
 
-It was also brought together by reviewing the feature requests, from the official [Postman HTML reporter](https://github.com/postmanlabs/newman-reporter-html).
+It was also brought together by reviewing the feature requests, from the official [Postman HTML reporter](https://github.com/postmanlabs/newman-reporter-html) and implementing them into this reporter.

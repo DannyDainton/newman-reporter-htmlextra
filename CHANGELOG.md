@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.18.0] - 2020-08-19
+
+### Fixed
+
+- Fixed an issue that occurs when a `request name / header name` is not used when skipping certain elements from the report
+
+### Added
+
+- Added a tests to cover the above scenario
+
+-----------------------------------------------------------------------
+
 ## [1.17.4] - 2020-07-22
 
 ### Added
