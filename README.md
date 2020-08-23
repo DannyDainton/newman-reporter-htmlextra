@@ -50,10 +50,10 @@ To use `htmlextra` as a library, install the package as a dependency into a `nod
 npm install -S newman-reporter-htmlextra
 ```
 
-To install `nodejs`, `newman` and the `htmlextra` packages together, use this command (adding your own collection file) to run it using the `Docker` image:
+To install `node`, `newman` and the `htmlextra` packages together, use this command to pull the `Docker` image:
 
 ```console
-docker run -t -v $(pwd):/etc/newman dannydainton/htmlextra run collection.json -r htmlextra
+docker pull dannydainton/htmlextra
 ```
 
 ---
@@ -80,7 +80,8 @@ newman run collection.json -r htmlextra
 | `--reporter-htmlextra-title` | This optional flag can be used to give your report a different main `Title` in the centre of the report. If this is not set, the report will show "Newman Run Dashboard". | `newman run collection.json -r htmlextra --reporter-htmlextra-title "My Newman Report"`|
 | `--reporter-htmlextra-titleSize` | An optional flag to reduce the size of the main report title. The sizes range from `1` to `6`, the higher the number, the smaller the title will be. The default size is `2`. | `newman run collection.json -r htmlextra --reporter-htmlextra-titleSize 4`|
 | `--reporter-htmlextra-logs` | This optional flag shows any console log statements in the collection, on the final report. This is `false` by default. | `newman run collection.json -r htmlextra --reporter-htmlextra-logs`|
-| `--reporter-htmlextra-hideResponse` | An optional flag which allows you to exclude certain `Response Bodies` from the final report. Enter the name of the request that you wish to hide. | `newman run collection.json -r htmlextra --reporter-htmlextra-hideResponse "Auth Request"`|
+| `--reporter-htmlextra-hideRequestBody` | An optional flag which allows you to exclude certain `Request Bodies` from the final report. Enter the name of the request that you wish to hide. | `newman run collection.json -r htmlextra --reporter-htmlextra-hideRequestBody "Login"`|
+| `--reporter-htmlextra-hideResponseBody` | An optional flag which allows you to exclude certain `Response Bodies` from the final report. Enter the name of the request that you wish to hide. | `newman run collection.json -r htmlextra --reporter-htmlextra-hideResponse "Auth Request"`|
 | `--reporter-htmlextra-showEnvironmentData` | An optional flag which allows you to show all the `Environment` variables used during the run, in the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-showEnvironmentData`|
 | `--reporter-htmlextra-skipEnvironmentVars` | An optional flag which allows you to exclude certain `Environment` variables from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-skipEnvironmentVars "API_KEY"`|
 | `--reporter-htmlextra-showGlobalData` | An optional flag which allows you to show all the `Global` variables used during the run, in the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-showGlobalData`|
@@ -92,8 +93,6 @@ newman run collection.json -r htmlextra
 | `--reporter-htmlextra-noSyntaxHighlighting` | An optional flag which allows you disable the code syntax highlighting. This _could_ enhance the performance of opening larger reports. | `newman run collection.json -r htmlextra --reporter-htmlextra-noSyntaxHighlighting`|
 | `--reporter-htmlextra-showFolderDescription` | An optional flag which allows you to show all the folder descriptions, in the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-showFolderDescription`|
 | `--reporter-htmlextra-timezone` | An optional flag which allows you to set the timezone on the final report's timestamp | `newman run collection.json -r htmlextra --reporter-htmlextra-timezone "Australia/Sydney"`|
-
-Custom templates can be passed to the `htmlextra` reporter via the `--reporter-htmlextra-template <path>` flag. The [default template](./lib/dashboard-template.hbs) is used in all other cases. 
 
 ---
 
@@ -118,7 +117,7 @@ To enable the functionality of a given feature, uncomment any of the options wit
 const newman = require('newman');
 
 newman.run({
-    collection: './pathToFile/collection.json',
+    collection: './pathToFile/collection.json', // Collection URL from a public link or the Postman API can also be used
     reporters: ['htmlextra'],
     iterationCount: 1,
     reporter: {
@@ -134,7 +133,8 @@ newman.run({
             // titleSize: 4,
             // omitHeaders: true,
             // skipHeaders: "Authorization",
-            // hideResponse: ["Auth Request"],
+            // hideRequestBody: ["Login"],
+            // hideResponseBody: ["Auth Request"],
             // showEnvironmentData: true,
             // skipEnvironmentVars: ["API_KEY"],
             // showGlobalData: true,
