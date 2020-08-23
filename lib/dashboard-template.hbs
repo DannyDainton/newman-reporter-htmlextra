@@ -925,7 +925,10 @@ table.dataTable td, table.dataTable tr {
                 </div>
                 {{/unless}}
                 {{/unless}}
+                {{/with}}
                 {{#unless @root.skipSensitiveData}}
+                {{#isNotIn item.name @root.hideRequestBody}}
+                {{#with request}}
                 {{#if body.raw}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
@@ -945,6 +948,12 @@ table.dataTable td, table.dataTable tr {
                 </div>
                 </div>
                 {{/if}}
+                {{/with}}
+                {{/isNotIn}}
+                {{/unless}}
+                {{#unless @root.skipSensitiveData}}
+                {{#isNotIn item.name @root.hideRequestBody}}
+                {{#with request}}
                 {{#if body.formdata.members}}
                     <div class="row">
                         <div class="col-sm-12 mb-3">
@@ -964,6 +973,12 @@ table.dataTable td, table.dataTable tr {
                         </div>
                     </div>
                 {{/if}}
+                {{/with}}
+                {{/isNotIn}}
+                {{/unless}}
+                {{#unless @root.skipSensitiveData}}
+                {{#isNotIn item.name @root.hideRequestBody}}
+                {{#with request}}
                 {{#if body.urlencoded.members}}
                     <div class="row">
                         <div class="col-sm-12 mb-3">
@@ -983,6 +998,12 @@ table.dataTable td, table.dataTable tr {
                         </div>
                     </div>
                 {{/if}}
+                {{/with}}
+                {{/isNotIn}}
+                {{/unless}}
+                {{#unless @root.skipSensitiveData}}
+                {{#isNotIn item.name @root.hideRequestBody}}
+                {{#with request}}
                 {{#if body.graphql}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
@@ -1008,8 +1029,9 @@ table.dataTable td, table.dataTable tr {
                 </div>
                 </div>
                 {{/if}}
-                {{/unless}}
                 {{/with}}
+                {{/isNotIn}}
+                {{/unless}}
                 {{#unless @root.omitHeaders}}
                 {{#unless @root.skipSensitiveData}}
                 <div class="row">
@@ -1043,7 +1065,7 @@ table.dataTable td, table.dataTable tr {
                 {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
-                {{#isNotIn item.name @root.hideResponse}}
+                {{#isNotIn item.name @root.hideResponseBody}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
                     <div class="card-deck">

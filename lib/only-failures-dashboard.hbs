@@ -916,7 +916,35 @@ table.dataTable td, table.dataTable tr {
                 </div>
                 {{/unless}}
                 {{/unless}}
+                {{/with}}
                 {{#unless @root.skipSensitiveData}}
+                {{#isNotIn item.name @root.hideRequestBody}}
+                {{#with request}}
+                {{#if body.raw}}
+                <div class="row">
+                <div class="col-sm-12 mb-3">
+                    <div class="card-deck">
+                    <div class="card border-info" style="width: 50rem;">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
+                                <div class="dyn-height">
+                                    <pre><code id="copyReqText-{{@key}}" class="prettyPrint">{{body.raw}}</code></pre>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyReqText-{{@key}}">Copy to Clipboard</button>
+                                </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                {{/if}}
+                {{/with}}
+                {{/isNotIn}}
+                {{/unless}}
+                {{#unless @root.skipSensitiveData}}
+                {{#isNotIn item.name @root.hideRequestBody}}
+                {{#with request}}
                 {{#if body.formdata.members}}
                     <div class="row">
                         <div class="col-sm-12 mb-3">
@@ -936,25 +964,12 @@ table.dataTable td, table.dataTable tr {
                         </div>
                     </div>
                 {{/if}}
-                {{#if body.raw}}
-                <div class="row">
-                <div class="col-sm-12 mb-3">
-                    <div class="card-deck">
-                    <div class="card border-info" style="width: 50rem;">
-                        <div class="card-body">
-                            <h5 class="card-title text-uppercase text-white text-center bg-info">Request Body</h5>
-                                <div class="dyn-height">
-                                    <pre><code class="prettyPrint">{{body.raw}}</code></pre>
-                                </div>
-                                <div id="copyReqText-{{@key}}" class="card-footer">
-                                    <button class="btn btn-outline-secondary btn-sm copyButton" type="button" data-clipboard-action="copy" data-clipboard-target="#copyReqText-{{@key}}">Copy to Clipboard</button>
-                                </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-                {{/if}}
+                {{/with}}
+                {{/isNotIn}}
+                {{/unless}}
+                {{#unless @root.skipSensitiveData}}
+                {{#isNotIn item.name @root.hideRequestBody}}
+                {{#with request}}
                 {{#if body.urlencoded.members}}
                     <div class="row">
                         <div class="col-sm-12 mb-3">
@@ -974,6 +989,12 @@ table.dataTable td, table.dataTable tr {
                         </div>
                     </div>
                 {{/if}}
+                {{/with}}
+                {{/isNotIn}}
+                {{/unless}}
+                {{#unless @root.skipSensitiveData}}
+                {{#isNotIn item.name @root.hideRequestBody}}
+                {{#with request}}
                 {{#if body.graphql}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
@@ -999,8 +1020,9 @@ table.dataTable td, table.dataTable tr {
                 </div>
                 </div>
                 {{/if}}
-                {{/unless}}
                 {{/with}}
+                {{/isNotIn}}
+                {{/unless}}
                 {{#unless @root.omitHeaders}}
                 {{#unless @root.skipSensitiveData}}
                 <div class="row">
@@ -1034,7 +1056,7 @@ table.dataTable td, table.dataTable tr {
                 {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
-                {{#isNotIn item.name @root.hideResponse}}
+                {{#isNotIn item.name @root.hideResponseBody}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
                     <div class="card-deck">

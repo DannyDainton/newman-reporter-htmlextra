@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.19.0] - 2020-08-23
+
+### Added
+
+- Added a new `hideRequestBody` flag to allow you _hide_ a specific request body from the final report
+
+### Changed
+
+- Changed the  `hideResponse` flag to `hideResponseBody` to make it more descriptive 
+
+-----------------------------------------------------------------------
+
 ## [1.18.0] - 2020-08-19
 
 ### Fixed
