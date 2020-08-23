@@ -14,6 +14,12 @@ This reporter comes with a dashboard style summary landing page and a set of dif
 
 ---
 
+If you're a fan of the project and you wanted to show your appreciation by keeping me highly caffeinated - You can do that here 😍
+
+<a href="https://www.buymeacoffee.com/htmlextra" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="35" width="165"></a>
+
+---
+
 ## Report Example
 
 ![Default Report](./examples/Default_Report.gif)
@@ -44,7 +50,7 @@ To use `htmlextra` as a library, install the package as a dependency into a `nod
 npm install -S newman-reporter-htmlextra
 ```
 
-To install `node`, `newman` and the `htmlextra` packages together, use this command to run it using the `Docker` image:
+To install `nodejs`, `newman` and the `htmlextra` packages together, use this command (adding your own collection file) to run it using the `Docker` image:
 
 ```console
 docker run -t -v $(pwd):/etc/newman dannydainton/htmlextra run collection.json -r htmlextra
