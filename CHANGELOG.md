@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.19.1] - 2020-09-08
+
+### Added
+
+- Added a bit more feedback when Newman is running with the reporter  
+
+-----------------------------------------------------------------------
+
 ## [1.19.0] - 2020-08-23
 
 ### Added
