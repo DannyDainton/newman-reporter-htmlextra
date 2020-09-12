@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.19.2] - 2020-09-12
+
+### Added
+
+- Added an a helper output from the CLI to display the reporters options and version  
+
+-----------------------------------------------------------------------
+
 ## [1.19.1] - 2020-09-08
 
 ### Added
