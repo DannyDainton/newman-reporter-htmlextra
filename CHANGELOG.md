@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.19.3] - 2020-10-11
+
+### Fixed
+
+- Fixed issue with the rendering of the CLI version output
+
+### Added
+
+- Added a progress bar
+
+-----------------------------------------------------------------------
+
 ## [1.19.2] - 2020-09-12
 
 ### Added
