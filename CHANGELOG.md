@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-- Added a progress bar
+- Added a progress bar (The default progress bar will show if that reporter is used)
 
 -----------------------------------------------------------------------
 
