@@ -66,5 +66,5 @@
     "recursive-readdir": "^2.2.2",
     "shelljs": "^0.8.4"
   },
-  "snyk": true
+  "snyk": false
 }
