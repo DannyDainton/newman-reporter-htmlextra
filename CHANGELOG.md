@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.19.4] - 2020-10-13
+
+### Fixed
+
+- Fixed issue with the rendering of the CLI progress output
+
+-----------------------------------------------------------------------
 
 ## [1.19.3] - 2020-10-11
 
