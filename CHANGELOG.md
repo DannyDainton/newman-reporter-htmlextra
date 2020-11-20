@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.19.5] - 2020-11-20
+
+### Fixed
+
+- Updated the `highlight.js` version for node_modules and CDN links in templates
+
+-----------------------------------------------------------------------
+
 ## [1.19.4] - 2020-10-13
 
 ### Fixed
