@@ -1,6 +1,6 @@
 {
   "name": "newman-reporter-htmlextra",
-  "version": "1.19.5",
+  "version": "1.19.6",
   "description": "A newman reporter with added handlebars helpers and separated request iterations",
   "main": "index.js",
   "preferGlobal": true,
@@ -10,8 +10,6 @@
     "test-lint": "node npm/test-lint.js",
     "test-system": "node npm/test-system.js",
     "pre-publish": "node npm/test-all.js && npm pack",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect",
     "local-dev": "npm link && cd node_modules/newman && npm link newman-reporter-htmlextra && cd ../.."
   },
   "deprecated": false,
@@ -30,16 +28,19 @@
     "newman-reporter-htmlextra": "./bin/htmlextra.js"
   },
   "dependencies": {
+    "autolinker": "^3.14.2",
     "chalk": "^4.1.0",
     "cli-progress": "^3.8.2",
     "commander": "^6.2.0",
     "filesize": "^6.1.0",
+    "gulp-header": "^2.0.9",
     "handlebars": "^4.7.6",
     "handlebars-helpers": "^0.10.0",
     "highlight.js": "^10.4.0",
     "lodash": "^4.17.20",
     "moment-timezone": "^0.5.32",
     "pretty-ms": "^7.0.1",
+    "remarkable": "^2.0.1",
     "snyk": "^1.428.2"
   },
   "author": "Danny Dainton",
