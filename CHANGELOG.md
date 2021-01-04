@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.19.7] - 2021-01-04
+
+### Fixed
+
+- Updated dependencies
+- Fixed issue that was preventing htmlextra from being used as a library 
+
+-----------------------------------------------------------------------
 
 ## [1.19.6] - 2020-11-24
 
