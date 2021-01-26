@@ -195,6 +195,8 @@ I would be lying if I said that I've created this reporter all on my own, I need
 - [@bassie1995](https://github.com/bassie1995)
 - [@praveendvd](https://github.com/praveendvd)
 - [@Prachi481992](https://github.com/Prachi481992)
+- [@sweetnoods](https://github.com/sweetnoods)
+- [@manoelagonzaga](https://github.com/manoelagonzaga)
 
 A huge amount of love and appreciation also goes to [Bruce](https://twitter.com/BruceOnlyBruce) _The Legend_, for creating the awesome project logo ♥️
 

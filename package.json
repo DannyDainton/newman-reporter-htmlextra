@@ -1,6 +1,6 @@
 {
   "name": "newman-reporter-htmlextra",
-  "version": "1.19.7",
+  "version": "1.20.0",
   "description": "A newman reporter with added handlebars helpers and separated request iterations",
   "main": "index.js",
   "preferGlobal": true,
@@ -41,7 +41,7 @@
     "moment-timezone": "^0.5.32",
     "pretty-ms": "^7.0.1",
     "remarkable": "^2.0.1",
-    "snyk": "^1.437.3"
+    "snyk": "^1.439.1"
   },
   "author": "Danny Dainton",
   "license": "Apache-2.0",

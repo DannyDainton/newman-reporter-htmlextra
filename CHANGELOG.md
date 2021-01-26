@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+
+## [1.20.0] - 2021-01-26
+
+### Fixed
+
+- Added extra checks into the `isNotIn` helper to account for `null` key values. 🏆 Credit to @manoelagonzaga 🏆
+- Typo fixed in the Global Varaible option for the template. 🏆 Credit to @sweetnoods 🏆
+
+-----------------------------------------------------------------------
 ## [1.19.7] - 2021-01-04
 
 ### Fixed
