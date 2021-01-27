@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.20.1] - 2021-01-27
+
+### Fixed
+
+- Styling issue when the `noSyntaxHighlighting` flag was used. 🏆 Credit to @stickpin 🏆
+
+-----------------------------------------------------------------------
+
 ## [1.20.0] - 2021-01-26
 
 ### Fixed
