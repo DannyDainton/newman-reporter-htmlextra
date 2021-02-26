@@ -16,7 +16,7 @@ This reporter comes with a dashboard style summary landing page and a set of dif
 
 If you're a fan of the project and you wanted to show your appreciation by keeping me highly caffeinated - You can do that here 😍
 
-<a href="https://www.buymeacoffee.com/htmlextra" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="35" width="165"></a>
+<a href="https://www.buymeacoffee.com/htmlextra"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=htmlextra&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
 
 ---
 
