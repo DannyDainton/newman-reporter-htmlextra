@@ -33,7 +33,7 @@ jobs:
           node-version: '10.x'
       
       - name: Publish new version
-        uses: primer/publish@v3
+        uses: primer/publish@v3.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
