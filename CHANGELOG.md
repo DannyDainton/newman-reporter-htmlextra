@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.20.2] - 2021-03-24
+
+### Fixed
+
+- Updated dependencies
+- Fixed issue that was causing the iteration tab numbers to wrap for 1000+ iteration runs
+
+### Added
+
+- Added some basic repo contribution steps to the readme file for local development
+
+-----------------------------------------------------------------------
 ## [1.20.1] - 2021-01-27
 
 ### Fixed

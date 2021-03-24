@@ -185,6 +185,21 @@ Each of these command can be used with the different CLI flags to create the fin
 
 ---
 
+## Contributing To The Project
+
+This is an open soruce project and PRs for improvements and bug fixes are ALWAYS welcome!! 
+
+The easiest way to contribute is to locally pull down the repository code, make your awesome changes and submit a PR - I've listed a few steps here to hopefully make this a simple process:
+
+1. Clone the `newman-reporter-htmlextra` repository
+2. Create a New Branch
+3. Run `npm i`
+4. Run `npm run local-dev` to globally link the project with Newman 
+5. Make your changes to the reporter  
+6. Run `npx newman run collection_file.json -r htmlextra` to create a new report and see your changes in the output
+7. Submit a PR for review
+
+---
 ## Project Contributors
 
 I would be lying if I said that I've created this reporter all on my own, I need to say a massive **_Thank You!_** to the following folks for helping make `htmlextra` even better:
