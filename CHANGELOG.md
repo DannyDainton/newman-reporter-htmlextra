@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.20.4] - 2021-04-30
+
+### Added
+
+- Added additional `omitRequestBodies` and `omitResponseBodies` flags. 🏆 Credit to @dersvenhesse 🏆
+
+-----------------------------------------------------------------------
 
 ## [1.20.3] - 2021-03-24
 
