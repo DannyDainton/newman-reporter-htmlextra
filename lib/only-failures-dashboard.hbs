@@ -926,6 +926,7 @@ body.theme-light code {
                 {{/unless}}
                 {{/with}}
                 {{#unless @root.skipSensitiveData}}
+                {{#unless @root.hideRequestBodies}}
                 {{#isNotIn item.name @root.hideRequestBody}}
                 {{#with request}}
                 {{#if body.raw}}
@@ -950,7 +951,9 @@ body.theme-light code {
                 {{/with}}
                 {{/isNotIn}}
                 {{/unless}}
+                {{/unless}}
                 {{#unless @root.skipSensitiveData}}
+                {{#unless @root.hideRequestBodies}}
                 {{#isNotIn item.name @root.hideRequestBody}}
                 {{#with request}}
                 {{#if body.formdata.members}}
@@ -975,7 +978,9 @@ body.theme-light code {
                 {{/with}}
                 {{/isNotIn}}
                 {{/unless}}
+                {{/unless}}
                 {{#unless @root.skipSensitiveData}}
+                {{#unless @root.hideRequestBodies}}
                 {{#isNotIn item.name @root.hideRequestBody}}
                 {{#with request}}
                 {{#if body.urlencoded.members}}
@@ -1000,7 +1005,9 @@ body.theme-light code {
                 {{/with}}
                 {{/isNotIn}}
                 {{/unless}}
+                {{/unless}}
                 {{#unless @root.skipSensitiveData}}
+                {{#unless @root.hideRequestBodies}}
                 {{#isNotIn item.name @root.hideRequestBody}}
                 {{#with request}}
                 {{#if body.graphql}}
@@ -1030,6 +1037,7 @@ body.theme-light code {
                 {{/if}}
                 {{/with}}
                 {{/isNotIn}}
+                {{/unless}}
                 {{/unless}}
                 {{#unless @root.omitHeaders}}
                 {{#unless @root.skipSensitiveData}}
@@ -1064,6 +1072,7 @@ body.theme-light code {
                 {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
+                {{#unless @root.hideResponseBodies}}
                 {{#isNotIn item.name @root.hideResponseBody}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
@@ -1087,6 +1096,7 @@ body.theme-light code {
                     </div>
                 </div>
                 {{/isNotIn}}
+                {{/unless}}
                 {{/unless}}
                 {{#if consoleLogs.length}}
                 <div class="row">

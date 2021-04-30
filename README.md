@@ -80,6 +80,8 @@ newman run collection.json -r htmlextra
 | `--reporter-htmlextra-title` | This optional flag can be used to give your report a different main `Title` in the centre of the report. If this is not set, the report will show "Newman Run Dashboard". | `newman run collection.json -r htmlextra --reporter-htmlextra-title "My Newman Report"`|
 | `--reporter-htmlextra-titleSize` | An optional flag to reduce the size of the main report title. The sizes range from `1` to `6`, the higher the number, the smaller the title will be. The default size is `2`. | `newman run collection.json -r htmlextra --reporter-htmlextra-titleSize 4`|
 | `--reporter-htmlextra-logs` | This optional flag shows any console log statements in the collection, on the final report. This is `false` by default. | `newman run collection.json -r htmlextra --reporter-htmlextra-logs`|
+| `--reporter-htmlextra-omitRequestBodies` | An optional flag which allows you to exclude all `Request Bodies` from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-omitRequestBodies`|
+| `--reporter-htmlextra-omitResponseBodies` | An optional flag which allows you to exclude all `Response Bodies` from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-omitResponseBodies`|
 | `--reporter-htmlextra-hideRequestBody` | An optional flag which allows you to exclude certain `Request Bodies` from the final report. Enter the name of the request that you wish to hide. | `newman run collection.json -r htmlextra --reporter-htmlextra-hideRequestBody "Login"`|
 | `--reporter-htmlextra-hideResponseBody` | An optional flag which allows you to exclude certain `Response Bodies` from the final report. Enter the name of the request that you wish to hide. | `newman run collection.json -r htmlextra --reporter-htmlextra-hideResponseBody "Auth Request"`|
 | `--reporter-htmlextra-showEnvironmentData` | An optional flag which allows you to show all the `Environment` variables used during the run, in the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-showEnvironmentData`|
@@ -133,6 +135,8 @@ newman.run({
             // titleSize: 4,
             // omitHeaders: true,
             // skipHeaders: "Authorization",
+            // omitRequestBodies: true,
+            // omitResponseBodies: true,
             // hideRequestBody: ["Login"],
             // hideResponseBody: ["Auth Request"],
             // showEnvironmentData: true,
