@@ -926,7 +926,7 @@ body.theme-light code {
                 {{/unless}}
                 {{/with}}
                 {{#unless @root.skipSensitiveData}}
-                {{#unless @root.hideRequestBodies}}
+                {{#unless @root.omitRequestBodies}}
                 {{#isNotIn item.name @root.hideRequestBody}}
                 {{#with request}}
                 {{#if body.raw}}
@@ -953,7 +953,7 @@ body.theme-light code {
                 {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
-                {{#unless @root.hideRequestBodies}}
+                {{#unless @root.omitRequestBodies}}
                 {{#isNotIn item.name @root.hideRequestBody}}
                 {{#with request}}
                 {{#if body.formdata.members}}
@@ -980,7 +980,7 @@ body.theme-light code {
                 {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
-                {{#unless @root.hideRequestBodies}}
+                {{#unless @root.omitRequestBodies}}
                 {{#isNotIn item.name @root.hideRequestBody}}
                 {{#with request}}
                 {{#if body.urlencoded.members}}
@@ -1007,7 +1007,7 @@ body.theme-light code {
                 {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
-                {{#unless @root.hideRequestBodies}}
+                {{#unless @root.omitRequestBodies}}
                 {{#isNotIn item.name @root.hideRequestBody}}
                 {{#with request}}
                 {{#if body.graphql}}
@@ -1072,7 +1072,7 @@ body.theme-light code {
                 {{/unless}}
                 {{/unless}}
                 {{#unless @root.skipSensitiveData}}
-                {{#unless @root.hideResponseBodies}}
+                {{#unless @root.omitResponseBodies}}
                 {{#isNotIn item.name @root.hideResponseBody}}
                 <div class="row">
                 <div class="col-sm-12 mb-3">
