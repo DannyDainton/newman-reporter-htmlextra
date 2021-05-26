@@ -27,21 +27,22 @@
   "bin": {
     "newman-reporter-htmlextra": "./bin/htmlextra.js"
   },
+  "files": [
+    "bin/",
+    "lib/",
+    "index.js",
+    "README.MD"
+  ],
   "dependencies": {
-    "autolinker": "^3.14.2",
     "chalk": "^4.1.1",
     "cli-progress": "^3.8.2",
     "commander": "^6.2.1",
     "filesize": "^6.3.0",
-    "gulp-header": "^2.0.9",
     "handlebars": "^4.7.6",
     "handlebars-helpers": "^0.10.0",
-    "highlight.js": "^10.7.2",
     "lodash": "^4.17.20",
     "moment-timezone": "^0.5.32",
-    "pretty-ms": "^7.0.1",
-    "remarkable": "^2.0.1",
-    "snyk": "^1.573.0"
+    "pretty-ms": "^7.0.1"
   },
   "author": "Danny Dainton",
   "license": "Apache-2.0",
