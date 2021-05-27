@@ -12,7 +12,7 @@ jobs:
       - name: Set up Node.js 
         uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '14.x'
         
       - name: Install and run tests
         run: |
@@ -30,7 +30,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '10.x'
+          node-version: '14.x'
       
       - name: Publish new version
         uses: pascalgn/npm-publish-action@06e0830ea83eea10ed4a62654eeaedafb8bf50fc

@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.21.0] - 2021-05-27
+
+### Fixed
+
+- Removed the unneeded files from the final package. 🏆 Credit to @b-pagis 🏆
+- Updated the dependencies and increased the node version in the GH workflow to 14
+
+-----------------------------------------------------------------------
+
 ## [1.20.4] - 2021-04-30
 
 ### Added
