@@ -185,7 +185,7 @@ Each of these command can be used with the different CLI flags to create the fin
 
 | **newman-reporter-htmlextra** | **newman** | **node** |
 |:------------------------:|:----------:|:--------:|
-|         >= v1.1.0          | >= v4.2.3  | >= v10.x  |
+|         >= v1.1.0          | >= v4.2.3  | >= v14.x  |
 
 ---
 
@@ -218,6 +218,7 @@ I would be lying if I said that I've created this reporter all on my own, I need
 - [@manoelagonzaga](https://github.com/manoelagonzaga)
 - [@stickpin](https://github.com/stickpin)
 - [@dersvenhesse](https://github.com/dersvenhesse)
+- [@b-pagis](https://github.com/b-pagis)
 
 A huge amount of love and appreciation also goes to [Bruce](https://twitter.com/BruceOnlyBruce) _The Legend_, for creating the awesome project logo ♥️
 
