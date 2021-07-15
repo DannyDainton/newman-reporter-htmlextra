@@ -382,4 +382,17 @@ describe('Newman and htmlextra run from a script', function () {
             fs.stat(outFile, done);
         });
     });
+
+    it('Should correctly geenrate report for skip folder', function (done) {
+        newman.run({
+            collection: 'test/requests/simple-skipped-folder.json',
+            reporters: ['htmlextra'],
+            reporter: { htmlextra: { omitHeaders: true, export: outFile, skipFolders: 'folder1,folder4' } }
+        // eslint-disable-next-line consistent-return
+        }, function (err, summary) {
+            if (err) { return done(err); }
+            expect(summary.collection.name).to.equal('simple-skipped-folder');
+            fs.stat(outFile, done);
+        });
+    });
 });

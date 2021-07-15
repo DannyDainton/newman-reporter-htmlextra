@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "1340c27d-8495-4246-8656-26e19d98eb8b",
+		"name": "simple-skipped-folder",
+		"description": "this is test description\n\n| CODE | STATUS        | RESULT                                                       |\n| ---- | ------------- | ------------------------------------------------------------ |\n| 200  | success       |                                                              |\n| 404  | no_data_found | No saved  report found for the logged-in user                |\n| 400  | failure       | 1. \"combination is not valid\" WHEN  any one parameter is invalid in request URL          <br /><br />2. \"not in sync\" WHEN values of parameters do  not match between request URL and request payload |\n\n<img src=\"https://media.giphy.com/media/9S1IzGxhAv6kiemMGu/giphy.gif\"  style=\"float: right;\">\n\n# Description\n\nHi Everyone , here you can find demo collections of some tricky but interesting postman usecases like\n\n  1. Data driven using envirnment variable (**without using datafile**)\n  2. Data driven using **Google sheets**\n  3. **Reseting variables** after collection run completes\n  4. Run requests using **Tags**\n  5. Sending certain request after each request using **postman.setNextRequest**\n  6. Sending certain request before and after each request using **pm.sendRequest**\n  7. Sending a request n times\n\n![party](https://media1.giphy.com/media/cKbLJzS0cOTklEmzto/giphy.gif)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "folder1",
+			"item": [
+				{
+					"name": "request1",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.getpostman.com/workspaces",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getpostman",
+								"com"
+							],
+							"path": [
+								"workspaces"
+							]
+						},
+						"description": "this is test description\n\n| CODE | STATUS        | RESULT                                                       |\n| ---- | ------------- | ------------------------------------------------------------ |\n| 200  | success       |                                                              |\n| 404  | no_data_found | No saved  report found for the logged-in user                |\n| 400  | failure       | 1. \"combination is not valid\" WHEN  any one parameter is invalid in request URL          <br /><br />2. \"not in sync\" WHEN values of parameters do  not match between request URL and request payload |\n\n<img src=\"https://media.giphy.com/media/9S1IzGxhAv6kiemMGu/giphy.gif\"  style=\"float: right;\">\n\n# Description\n\nHi Everyone , here you can find demo collections of some tricky but interesting postman usecases like\n\n  1. Data driven using envirnment variable (**without using datafile**)\n  2. Data driven using **Google sheets**\n  3. **Reseting variables** after collection run completes\n  4. Run requests using **Tags**\n  5. Sending certain request after each request using **postman.setNextRequest**\n  6. Sending certain request before and after each request using **pm.sendRequest**\n  7. Sending a request n times\n\n![party](https://media1.giphy.com/media/cKbLJzS0cOTklEmzto/giphy.gif)"
+					},
+					"response": []
+				}
+			],
+			"description": "this is test description\n\n| CODE | STATUS        | RESULT                                                       |\n| ---- | ------------- | ------------------------------------------------------------ |\n| 200  | success       |                                                              |\n| 404  | no_data_found | No saved  report found for the logged-in user                |\n| 400  | failure       | 1. \"combination is not valid\" WHEN  any one parameter is invalid in request URL          <br /><br />2. \"not in sync\" WHEN values of parameters do  not match between request URL and request payload |\n\n<img src=\"https://media.giphy.com/media/9S1IzGxhAv6kiemMGu/giphy.gif\"  style=\"float: right;\">\n\n# Description\n\nHi Everyone , here you can find demo collections of some tricky but interesting postman usecases like\n\n  1. Data driven using envirnment variable (**without using datafile**)\n  2. Data driven using **Google sheets**\n  3. **Reseting variables** after collection run completes\n  4. Run requests using **Tags**\n  5. Sending certain request after each request using **postman.setNextRequest**\n  6. Sending certain request before and after each request using **pm.sendRequest**\n  7. Sending a request n times\n\n![party](https://media1.giphy.com/media/cKbLJzS0cOTklEmzto/giphy.gif)"
+		},
+		{
+			"name": "folder2",
+			"item": [
+				{
+					"name": "request2",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.getpostman.com/workspaces",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getpostman",
+								"com"
+							],
+							"path": [
+								"workspaces"
+							]
+						},
+						"description": "this is test description\n\n| CODE | STATUS        | RESULT                                                       |\n| ---- | ------------- | ------------------------------------------------------------ |\n| 200  | success       |                                                              |\n| 404  | no_data_found | No saved  report found for the logged-in user                |\n| 400  | failure       | 1. \"combination is not valid\" WHEN  any one parameter is invalid in request URL          <br /><br />2. \"not in sync\" WHEN values of parameters do  not match between request URL and request payload |\n\n<img src=\"https://media.giphy.com/media/9S1IzGxhAv6kiemMGu/giphy.gif\"  style=\"float: right;\">\n\n# Description\n\nHi Everyone , here you can find demo collections of some tricky but interesting postman usecases like\n\n  1. Data driven using envirnment variable (**without using datafile**)\n  2. Data driven using **Google sheets**\n  3. **Reseting variables** after collection run completes\n  4. Run requests using **Tags**\n  5. Sending certain request after each request using **postman.setNextRequest**\n  6. Sending certain request before and after each request using **pm.sendRequest**\n  7. Sending a request n times\n\n![party](https://media1.giphy.com/media/cKbLJzS0cOTklEmzto/giphy.gif)"
+					},
+					"response": []
+				}
+			],
+			"description": "this is test description\n\n| CODE | STATUS        | RESULT                                                       |\n| ---- | ------------- | ------------------------------------------------------------ |\n| 200  | success       |                                                              |\n| 404  | no_data_found | No saved  report found for the logged-in user                |\n| 400  | failure       | 1. \"combination is not valid\" WHEN  any one parameter is invalid in request URL          <br /><br />2. \"not in sync\" WHEN values of parameters do  not match between request URL and request payload |\n\n<img src=\"https://media.giphy.com/media/9S1IzGxhAv6kiemMGu/giphy.gif\"  style=\"float: right;\">\n\n# Description\n\nHi Everyone , here you can find demo collections of some tricky but interesting postman usecases like\n\n  1. Data driven using envirnment variable (**without using datafile**)\n  2. Data driven using **Google sheets**\n  3. **Reseting variables** after collection run completes\n  4. Run requests using **Tags**\n  5. Sending certain request after each request using **postman.setNextRequest**\n  6. Sending certain request before and after each request using **pm.sendRequest**\n  7. Sending a request n times\n\n![party](https://media1.giphy.com/media/cKbLJzS0cOTklEmzto/giphy.gif)"
+		},
+		{
+			"name": "folder3",
+			"item": [
+				{
+					"name": "request3",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.getpostman.com/workspaces",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getpostman",
+								"com"
+							],
+							"path": [
+								"workspaces"
+							]
+						},
+						"description": "this is test description\n\n| CODE | STATUS        | RESULT                                                       |\n| ---- | ------------- | ------------------------------------------------------------ |\n| 200  | success       |                                                              |\n| 404  | no_data_found | No saved  report found for the logged-in user                |\n| 400  | failure       | 1. \"combination is not valid\" WHEN  any one parameter is invalid in request URL          <br /><br />2. \"not in sync\" WHEN values of parameters do  not match between request URL and request payload |\n\n<img src=\"https://media.giphy.com/media/9S1IzGxhAv6kiemMGu/giphy.gif\"  style=\"float: right;\">\n\n# Description\n\nHi Everyone , here you can find demo collections of some tricky but interesting postman usecases like\n\n  1. Data driven using envirnment variable (**without using datafile**)\n  2. Data driven using **Google sheets**\n  3. **Reseting variables** after collection run completes\n  4. Run requests using **Tags**\n  5. Sending certain request after each request using **postman.setNextRequest**\n  6. Sending certain request before and after each request using **pm.sendRequest**\n  7. Sending a request n times\n\n![party](https://media1.giphy.com/media/cKbLJzS0cOTklEmzto/giphy.gif)"
+					},
+					"response": []
+				}
+			],
+			"description": "this is test description\n\n| CODE | STATUS        | RESULT                                                       |\n| ---- | ------------- | ------------------------------------------------------------ |\n| 200  | success       |                                                              |\n| 404  | no_data_found | No saved  report found for the logged-in user                |\n| 400  | failure       | 1. \"combination is not valid\" WHEN  any one parameter is invalid in request URL          <br /><br />2. \"not in sync\" WHEN values of parameters do  not match between request URL and request payload |\n\n<img src=\"https://media.giphy.com/media/9S1IzGxhAv6kiemMGu/giphy.gif\"  style=\"float: right;\">\n\n# Description\n\nHi Everyone , here you can find demo collections of some tricky but interesting postman usecases like\n\n  1. Data driven using envirnment variable (**without using datafile**)\n  2. Data driven using **Google sheets**\n  3. **Reseting variables** after collection run completes\n  4. Run requests using **Tags**\n  5. Sending certain request after each request using **postman.setNextRequest**\n  6. Sending certain request before and after each request using **pm.sendRequest**\n  7. Sending a request n times\n\n![party](https://media1.giphy.com/media/cKbLJzS0cOTklEmzto/giphy.gif)"
+		},
+		{
+			"name": "folder4",
+			"item": [
+				{
+					"name": "request4",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.getpostman.com/workspaces",
+							"protocol": "https",
+							"host": [
+								"api",
+								"getpostman",
+								"com"
+							],
+							"path": [
+								"workspaces"
+							]
+						},
+						"description": "this is test description\n\n| CODE | STATUS        | RESULT                                                       |\n| ---- | ------------- | ------------------------------------------------------------ |\n| 200  | success       |                                                              |\n| 404  | no_data_found | No saved  report found for the logged-in user                |\n| 400  | failure       | 1. \"combination is not valid\" WHEN  any one parameter is invalid in request URL          <br /><br />2. \"not in sync\" WHEN values of parameters do  not match between request URL and request payload |\n\n<img src=\"https://media.giphy.com/media/9S1IzGxhAv6kiemMGu/giphy.gif\"  style=\"float: right;\">\n\n# Description\n\nHi Everyone , here you can find demo collections of some tricky but interesting postman usecases like\n\n  1. Data driven using envirnment variable (**without using datafile**)\n  2. Data driven using **Google sheets**\n  3. **Reseting variables** after collection run completes\n  4. Run requests using **Tags**\n  5. Sending certain request after each request using **postman.setNextRequest**\n  6. Sending certain request before and after each request using **pm.sendRequest**\n  7. Sending a request n times\n\n![party](https://media1.giphy.com/media/cKbLJzS0cOTklEmzto/giphy.gif)"
+					},
+					"response": []
+				}
+			],
+			"description": "this is test description\n\n| CODE | STATUS        | RESULT                                                       |\n| ---- | ------------- | ------------------------------------------------------------ |\n| 200  | success       |                                                              |\n| 404  | no_data_found | No saved  report found for the logged-in user                |\n| 400  | failure       | 1. \"combination is not valid\" WHEN  any one parameter is invalid in request URL          <br /><br />2. \"not in sync\" WHEN values of parameters do  not match between request URL and request payload |\n\n<img src=\"https://media.giphy.com/media/9S1IzGxhAv6kiemMGu/giphy.gif\"  style=\"float: right;\">\n\n# Description\n\nHi Everyone , here you can find demo collections of some tricky but interesting postman usecases like\n\n  1. Data driven using envirnment variable (**without using datafile**)\n  2. Data driven using **Google sheets**\n  3. **Reseting variables** after collection run completes\n  4. Run requests using **Tags**\n  5. Sending certain request after each request using **postman.setNextRequest**\n  6. Sending certain request before and after each request using **pm.sendRequest**\n  7. Sending a request n times\n\n![party](https://media1.giphy.com/media/cKbLJzS0cOTklEmzto/giphy.gif)"
+		}
+	]
+}
