@@ -1621,8 +1621,6 @@ $('#showOnlyFailures').on('click', function(e) {
     selectedIteration.length || clickCount > 1 ? null : $("#iterationList li.itFailed")[0].click()
     $("#iterationList li.itPassed").toggle()
     $("div.bg-success [id*=requests]").parents('[class^="row iteration-"]').toggle();
-    clickCount > 1 ? $(`.folderPassed`).parents('div[class^="alert"][class*="iteration-"]').show() :
-    $(`.folderPassed`).parents('div[class^="alert"][class*="iteration-"]').hide()
     clickCount = clickCount > 1 ? 1 : ++clickCount;
     clickCount > 1 ? $("#showOnlyFailures").html("Show All Iterations") : $("#showOnlyFailures").html("Show Failed Iterations");
     $(this).data("clickCount", clickCount)     
