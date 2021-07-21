@@ -9,6 +9,12 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
 
 <style>
+code.renderMarkdown table, code.renderMarkdown th, code.renderMarkdown td {
+    border: 1px solid black;
+    width: max-content;
+    padding: .75rem;
+}
+
 .theme-dark {
     --background-color: #222;
     --bg-card-deck: #444444;
@@ -1600,44 +1606,31 @@ $(document).ready(function(){
 <!-- Filter Action for the Iterations -->
 
 <script>
-$(document).ready(function(){
-  $("#filterInput").on("input paste", function() {
+$("#filterInput").on("input paste", function() {
     var value = $(this).val();
     $("#iterationList li").filter(function() {
-	  $("#showOnlyFailures").data("clickCount") ? $("#showOnlyFailures").click():null;
-      $(this).toggle($(this).text().indexOf(value) > -1)
+	    $("#showOnlyFailures").data("clickCount") ? $("#showOnlyFailures").click():null;
+        $(this).toggle($(this).text().indexOf(value) > -1)
     });
-  });
 });
 </script>
 
 <!-- Showing the Failed Interations -->
 
 <script>
-$(document).ready(function(){  
-  if($("#iterationList li.itFailed").length){
-	$("#showOnlyFailures").data("clickCount", 0);
-    $("#showOnlyFailures").on("click", function () {
-        let clickCount = $(this).data("clickCount")
-		$("#filterInput").val()!="" && clickCount==0 ? 
-		$("#filterInput").val('').trigger('input'): null;
-								
-        let selectedIteration = $('#iterationList li').filter(function () { 
-            return $(this).css('border-bottom').indexOf("solid") > -1 && $(this).hasClass('itFailed');
-        });
-        selectedIteration.length || clickCount ? null : $("#iterationList li.itFailed")[0].click()
-        $("#iterationList li.itPassed").each(function () {
-          $(this).toggle();
-         });
-        $("div.bg-success [id*=requests]").parents('[class^="row iteration-"]').each(function () {
-          $(this).toggle();
-         });
-        clickCount = clickCount ? 0 : ++clickCount;
-        clickCount ? $("#showOnlyFailures").html("Show All Iterations") : $("#showOnlyFailures").html("Show Failed Iterations");
-        $(this).data("clickCount", clickCount)     
+$('#showOnlyFailures').on('click', function(e) {
+    let clickCount = $(this).data("clickCount") || 1
+	$("#filterInput").val()!="" && clickCount==1 ? $("#filterInput").val('').trigger('input'): null;
+    let selectedIteration = $('#iterationList li').filter(function () { 
+        return $(this).css('border-bottom').indexOf("solid") > -1 && $(this).hasClass('itFailed');
     });
-  }
-});
+    selectedIteration.length || clickCount > 1 ? null : $("#iterationList li.itFailed")[0].click()
+    $("#iterationList li.itPassed").toggle()
+    $("div.bg-success [id*=requests]").parents('[class^="row iteration-"]').toggle();
+    clickCount = clickCount > 1 ? 1 : ++clickCount;
+    clickCount > 1 ? $("#showOnlyFailures").html("Show All Iterations") : $("#showOnlyFailures").html("Show Failed Iterations");
+    $(this).data("clickCount", clickCount)     
+})
 </script>
 
 <!-- Set The Theme Of The Report -->
