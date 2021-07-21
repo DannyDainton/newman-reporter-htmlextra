@@ -794,7 +794,7 @@ body.theme-light code {
 	<div class="tab-content" id="execution-data">
 {{#each aggregations}}
     {{#if parent.name }}
-        {{#unless (containsFolder parent.name)}}
+        {{#isNotIn parent.name @root.skipFolders}}
         <div class="alert alert-dark text-uppercase text-center iteration-{{parent.iteration}}">
         <a data-toggle="collapse" href="#" data-target="#folder-collapse-{{parent.id}}-iteration-{{parent.iteration}}" aria-expanded="false" aria-controls="collapse" id="folder-{{parent.id}}-iteration-{{parent.iteration}}" class="collapsed text-dark z-block">
         <i class="fas fa-info-circle float-left resultsInfoPass" {{#each executions}}{{#if cumulativeTests.failed}} style="color: #c24a3f; padding-top: 4px;"{{/if}}{{/each}}></i>
@@ -806,7 +806,7 @@ body.theme-light code {
         </div>
         {{else}}
         {{> aggregations}}
-        {{/unless}}
+        {{/isNotIn}}
     {{/if}}        
 {{/each}}
         </div>
@@ -819,7 +819,7 @@ body.theme-light code {
 </html>
 
 {{#*inline "aggregations"}}
-{{#unless (containsFolder parent.name)}}
+{{#isNotIn parent.name @root.skipFolders}}
 {{#if @root.showFolderDescription}}
 {{#if parent.description.content}}
 
@@ -1212,7 +1212,7 @@ body.theme-light code {
     </div>
     </div>
 {{/each}}
-{{/unless}}
+{{/isNotIn}}
 {{/inline}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
