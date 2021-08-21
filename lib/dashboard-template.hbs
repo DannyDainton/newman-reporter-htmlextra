@@ -840,7 +840,7 @@ body.theme-light code {
 {{/if}}
 {{/if}}
 {{#each executions}}
-
+{{#isNotIn item.name @root.skipRequests}}
     <div id="folder-{{cursor.ref}}" class="card-deck iteration-{{cursor.iteration}}">
     <div class="row iteration-{{cursor.iteration}}">
         <div class="col-sm-12 mb-3 iteration-{{cursor.iteration}}">
@@ -1211,6 +1211,7 @@ body.theme-light code {
         </div>
     </div>
     </div>
+{{/isNotIn}}
 {{/each}}
 {{/isNotIn}}
 {{/inline}}

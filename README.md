@@ -92,6 +92,7 @@ newman run collection.json -r htmlextra
 | `--reporter-htmlextra-skipHeaders` | An optional flag which allows you to exclude certain `Headers` from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-skipHeaders "Authorization"`|
 | `--reporter-htmlextra-skipSensitiveData` | An optional flag that will exclude all the `Request/Response Headers` and the `Request/Response bodies`, from each request in the final report. This will only show the main request info and the Test Results. This is `false` by default. | `newman run collection.json -r htmlextra --reporter-htmlextra-skipSensitiveData`|
 | `--reporter-htmlextra-skipFolders` | An optional flag that will exclude specified folders and their corresponding requests, in the final report. Ensure that folder namesare separated with comma ',' and without space. | `newman run collection.json -r htmlextra --reporter-htmlextra-skipFolders "folder name with space,folderWithoutSpace"`|
+`--reporter-htmlextra-skipRequests` | An optional flag that will exclude specified requests, in the final report. Ensure that request names are separated with comma ',' and without space. | `newman run collection.json -r htmlextra --reporter-htmlextra-skipRequests "request name with space,requestWithoutSpace"`|
 | `--reporter-htmlextra-showMarkdownLinks` | An optional flag which allows you render Markdown links from the test names and `pm.expect()` statements, in the final report. This could be useful if you use an external bug tracker. | `newman run collection.json -r htmlextra --reporter-htmlextra-showMarkdownLinks`|
 | `--reporter-htmlextra-noSyntaxHighlighting` | An optional flag which allows you disable the code syntax highlighting. This _could_ enhance the performance of opening larger reports. | `newman run collection.json -r htmlextra --reporter-htmlextra-noSyntaxHighlighting`|
 | `--reporter-htmlextra-showFolderDescription` | An optional flag which allows you to show all the folder descriptions, in the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-showFolderDescription`|
@@ -148,7 +149,8 @@ newman.run({
             // showMarkdownLinks: true,
             // showFolderDescription: true,
             // timezone: "Australia/Sydney",
-            // skipFolders: "folder name with space,folderWithoutSpace"
+            // skipFolders: "folder name with space,folderWithoutSpace",
+            // skipRequests: "request name with space,requestNameWithoutSpace"
         }
     }
 });
