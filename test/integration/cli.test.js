@@ -228,4 +228,12 @@ describe('Newman and htmlextra run from the CLI', function () {
                 fs.stat(outFile, done);
             });
     });
+    it('Should correctly geenrate report for skip folder', function (done) {
+        // eslint-disable-next-line max-len
+        exec(`${newman} run test/requests/simple-skipped-folder.json -r htmlextra  --reporter-htmlextra-export ${outFile} --reporter-htmlextra-showFolderDescription  --reporter-htmlextra-skipFolders "folder1,folder4" --iteration-count 10`,
+            function (code) {
+                expect(code, 'should have exit code of 0').to.equal(0);
+                fs.stat(outFile, done);
+            });
+    });
 });
