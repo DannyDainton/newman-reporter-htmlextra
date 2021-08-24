@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.22.0] - 2021-08-24
+
+### Added
+
+- Added the `skipFolders` and `skipRequests` flags.  🏆 Credit to @praveendvd 🏆
+
+### Fixed
+
+- Fixed an issue with the way certain information was rendered in a markdown table on the descriptions. 🏆 Credit to @praveendvd 🏆
+
+-----------------------------------------------------------------------
 ## [1.21.0] - 2021-05-27
 
 ### Fixed
