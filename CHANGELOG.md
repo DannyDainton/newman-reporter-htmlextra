@@ -6,7 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.22.1] - 2021-09-03
 
+### Fixed
+
+- Fixed an issue with requests and folders not showing on the report. 🏆 Credit to @praveendvd 🏆
+
+-----------------------------------------------------------------------
 ## [1.22.0] - 2021-08-24
 
 ### Added
