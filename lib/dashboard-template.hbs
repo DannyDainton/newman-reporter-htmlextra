@@ -1354,26 +1354,28 @@ $(this).data("clickCount", clickCount)
 <script>
 $('#openAllFailed').on('click', function(e) {
 let clickCount = $(this).data("clickCount") || 1
+let failedItemContent
+let failedItemHeading
 switch (clickCount){
     case 1:
-        {{#each aggregations}}
-        {{#each executions}}
-            $('#fails-{{cursor.ref}}').removeClass('collapsed')
-            $('#fails-collapse-{{cursor.ref}}').removeClass('collapsed')
-            $('#fails-{{cursor.ref}}').addClass('show')
-            $('#fails-collapse-{{cursor.ref}}').addClass('show')
-        {{/each}}
+        {{#each summary.failures}}
+            failedItemHeading = document.querySelectorAll('#fails-{{cursor.ref}}');
+            failedItemContent = document.querySelectorAll("#fails-collapse-{{cursor.ref}}");
+            failedItemHeading.forEach(elem=>$(elem).removeClass('collapsed'))
+            failedItemContent.forEach(elem=>$(elem).removeClass('collapsed'))
+            failedItemHeading.forEach(elem=>$(elem).addClass('show'))
+            failedItemContent.forEach(elem=>$(elem).addClass('show'))
         {{/each}}
         $('#openAllFailed').html("Collapse All Failed Tests");
         break;
     case 2:
-        {{#each aggregations}}
-        {{#each executions}}
-            $('#fails-{{cursor.ref}}').addClass('collapsed')
-            $('#fails-collapse-{{cursor.ref}}').addClass('collapsed')
-            $('#fails-{{cursor.ref}}').removeClass('show')
-            $('#fails-collapse-{{cursor.ref}}').removeClass('show')
-        {{/each}}
+        {{#each summary.failures}}
+            failedItemHeading = document.querySelectorAll('#fails-{{cursor.ref}}');
+            failedItemContent = document.querySelectorAll("#fails-collapse-{{cursor.ref}}");
+            failedItemHeading.forEach(elem=>$(elem).removeClass('show'))
+            failedItemContent.forEach(elem=>$(elem).removeClass('show'))
+            failedItemHeading.forEach(elem=>$(elem).addClass('collapsed'))
+            failedItemContent.forEach(elem=>$(elem).addClass('collapsed'))
         {{/each}}
         $('#openAllFailed').html("Expand All Failed Tests");
         break;
@@ -1382,7 +1384,6 @@ clickCount = clickCount > 1 ? 1 : ++clickCount;
 $(this).data("clickCount", clickCount)
 })
 </script>
-
 <!-- Pretty Print the Response Body-->
 
 <script>
