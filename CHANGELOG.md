@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.22.2] - 2021-10-23
+
+### Fixed
+
+- Fixed an issue with form-data show disabled keys in the reports. 🏆 Credit to @praveendvd 🏆
+
+-----------------------------------------------------------------------
+
 ## [1.22.1] - 2021-09-03
 
 ### Fixed
