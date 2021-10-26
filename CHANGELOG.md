@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.22.3] - 2021-10-26
+
+### Fixed
+
+- Fixed an issue with collaspe behavior on the failed tab. 🏆 Credit to @praveendvd 🏆
+
+-----------------------------------------------------------------------
+
 ## [1.22.2] - 2021-10-23
 
 ### Fixed
