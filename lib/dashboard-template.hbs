@@ -1320,30 +1320,28 @@ $(this).data("clickCount", clickCount)
 <script>
 $('#openAllSkipped').on('click', function(e) {
 let clickCount = $(this).data("clickCount") || 1
-let skippedItemContent
-let skippedItemHeading
 switch (clickCount){
     case 1:
-        {{#each summary.skippedTests}}
-            skippedItemHeading = document.querySelectorAll('#skipped-{{cursor.ref}}');
-            skippedItemContent = document.querySelectorAll("#skipped-collapse-{{cursor.ref}}");
-            skippedItemHeading.forEach(elem=>$(elem).removeClass('collapsed'))
-            skippedItemContent.forEach(elem=>$(elem).removeClass('collapsed'))
-            skippedItemHeading.forEach(elem=>$(elem).addClass('show'))
-            skippedItemContent.forEach(elem=>$(elem).addClass('show'))
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#skipped-{{cursor.ref}}').removeClass('collapsed')
+            $('#skipped-collapse-{{cursor.ref}}').removeClass('collapsed')
+            $('#skipped-{{cursor.ref}}').addClass('show')
+            $('#skipped-collapse-{{cursor.ref}}').addClass('show')
         {{/each}}
-        $('#openAllSkipped').html("Collapse All skipped Tests");
+        {{/each}}
+        $('#openAllSkipped').html("Collapse All Skipped Tests");
         break;
     case 2:
-        {{#each summary.failures}}
-            skippedItemHeading = document.querySelectorAll('#skipped-{{cursor.ref}}');
-            skippedItemContent = document.querySelectorAll("#skipped-collapse-{{cursor.ref}}");
-            skippedItemHeading.forEach(elem=>$(elem).removeClass('show'))
-            skippedItemContent.forEach(elem=>$(elem).removeClass('show'))
-            skippedItemHeading.forEach(elem=>$(elem).addClass('collapsed'))
-            skippedItemContent.forEach(elem=>$(elem).addClass('collapsed'))
+        {{#each aggregations}}
+        {{#each executions}}
+            $('#skipped-{{cursor.ref}}').addClass('collapsed')
+            $('#skipped-collapse-{{cursor.ref}}').addClass('collapsed')
+            $('#skipped-{{cursor.ref}}').removeClass('show')
+            $('#skipped-collapse-{{cursor.ref}}').removeClass('show')
         {{/each}}
-        $('#openAllSkipped').html("Expand All skipped Tests");
+        {{/each}}
+        $('#openAllSkipped').html("Expand All Skipped Tests");
         break;
 }
 clickCount = clickCount > 1 ? 1 : ++clickCount;
@@ -1386,6 +1384,7 @@ clickCount = clickCount > 1 ? 1 : ++clickCount;
 $(this).data("clickCount", clickCount)
 })
 </script>
+
 <!-- Pretty Print the Response Body-->
 
 <script>

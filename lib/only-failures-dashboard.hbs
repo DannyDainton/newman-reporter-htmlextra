@@ -706,11 +706,11 @@ body.theme-light code {
                     <div class="card-deck">
                         <div class="card border-danger">
                             <div class="card-header bg-danger">
-                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-{{cursor.ref}}" aria-expanded="false" aria-controls="collapse" id="fails-{{cursor.ref}}" class="collapsed text-white z-block">
+                                <a data-toggle="collapse" href="#" data-target="#fails-collapse-{{error.id}}" aria-expanded="false" aria-controls="collapse" id="fails-{{error.id}}" class="collapsed text-white z-block">
                                     Iteration {{inc cursor.iteration}} - {{error.name}} - {{parent.name}} - {{source.name}} <i class="float-lg-right fa fa-chevron-down"></i>
                                 </a>
                             </div>
-                            <div id="fails-collapse-{{cursor.ref}}" class="collapse" aria-labelledby="fails-{{cursor.ref}}">
+                            <div id="fails-collapse-{{error.id}}" class="collapse" aria-labelledby="fails-{{error.id}}">
                             <div class="card-body">
                                 <h5 {{#if @root.showMarkdownLinks}}class="renderMarkdown"{{/if}}><strong>Failed Test:</strong> {{error.test}}</h5>
                             <hr>
@@ -1412,26 +1412,28 @@ $(this).data("clickCount", clickCount)
 <script>
 $('#openAllFailed').on('click', function(e) {
 let clickCount = $(this).data("clickCount") || 1
+let failedItemContent
+let failedItemHeading
 switch (clickCount){
     case 1:
-        {{#each aggregations}}
-        {{#each executions}}
-            $('#fails-{{cursor.ref}}').removeClass('collapsed')
-            $('#fails-collapse-{{cursor.ref}}').removeClass('collapsed')
-            $('#fails-{{cursor.ref}}').addClass('show')
-            $('#fails-collapse-{{cursor.ref}}').addClass('show')
-        {{/each}}
+        {{#each summary.failures}}
+            failedItemHeading = $('#fails-{{error.id}}');
+            failedItemContent = $("#fails-collapse-{{error.id}}");
+            failedItemHeading.removeClass('collapsed')
+            failedItemContent.removeClass('collapsed')
+            failedItemHeading.addClass('show')
+            failedItemContent.addClass('show')
         {{/each}}
         $('#openAllFailed').html("Collapse All Failed Tests");
         break;
     case 2:
-        {{#each aggregations}}
-        {{#each executions}}
-            $('#fails-{{cursor.ref}}').addClass('collapsed')
-            $('#fails-collapse-{{cursor.ref}}').addClass('collapsed')
-            $('#fails-{{cursor.ref}}').removeClass('show')
-            $('#fails-collapse-{{cursor.ref}}').removeClass('show')
-        {{/each}}
+        {{#each summary.failures}}
+            failedItemHeading = $('#fails-{{error.id}}');
+            failedItemContent = $("#fails-collapse-{{error.id}}");
+            failedItemHeading.removeClass('show')
+            failedItemContent.removeClass('show')
+            failedItemHeading.addClass('collapsed')
+            failedItemContent.addClass('collapsed')
         {{/each}}
         $('#openAllFailed').html("Expand All Failed Tests");
         break;
