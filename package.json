@@ -55,7 +55,7 @@
   "devDependencies": {
     "async": "^3.2.1",
     "chai": "^4.2.0",
-    "colors": "^1.4.0",
+    "colors": "1.4.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-jsdoc": "8.7.0",
