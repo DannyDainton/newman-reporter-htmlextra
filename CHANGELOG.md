@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
+## [1.22.5] - 2022-01-27
+
+### Added
+
+- Turned off the progress bar by default and included an optional `displayProgressBar` flag
+
+-----------------------------------------------------------------------
+
 ## [1.22.4] - 2022-01-17
 
 ### Fixed
