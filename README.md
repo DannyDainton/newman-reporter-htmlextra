@@ -97,6 +97,7 @@ newman run collection.json -r htmlextra
 | `--reporter-htmlextra-noSyntaxHighlighting` | An optional flag which allows you disable the code syntax highlighting. This _could_ enhance the performance of opening larger reports. | `newman run collection.json -r htmlextra --reporter-htmlextra-noSyntaxHighlighting`|
 | `--reporter-htmlextra-showFolderDescription` | An optional flag which allows you to show all the folder descriptions, in the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-showFolderDescription`|
 | `--reporter-htmlextra-timezone` | An optional flag which allows you to set the timezone on the final report's timestamp | `newman run collection.json -r htmlextra --reporter-htmlextra-timezone "Australia/Sydney"`|
+| `--reporter-htmlextra-displayProgressBar` | An optional flag which displays the progress of the current Newman run in the CLI | `newman run collection.json -r htmlextra --reporter-htmlextra-displayProgressBar`|
 
 ---
 
@@ -150,7 +151,8 @@ newman.run({
             // showFolderDescription: true,
             // timezone: "Australia/Sydney",
             // skipFolders: "folder name with space,folderWithoutSpace",
-            // skipRequests: "request name with space,requestNameWithoutSpace"
+            // skipRequests: "request name with space,requestNameWithoutSpace",
+            // displayProgressBar: true
         }
     }
 });
