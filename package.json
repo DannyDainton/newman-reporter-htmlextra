@@ -1,6 +1,6 @@
 {
   "name": "newman-reporter-htmlextra",
-  "version": "1.22.5",
+  "version": "1.22.6",
   "description": "A newman reporter with added handlebars helpers and separated request iterations",
   "main": "index.js",
   "preferGlobal": true,
@@ -34,15 +34,15 @@
     "README.MD"
   ],
   "dependencies": {
-    "chalk": "^4.1.2",
-    "cli-progress": "^3.8.2",
-    "commander": "^6.2.1",
-    "filesize": "^6.4.0",
-    "handlebars": "^4.7.6",
-    "handlebars-helpers": "^0.10.0",
-    "lodash": "^4.17.20",
-    "moment-timezone": "^0.5.32",
-    "pretty-ms": "^7.0.1"
+    "@budibase/handlebars-helpers": "0.11.8",
+    "chalk": "4.1.2",
+    "cli-progress": "3.8.2",
+    "commander": "6.2.1",
+    "filesize": "6.4.0",
+    "handlebars": "4.7.7",
+    "lodash": "4.17.21",
+    "moment-timezone": "0.5.32",
+    "pretty-ms": "7.0.1"
   },
   "author": "Danny Dainton",
   "license": "Apache-2.0",
@@ -63,7 +63,7 @@
     "eslint-plugin-markdown": "^2.2.0",
     "eslint-plugin-mocha": "^6.3.0",
     "eslint-plugin-security": "^1.4.0",
-    "mocha": "^8.4.0",
+    "mocha": "^9.2.0",
     "newman": "^5.2.4",
     "parse-gitignore": "^1.0.1",
     "recursive-readdir": "^2.2.2",
