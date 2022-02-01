@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+- Turned off the progress bar by default and included an optional `displayProgressBar` flag
+
+-----------------------------------------------------------------------
+
+## [1.22.7] - 2022-02-01
+
+### Fixed
+
+- Fixed the version of `cli-progress` htmlextra was using as this had the corrupted version of `color.js`.
+
+-----------------------------------------------------------------------
+
+
 ## [1.22.6] - 2022-01-31
 
 ### Updated

@@ -91,7 +91,7 @@ describe('Newman and htmlextra run from the CLI', function () {
 
     it('should correctly generate the html report for a successful run', function (done) {
         // eslint-disable-next-line max-len
-        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra --reporter-htmlextra-export ${outFile}`,
+        exec(`${newman} run test/requests/simple-get-request.json -r htmlextra --reporter-htmlextra-export ${outFile} --reporter-htmlextra-displayProgressBar`,
             function (code) {
                 expect(code, 'should have exit code of 0').to.equal(0);
                 fs.stat(outFile, done);
