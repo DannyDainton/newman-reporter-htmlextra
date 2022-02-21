@@ -23,6 +23,8 @@ body:
       2. Open the new htmlextra report in a browser window
       3. Click on the 'Total Requests' tab
       4. Nothing happens...
+    validations:
+      required: true
 - type: markdown
   attributes:
     value: '> **Tip**: You can attach images and recordings to textareas by dragging in the files. More visual examples will help to understand the issue.'
