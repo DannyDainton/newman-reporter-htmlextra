@@ -1,6 +1,6 @@
 name: Bug Report
 description: Raise an issue with the Reporter
-labels: [type: bug, state: needs-triaging]
+labels: ['type: bug', 'state: needs-triage']
 body:
 - type: checkboxes
   attributes:
