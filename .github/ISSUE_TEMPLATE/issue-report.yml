@@ -6,7 +6,7 @@ body:
   attributes:
     label: Is There An Existing Issue
     options:
-      - label: I have searched the [issue tracker](https://github.com/DannyDainton/newman-reporter-htmlextra/issues) for the same of similar problem.
+      - label: I have searched the [issue tracker](https://github.com/DannyDainton/newman-reporter-htmlextra/issues) for similar problems.
         required: true
 - type: textarea
   attributes:
@@ -17,15 +17,15 @@ body:
 - type: textarea
   attributes:
     label: Steps To Reproduce The Issue
-    description: Provide steps to reproduce the problem
+    description: Provide steps to reproduce the problem.
     placeholder: |
-      1. Go to '...'
-      2. Click on '....'
-      3. Scroll down to '....'
-      4. See error
+      1. Run Newman using the command in the terminal
+      2. Open the new htmlextra report in a browser window
+      3. Click on the 'Total Requests' tab
+      4. Nothing happens...
 - type: markdown
   attributes:
-    value: '> **Tip**: You can attach images or log files to textareas by clicking to highlight and then dragging files in.'
+    value: '> **Tip**: You can attach images and recordings to textareas by dragging in the files. More visual examples will help to understand the issue.'
 - type: textarea
   attributes:
     label: Full Newman Command Or Node Script
