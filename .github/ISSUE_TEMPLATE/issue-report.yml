@@ -2,15 +2,18 @@ name: Bug Report
 description: Raise an issue with the Reporter
 labels: [type: bug, state: needs-triaging]
 body:
+- type: checkboxes
+  attributes:
+    label: Is There An Existing Issue
+    options:
+      - label: I have searched the [issue tracker](https://github.com/DannyDainton/newman-reporter-htmlextra/issues) for the same of similar problem.
+        required: true
 - type: textarea
   attributes:
     label: What Are You Seeing
     description: A high-level description explaining the issue that you are facing.
   validations:
     required: true
-- type: markdown
-  attributes:
-    value: '> **Tip**: You can attach images or log files to textareas by clicking to highlight and then dragging files in.'
 - type: textarea
   attributes:
     label: Steps To Reproduce The Issue
@@ -20,22 +23,15 @@ body:
       2. Click on '....'
       3. Scroll down to '....'
       4. See error
-- type: checkboxes
+- type: markdown
   attributes:
-    label: Is There An Existing Issue?
-    options:
-      - label: I have searched the [issue tracker](https://github.com/DannyDainton/newman-reporter-htmlextra/issues) for the same of similar problem.
-        required: true
+    value: '> **Tip**: You can attach images or log files to textareas by clicking to highlight and then dragging files in.'
 - type: textarea
   attributes:
     label: Full Newman Command Or Node Script
     description: The command used to run the reporter with Newman.
   validations:
     required: true
-- type: textarea
-  attributes:
-    label: Additional Context
-    description: Any contextual information that might relate to the problem?
 - type: input
   attributes:
     label: HTMLEXTRA Version
@@ -50,12 +46,7 @@ body:
     placeholder: "5.3.1"
   validations:
     required: true
-- type: dropdown
+- type: textarea
   attributes:
-    label: How are using the reporter?
-    options:
-      - From the Command Line
-      - In a script
-      - Using the Docker Image
-  validations:
-    required: true
+    label: Additional Context
+    description: Any contextual information that might relate to the problem?
