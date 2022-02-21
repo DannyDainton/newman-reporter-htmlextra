@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Feature Request
+    url: https://github.com/DannyDainton/newman-reporter-htmlextra/discussions/categories/ideas
+    about: Submit new ideas and features for the project
   - name: Reach Me On Twitter
     url: https://twitter.com/DannyDainton
     about: If you have any reporter concerns, that are not functionality issues, feel free to ping me here.
