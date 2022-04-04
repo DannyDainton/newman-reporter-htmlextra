@@ -431,7 +431,36 @@ body.theme-light code {
 
 </style>
 </head>
-<body class="">
+<body class="theme-dark">
+<script>
+    function setTheme(themeName) {
+        localStorage.setItem('theme', themeName);
+        document.body.className = themeName;
+    }
+
+    function toggleTheme() {
+        if (localStorage.getItem('theme') === 'theme-light') {
+            setTheme('theme-dark');
+        } else {
+            setTheme('theme-light');
+        }
+    }
+
+    (function () {
+        var sliderChecked = true;
+        if (localStorage.getItem('theme') === 'theme-light') {
+            setTheme('theme-light');
+            sliderChecked = false;
+        } else {
+            setTheme('theme-dark');
+            sliderChecked = true;
+        }
+        
+        $(document).ready( function () {
+            document.getElementById('slider').checked = sliderChecked
+        });
+    })();
+</script>
   <div class="container">
         <div class="container">
             <label>Light</label>
@@ -815,8 +844,6 @@ body.theme-light code {
     </div>
     </div>
     </div>
-</body>
-</html>
 
 {{#*inline "aggregations"}}
 {{#isNotIn parent.name @root.skipFolders}}
@@ -1151,7 +1178,7 @@ body.theme-light code {
                         <h5 class="card-title text-uppercase text-white text-center bg-info">Test Information</h5>
                             {{#if assertions.length}}
                             <div class="table-responsive text-nowrap">
-                                <table id="myTable-{{item.id}}" class="table table-hover">
+                                <table class="datatable table table-hover">
                                 <thead><tr class="text-center"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th></tr></thead>
                                     <tbody>
                                         {{#each assertions}}
@@ -1229,10 +1256,8 @@ body.theme-light code {
 <!-- Data Table Configuration -->
 
 <script>
-{{#each aggregations}}
-{{#each executions}}
 $(document).ready( function () {
-    $('#myTable-{{item.id}}').DataTable({
+    $('.datatable').DataTable({
         "retrieve": true,
         "paging": {{paging}},
         "info": false,
@@ -1241,8 +1266,6 @@ $(document).ready( function () {
         }
     });
 });
-{{/each}}
-{{/each}}
 </script>
 
 <!-- Tooltip Configuration -->
@@ -1635,30 +1658,5 @@ $('#showOnlyFailures').on('click', function(e) {
     $(this).data("clickCount", clickCount)     
 })
 </script>
-
-<!-- Set The Theme Of The Report -->
-
-<script>
-        function setTheme(themeName) {
-            localStorage.setItem('theme', themeName);
-            document.body.className = themeName;
-        }
-
-        function toggleTheme() {
-            if (localStorage.getItem('theme') === 'theme-light') {
-                setTheme('theme-dark');
-            } else {
-                setTheme('theme-light');
-            }
-        }
-
-        (function () {
-            if (localStorage.getItem('theme') === 'theme-light') {
-                setTheme('theme-light');
-                document.getElementById('slider').checked = false;
-            } else {
-                setTheme('theme-dark');
-                document.getElementById('slider').checked = true;
-            }
-        })();
-</script>
+</body>
+</html>
