@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.22.8] - 2022-04-04
+
+### Updated
+
+- Changed the way that `datatables` creates the instance of the test information table on each iteration
+
+-----------------------------------------------------------------------
+
 ## [1.22.7] - 2022-02-01
 
 ### Fixed
