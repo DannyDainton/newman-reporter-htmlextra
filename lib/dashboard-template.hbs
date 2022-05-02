@@ -334,15 +334,15 @@ body.theme-light .card-body .bg-danger {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 /* The switch - the box around the slider */
@@ -419,15 +419,15 @@ input:checked + .slider:before {
 
 table.dataTable td, table.dataTable tr {
     vertical-align: middle;
-} 
+}
 
 body.theme-dark code {
     color: #ccd2d8!important;
-} 
+}
 
 body.theme-light code {
     color: #000000!important;
-} 
+}
 
 </style>
 </head>
@@ -445,21 +445,6 @@ body.theme-light code {
             setTheme('theme-light');
         }
     }
-
-    (function () {
-        var sliderChecked = true;
-        if (localStorage.getItem('theme') === 'theme-light') {
-            setTheme('theme-light');
-            sliderChecked = false;
-        } else {
-            setTheme('theme-dark');
-            sliderChecked = true;
-        }
-        
-        $(document).ready( function () {
-            document.getElementById('slider').checked = sliderChecked
-        });
-    })();
 </script>
   <div class="container">
         <div class="container">
@@ -552,7 +537,7 @@ body.theme-light code {
                 <span><i class="fas fa-file-code"></i></span><strong> Collection:</strong> {{collection.name}}<br>
                 {{/with}}
                 {{#if folders}}<span><i class="fas fa-folder"></i></span><strong> Specified Folders:</strong> {{folders}}<br>{{/if}}
-                {{#with summary}}  
+                {{#with summary}}
                 {{#if environment.name}}<span><i class="fas fa-file-code"></i></span><strong> Environment:</strong> {{environment.name}}<br>{{/if}}
                 </div>
             </div>
@@ -572,7 +557,7 @@ body.theme-light code {
                     </h5>
                     <div id="global-values" class="collapse" aria-labelledby="global-heading">
                     <div class="card-body">
-                        
+
                         <div class="table-responsive dyn-height">
                             <table class="table table-bordered">
                             <thead class="thead-light text-center"><tr><th>Variable Name</th><th>Variable Value</th></tr></thead>
@@ -610,7 +595,7 @@ body.theme-light code {
                     </h5>
                     <div id="environment-values" class="collapse" aria-labelledby="environment-heading">
                     <div class="card-body">
-                        
+
                         <div class="table-responsive dyn-height">
                             <table class="table table-bordered">
                             <thead class="thead-light text-center"><tr><th>Variable Name</th><th>Variable Value</th></tr></thead>
@@ -715,7 +700,7 @@ body.theme-light code {
         </div>
             <div class="tab-pane fade" id="pills-failed" role="tabcard" aria-labelledby="pills-failed-tab">
                 <button id="topOfFailuresScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
-                
+
                 {{#if summary.failures.length}}
                     <div class="btn-group float-right" role="group" aria-label="Button Group">
                         <button id="openAllFailed" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width: 185px;">Expand All Failed Tests</button>
@@ -767,7 +752,7 @@ body.theme-light code {
                     </div>
                     <br>
                     <br>
-                
+
                     {{#with summary}}
                     <div class="alert alert-warning text-uppercase text-center">
                         <h4>Showing {{skippedTests.length}} Skipped {{#gt skippedTests.length 1}}Tests{{else}}Test{{/gt}}</h4>
@@ -800,7 +785,7 @@ body.theme-light code {
             <div class="tab-pane fade" id="pills-requests" role="tabcard" aria-labelledby="pills-requests-tab">
 
             <button id="topOfRequestsScreen" class="btn btn-outline-success btn-sm backToTop" onclick="topFunction()">Go To Top</button>
-            
+
             <div class="btn-group float-right" role="group" aria-label="Button Group">
                 {{#if summary.failures.length}}
                 <button id="showOnlyFailures" class="btn btn-outline-success btn-sm float-right" style="text-align: center; width:160px;">Show Failed Iterations</button>
@@ -835,8 +820,8 @@ body.theme-light code {
         </div>
         {{else}}
         {{> aggregations}}
-    {{/if}}     
-    {{/isNotIn}}     
+    {{/if}}
+    {{/isNotIn}}
 {{/each}}
         </div>
     </div>
@@ -1253,6 +1238,24 @@ body.theme-light code {
 <script>hljs.initHighlightingOnLoad();</script>
 {{/eq}}
 
+<!-- Set slider initial position depending on the localstorage state -->
+
+<script>
+(function () {
+  var sliderChecked = true;
+  if (localStorage.getItem('theme') === 'theme-light') {
+    setTheme('theme-light');
+    sliderChecked = false;
+  } else {
+    setTheme('theme-dark');
+    sliderChecked = true;
+  }
+  $(document).ready( function () {
+    document.getElementById('slider').checked = sliderChecked;
+  });
+})();
+</script>
+
 <!-- Data Table Configuration -->
 
 <script>
@@ -1460,7 +1463,7 @@ $(".prettyPrint").each(function () {
                 data = JSON.stringify(obj, null, 2);
         }
         else if(isXML(data)) {
-            data = formatXML(data);            
+            data = formatXML(data);
         }
         $(this).text(data);
 });
@@ -1522,11 +1525,11 @@ function scrollFunction() {
     document.getElementById("topOfSkippedScreen").style.display = "block";
     document.getElementById("openAll").style.display = "none";
     document.getElementById("openAllRequests").style.display = "none";
-    
+
     {{#if summary.skippedTests.length}}
     document.getElementById("openAllSkipped").style.display = "none";
     {{/if}}
-    
+
     {{#if summary.failures.length}}
     document.getElementById("showOnlyFailures").style.display = "none";
     document.getElementById("openAllFailed").style.display = "none";
@@ -1537,7 +1540,7 @@ function scrollFunction() {
     document.getElementById("topOfSkippedScreen").style.display = "none";
     document.getElementById("openAll").style.display = "block";
     document.getElementById("openAllRequests").style.display = "block";
-    
+
     {{#if summary.skippedTests.length}}
     document.getElementById("openAllSkipped").style.display = "block";
     {{/if}}
@@ -1592,7 +1595,7 @@ window.onload = function () {
       allMenus.forEach(function(elem){
         elem.style.borderBottom = 'none';
       })
-    
+
       this.style.borderBottom = 'solid 3px #032a33';
 
       let items = document.querySelectorAll("." + this.id + ':not(.row)');
@@ -1647,7 +1650,7 @@ $("#filterInput").on("input paste", function() {
 $('#showOnlyFailures').on('click', function(e) {
     let clickCount = $(this).data("clickCount") || 1
 	$("#filterInput").val()!="" && clickCount==1 ? $("#filterInput").val('').trigger('input'): null;
-    let selectedIteration = $('#iterationList li').filter(function () { 
+    let selectedIteration = $('#iterationList li').filter(function () {
         return $(this).css('border-bottom').indexOf("solid") > -1 && $(this).hasClass('itFailed');
     });
     selectedIteration.length || clickCount > 1 ? null : $("#iterationList li.itFailed")[0].click()
@@ -1655,7 +1658,7 @@ $('#showOnlyFailures').on('click', function(e) {
     $("div.bg-success [id*=requests]").parents('[class^="row iteration-"]').toggle();
     clickCount = clickCount > 1 ? 1 : ++clickCount;
     clickCount > 1 ? $("#showOnlyFailures").html("Show All Iterations") : $("#showOnlyFailures").html("Show Failed Iterations");
-    $(this).data("clickCount", clickCount)     
+    $(this).data("clickCount", clickCount)
 })
 </script>
 </body>
