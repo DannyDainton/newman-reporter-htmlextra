@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
-- Turned off the progress bar by default and included an optional `displayProgressBar` flag
+## [1.22.9] - 2022-05-03
+
+### Fixed
+
+- Fixed an issue with the theme switcher. 🏆 Credit to @IceBjerg 🏆
 
 -----------------------------------------------------------------------
 
