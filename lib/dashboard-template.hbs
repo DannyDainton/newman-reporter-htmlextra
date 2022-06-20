@@ -429,6 +429,13 @@ body.theme-light code {
     color: #000000!important;
 }
 
+.text-wrap {
+    word-wrap: break-word; 
+    min-width: 600px; 
+    max-width: 600px; 
+    white-space: normal;
+}
+
 </style>
 </head>
 <body class="theme-dark">
@@ -941,7 +948,7 @@ body.theme-light code {
                                             {{#isNotIn key @root.skipHeaders}}
                                             <tr>
                                                 <td class="text-nowrap">{{key}}</td>
-                                                <td>{{value}}</td>
+                                                <td class="text-wrap">{{value}}</td>
                                             </tr>
                                             {{/isNotIn}}
                                             {{/each}}
@@ -1088,7 +1095,7 @@ body.theme-light code {
                                         {{#isNotIn key @root.skipHeaders}}
                                         <tr>
                                             <td class="text-nowrap">{{key}}</td>
-                                            <td>{{value}}</td>
+                                            <td class="text-wrap">{{value}}</td>
                                         </tr>
                                         {{/isNotIn}}
                                         {{/each}}
