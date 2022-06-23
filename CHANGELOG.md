@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.22.10] - 2022-06-23
+
+### Fixed
+
+- Fixed a ux issue which did not wrap long values in the headers sections and it added an unecessary scrollbar. 🏆 Credit to @w4dd325 🏆
+
+-----------------------------------------------------------------------
+
 ## [1.22.9] - 2022-05-03
 
 ### Fixed

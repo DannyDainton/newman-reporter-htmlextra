@@ -14,7 +14,9 @@ This reporter comes with a dashboard style summary landing page and a set of dif
 
 ---
 
-If you're a fan of the project and you wanted to show your appreciation by keeping me highly caffeinated - You can do that here 😍
+This project will always continue to be fully maintained free of charge - If you're a fan of the project and it's something you get value from, it would be lovely to pay that forward in the means of a donation.
+
+All donations are not kept by me, these are passed on to local charities. Other people need the help that these donations will provide more than I need coffee. 😍
 
 <a href="https://www.buymeacoffee.com/htmlextra"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=htmlextra&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
 
@@ -226,6 +228,7 @@ I would be lying if I said that I've created this reporter all on my own, I need
 - [@dersvenhesse](https://github.com/dersvenhesse)
 - [@b-pagis](https://github.com/b-pagis)
 - [@IceBjerg](https://github.com/IceBjerg)
+- [@w4dd325](https://github.com/w4dd325)
 
 A huge amount of love and appreciation also goes to [Bruce](https://twitter.com/BruceOnlyBruce) _The Legend_, for creating the awesome project logo ♥️
 
