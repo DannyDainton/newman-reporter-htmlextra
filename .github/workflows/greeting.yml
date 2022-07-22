@@ -1,0 +1,19 @@
+name: 'Issue Acknowledgement'
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Hey @${{github.event.issue.user.login}}: 👋 - Thanks for helping to make the reporter better by raising this ticket. I will take a look as soon as I can and get back to you. Cheers, Danny.'
+            })
