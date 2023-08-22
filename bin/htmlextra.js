@@ -14,6 +14,7 @@ program
     .option('--reporter-htmlextra-browserTitle', 'Specify the name of the title in the browser tab')
     .option('--reporter-htmlextra-title', 'Specify the name of the main report title on the Summary tab')
     .option('--reporter-htmlextra-titleSize', 'Specify the size of the main report title')
+    .option('--reporter-htmlextra-omitURLs', 'Excludes all `URLs` from the final report')
     .option('--reporter-htmlextra-omitHeaders', 'Excludes all `Headers` from the final report')
     .option('--reporter-htmlextra-skipHeaders', 'Exclude certain `Headers` from the final report')
     .option('--reporter-htmlextra-omitRequestBodies', 'Exclude all `Request Bodies` from the final report')

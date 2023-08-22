@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.23.0] - 2023-08-22
+
+### Added
+
+- Added the `omitURLs` flag to hide the URLs from the report - Can be useful if these contain sensitive information.
+- Included a visual indicator if a request header is `disabled` in the Collection - These are still shown in the report.
+
+-----------------------------------------------------------------------
+
 ## [1.22.10] - 2022-06-23
 
 ### Fixed

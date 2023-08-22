@@ -91,6 +91,7 @@ newman run collection.json -r htmlextra
 | `--reporter-htmlextra-showGlobalData` | An optional flag which allows you to show all the `Global` variables used during the run, in the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-showGlobalData`|
 | `--reporter-htmlextra-skipGlobalVars` | An optional flag which allows you to exclude certain `Global` variables from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-skipGlobalVars "API_TOKEN"`|
 | `--reporter-htmlextra-omitHeaders` | An optional flag which allows you to exclude all `Headers` from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-omitHeaders`|
+| `--reporter-htmlextra-omitURLs` | An optional flag which allows you to exclude all `URLs` from the final report - Can be useful if sensitive data is contained in the query params. | `newman run collection.json -r htmlextra --reporter-htmlextra-omitURLs`|
 | `--reporter-htmlextra-skipHeaders` | An optional flag which allows you to exclude certain `Headers` from the final report | `newman run collection.json -r htmlextra --reporter-htmlextra-skipHeaders "Authorization"`|
 | `--reporter-htmlextra-skipSensitiveData` | An optional flag that will exclude all the `Request/Response Headers` and the `Request/Response bodies`, from each request in the final report. This will only show the main request info and the Test Results. This is `false` by default. | `newman run collection.json -r htmlextra --reporter-htmlextra-skipSensitiveData`|
 | `--reporter-htmlextra-skipFolders` | An optional flag that will exclude specified folders and their corresponding requests, in the final report. Ensure that folder names are separated with comma ',' and without space. | `newman run collection.json -r htmlextra --reporter-htmlextra-skipFolders "folder name with space,folderWithoutSpace"`|
@@ -139,6 +140,7 @@ newman.run({
             // title: "My Newman Report",
             // titleSize: 4,
             // omitHeaders: true,
+            // omitURLs: true,
             // skipHeaders: "Authorization",
             // omitRequestBodies: true,
             // omitResponseBodies: true,

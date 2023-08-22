@@ -899,7 +899,9 @@ body.theme-light code {
                             <div class="card-body">
                             <h5 class="card-title text-uppercase text-white text-center bg-info">Request Information</h5>
                             <span><i class="fas fa-info-circle"></i></span><strong> Request Method:</strong> <span class="badge-outline-success badge badge-success"> {{request.method}}</span><br>
-                            <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="{{request.url}}" target="_blank">{{request.url}}</a><br>
+                            {{#unless @root.omitURLs}}
+                            <span><i class="fas fa-info-circle"></i></span><strong> Request URL:</strong> <a href="{{request.url}}" target="_blank"> {{request.url}}</a><br>
+                            {{/unless}}
                             </div>
                         </div>
                         <div class="card border-info" style="width: 50rem;">
@@ -947,7 +949,7 @@ body.theme-light code {
                                             {{#each headers.members}}
                                             {{#isNotIn key @root.skipHeaders}}
                                             <tr>
-                                                <td class="text-nowrap">{{key}}</td>
+                                                <td class="text-nowrap">{{#if disabled}}<span class="badge badge-info text-white text-uppercase">Disabled </span>{{/if}} {{key}}</td>
                                                 <td class="text-wrap">{{value}}</td>
                                             </tr>
                                             {{/isNotIn}}
