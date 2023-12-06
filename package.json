@@ -50,7 +50,7 @@
     "node": ">=6"
   },
   "peerDependencies": {
-    "newman": "^5.1.2"
+    "newman": "^6.0.0"
   },
   "devDependencies": {
     "async": "^3.2.1",
