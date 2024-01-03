@@ -1,6 +1,6 @@
 {
   "name": "newman-reporter-htmlextra",
-  "version": "1.22.10",
+  "version": "1.23.0",
   "description": "A newman reporter with added handlebars helpers and separated request iterations",
   "main": "index.js",
   "preferGlobal": true,
@@ -53,11 +53,11 @@
     "newman": "^6.0.0"
   },
   "devDependencies": {
-    "async": "^3.2.1",
-    "chai": "^4.2.0",
+    "async": "^3.2.5",
+    "chai": "^4.3.10",
     "colors": "1.4.0",
     "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "8.7.0",
     "eslint-plugin-lodash": "^7.3.0",
     "eslint-plugin-markdown": "^2.2.0",
