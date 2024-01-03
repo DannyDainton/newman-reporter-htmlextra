@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.23.0] - 2024-01-03
+
+### Updated
+
+- Updated the Newman version used for the tests and upgraded the node version in the GH Action files.
+
+-----------------------------------------------------------------------
+
 ## [1.22.10] - 2022-06-23
 
 ### Fixed
