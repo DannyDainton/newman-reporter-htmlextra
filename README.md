@@ -229,6 +229,7 @@ I would be lying if I said that I've created this reporter all on my own, I need
 - [@b-pagis](https://github.com/b-pagis)
 - [@IceBjerg](https://github.com/IceBjerg)
 - [@w4dd325](https://github.com/w4dd325)
+- [@scotty6435](https://github.com/scotty6435)
 
 A huge amount of love and appreciation also goes to [Bruce](https://twitter.com/BruceOnlyBruce) _The Legend_, for creating the awesome project logo ♥️
 

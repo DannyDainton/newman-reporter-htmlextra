@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 -----------------------------------------------------------------------
 
+## [1.23.1] - 2024-03-19
+
+### Updated
+
+- Updated the handlebar-helpers module. 🏆 Credit to @scotty6435 🏆.
+
+-----------------------------------------------------------------------
+
+
 ## [1.23.0] - 2024-01-03
 
 ### Updated
