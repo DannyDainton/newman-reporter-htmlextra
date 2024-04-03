@@ -1,4 +1,4 @@
-FROM postman/newman:alpine
+FROM postman/newman
 
 LABEL maintainer="Danny Dainton <dannydainton@gmail.com>"
 
