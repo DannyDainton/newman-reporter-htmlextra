@@ -40,7 +40,7 @@
     "commander": "6.2.1",
     "filesize": "6.4.0",
     "handlebars": "4.7.7",
-    "lodash": "4.17.21",
+    "lodash": "4.17.23",
     "moment-timezone": "0.5.35",
     "pretty-ms": "7.0.1"
   },
