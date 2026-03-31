@@ -34,7 +34,7 @@
     "README.MD"
   ],
   "dependencies": {
-    "@budibase/handlebars-helpers": "0.13.1",
+    "@budibase/handlebars-helpers": "^0.14.2",
     "chalk": "4.1.2",
     "cli-progress": "3.10.0",
     "commander": "6.2.1",
@@ -50,7 +50,7 @@
     "node": ">=6"
   },
   "peerDependencies": {
-    "newman": "^6.0.0"
+    "newman": "^6.2.2"
   },
   "devDependencies": {
     "async": "^3.2.5",
@@ -64,7 +64,7 @@
     "eslint-plugin-mocha": "^6.3.0",
     "eslint-plugin-security": "^1.7.1",
     "mocha": "^11.1.0",
-    "newman": "^6.1.2",
+    "newman": "^6.2.2",
     "parse-gitignore": "^1.0.1",
     "recursive-readdir": "^2.2.2",
     "shelljs": "^0.8.4"
