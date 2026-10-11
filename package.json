@@ -39,13 +39,16 @@
     "cli-progress": "3.10.0",
     "commander": "6.2.1",
     "filesize": "6.4.0",
-    "handlebars": "4.7.9",
+    "handlebars": "4.7.10",
     "lodash": "4.17.23",
     "moment-timezone": "0.5.35",
     "pretty-ms": "7.0.1"
   },
   "author": "Danny Dainton",
   "license": "Apache-2.0",
+  "overrides": {
+    "handlebars": "4.7.10"
+  },
   "engines": {
     "node": ">=6"
   },
